@@ -1,0 +1,224 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: context menus #1</title>
+    <style type="text/css"> @import url("../src/skin-hmenu-dark.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+
+    <style>
+      #par1, #par2, #par3 { border: 1px solid #000; padding: 5px; }
+    </style>
+  </head>
+  <body onload="DynarchMenu.setup('menu', { context: true });" id="document">
+
+    <p style="color: red; text-align: center">
+      <b>Note</b>: Context menu functionality is only available in
+      Mozilla (+ related browsers, i.e. Netscape 7+, Galeon, Chimera,
+      etc.) and Internet Explorer.  Other browsers don't cooperate on
+      this.
+    </p>
+
+    <h2>Look, context menus with <em>one</em> function call! :-)</h2>
+
+    <p id="par1">
+      This paragraph has a context menu associated with it.
+      Right-click somewhere inside it.
+    </p>
+
+    <p id="par2">
+      This is another paragraph that has a different context
+      menu. Right-click somewhere inside it.
+    </p>
+
+    <p id="par3">
+      This is yet another paragraph which shows that we can also put
+      arbitrary HTML inside the context menus.
+    </p>
+
+    <h2>Now the explanations</h2>
+
+    <p>
+      All these context menus are created with only <em>one</em>
+      function call.  The menu is defined like usual, in an &lt;UL&gt;
+      element, but we initialize it this way:
+    </p>
+
+    <pre>DynarchMenu.setup('menu', { context: true });</pre>
+
+    <p>
+      Note the “context: true” parameter.  When DynarchMenu encounters
+      this parameter, the main menu bar will never appear, and any
+      popups directly defined in it can act as context menus for
+      certain HTML elements.  You need to identify those elements by
+      assigning them a certain ID in your HTML code, and passing the
+      ID to the menu.  How do we do this?  Well, reading the source of
+      this page should be pretty straightforward, but here are more
+      explanations.  Suppse you have the following HTML code:
+    </p>
+
+    <pre><span class="function-name">&lt;</span><span class="html-tag">p</span> <span class="variable-name">id=</span><span class="string">&quot;paragraph1&quot;</span><span class="function-name">&gt;</span> ... text text text ... <span class="function-name">&lt;</span><span class="html-tag">/p</span><span class="function-name">&gt;</span></pre>
+
+    <p>
+      In order to assign a context menu to it, your menu would look
+      like this (starting with the toplevel UL element):
+    </p>
+
+    <pre>    <span class="function-name">&lt;</span><span class="html-tag">ul</span> <span class="variable-name">id=</span><span class="string">&quot;menu&quot;</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">li</span> <span class="variable-name">class=</span><span class="string">&quot;context-for-paragraph1&quot;</span><span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">ul</span><span class="function-name">&gt;</span>
+          <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+            Foo Bar item _1
+          <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+          <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+            Foo Bar item _2
+          <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+          <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+          <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+            With submenu
+            <span class="function-name">&lt;</span><span class="html-tag">ul</span><span class="function-name">&gt;</span>
+              <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>Submenu 1 Item 1<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+              <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>Submenu 1 Item 2<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+              <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>Submenu 1 Item 3<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+              <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>Submenu 1 Item 4<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+            <span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span>
+          <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+          <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+            <span class="function-name">&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;javascript:alert</span><span class="function-name">(</span><span class="string">new Date</span><span class="function-name">())</span><span class="string">&quot;</span><span class="function-name">&gt;</span><span class="warning">This shows date</span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;</span>
+          <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span></pre>
+
+    <p>
+      So, as you can see, it's just like an ordinary menu, but
+      however, one thing is <b>important to note</b>: the class name
+      of the LI element that contains the context menu.  It's
+      “context-for-paragraph1”&mdash;this tells DynarchMenu that the
+      submenu of that item should open when someone right-clicks the
+      element with the ID “paragraph1” (which, as you remember, is our
+      paragraph).
+    </p>
+
+    <p>
+      Of course, your toplevel UL can contain multiple submenus; they
+      can be “context-for-<em>whatever</em>”&mdash;therefore, you can
+      define multiple context menus in a single UL element, and
+      initialize them all with <em>one</em> function call.
+    </p>
+
+    <h2>Context menu for the document element?</h2>
+
+    <p>
+      Never has this been easier! :-) Just use the exact same
+      technique, and assign an ID to the &lt;BODY&gt;
+      element.
+    </p>
+
+    <ul id="menu">
+      <li class="context-for-par1">
+        <ul>
+          <li>
+            Foo Bar item _1
+          </li>
+          <li>
+            Foo Bar item _2
+          </li>
+          <li></li>
+          <li>
+            With submenu
+            <ul>
+              <li>Submenu 1 Item 1</li>
+              <li>Submenu 1 Item 2</li>
+              <li>Submenu 1 Item 3</li>
+              <li>Submenu 1 Item 4</li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:alert(new Date())">This shows date</a>
+          </li>
+        </ul>
+      </li>
+      <li class="context-for-par2">
+        <ul>
+          <li>
+            <img src="../icons/dynarch.png" alt="" />
+            <a href="http://dynarch.com" title="Go to www.dynarch.com in a new window"
+               target="_blank">dynarch.com</a>
+          </li>
+          <li>
+            <a href="http://dynarch.com/mishoo/" title="Mishoo's homepage (opens new window)"
+               target="_blank">Mishoo</a>
+          </li>
+          <li></li>
+          <li>
+            <a href="http://dynarch.com/mishoo/htmlarea.epl"
+               title="HTMLArea -- Web based editor for the people (opens new window)"
+               target="_blank">HTMLArea</a>
+          </li>
+        </ul>
+      </li>
+      <li class="context-for-document">
+        <ul>
+          <li><a href="javascript:scrollTo(0, 0)">Scroll to TOP</a></li>
+          <li></li>
+          <li>
+            <div style="width: 10em; float: left; color: #080; font-style: italic;">
+              This is our custom context menu for the document.  In
+              order to see the page source please use the browser's
+              menus i.e. File or View and look for “Page source”.
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="context-for-par3">
+        <ul><li>
+          <div>
+            <p style="font-weight: bold; text-align: center;">
+              More items are available for registered users.<br />
+              Please login below:
+            </p>
+            <form action="#" method="get">
+              <table style="border: 0px" align="center">
+                <tr>
+                  <td style="text-align: right">
+                    User ID:
+                  </td>
+                  <td>
+                    <input type="text" />
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: right">
+                    Password:
+                  </td>
+                  <td>
+                    <input type="password" />
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: center">
+                    <input type="submit" value="Login..." /> |
+                    <input type="submit" value="Register..." />
+                  </td>
+                </tr>
+              </table>
+            </form>
+            <p style="text-align: center">
+              If you forgot your password, we can <a href="#">email it to you</a>.
+            </p>
+          </div>
+        </li></ul>
+      </li>
+    </ul>
+    <script type="text/javascript" src="../src/PieNG.js"></script>
+  </body>
+</html>
+<!--
+-->

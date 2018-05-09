@@ -1,0 +1,147 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: menu actions</title>
+    <style type="text/css"> @import url("../src/skin-xp.css"); body { background-color: #ccc; height: 100%; }</style>
+    <script type="text/javascript">
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="DynarchMenu.setup('menu', { clone: true }); DynarchMenu.setup('menu2', { clone: true });">
+    <ul id="menu" style="visibility: hidden">
+      <li>_File
+        <ul id="the-file-menu">
+          <li>
+            _New
+            <ul>
+              <li>_Window</li>
+              <li></li>
+              <li>_Message</li>
+              <li>_Post</li>
+              <li>_Contact</li>
+              <li>_Internet Call</li>
+            </ul>
+          </li>
+          <li>_Open...</li>
+          <li class="disabled">_Save</li>
+          <li>
+            <img src="../icons/save.gif" />
+            Save _As...
+          </li>
+          <li></li>
+          <li>Page set_up</li>
+          <li>_Print</li>
+          <li>Print Pre_view</li>
+          <li></li>
+          <li>
+            <div style="border: 1px solid #000">
+              <blockquote>
+                Some <b>HTML</b> here.
+              </blockquote>
+            </div>
+          </li>
+          <li></li>
+          <li>
+            S_end
+            <ul>
+              <li><a href="javascript:alert('bar')">_Page by Email...</a></li>
+              <li>_Link by Email...</li>
+              <li>_Shortcut to Desktop</li>
+            </ul>
+          </li>
+          <li>_Import and Export...</li>
+          <li></li>
+          <li>P_roperties</li>
+          <li>_Work offline</li>
+          <li>_Close</li>
+        </ul>
+      </li>
+      <li>
+        Foo item
+        <ul id="the-foo-menu">
+          <li class="clones-popup-the-file-menu">
+            Clones the file menu
+          </li>
+        </ul>
+      </li>
+      <li></li>
+      <li class="clones-popup-the-file-menu">
+        Another clone
+      </li>
+      <li></li>
+      <li class="clones-popup-the-foo-menu">
+        Foo item clone
+      </li>
+    </ul>
+    <p>
+      This sample shows how you can clone a submenu.  The "File"
+      submenu is only defined once, but it is replicated several times
+      very easily by just assigning some ID-s and class names
+      accordingly.  Here's how it's done:
+    </p>
+    <pre>
+      &lt;ul id=&quot;menu&quot;&gt;
+        &lt;li&gt;
+          File
+          &lt;ul id=&quot;the-file-menu&quot;&gt;
+            ... content of the file menu
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        ... later ...
+        &lt;li class=&quot;clones-popup-the-file-menu&quot;&gt;
+          Clone the file menu
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    </pre>
+
+    <p>
+      As you can see, you only need to add a certain, unique ID to the
+      UL that defines the popup you would like to clone, and on items
+      that should contain a copy of that menu add the class
+      "clones-popup-ID" where ID is the one you assigned to the source
+      UL.
+    </p>
+
+    <blockquote>
+      <p>
+        <strong>NOTE</strong> that you need to pass an additional
+        parameter to DynarchMenu.setup:
+      </p>
+
+      <pre>DynarchMenu.setup("menu", { clone: true });</pre>
+
+      <p>
+        With this parameter on, DynarchMenu will clone the UL and LI
+        contents that initialize the menu so that they can be reused a
+        second time.  If you don't pass this parameter then icons and
+        HTML popups will only appear correctly in the first
+        initialized menu.
+      </p>
+    </blockquote>
+
+    <p>
+      You can clone a popup as many times you want.  You can even use
+      UL-s that aren't direct s of the main menu UL--in other words it
+      doesn't matter where in the document are the UL-s that you wish
+      to clone; DynarchMenu will do the job.  To exemplify, following
+      there's a menu that clones the same File popup of the first
+      menu:
+    </p>
+
+    <ul id="menu2">
+      <li class="clones-popup-the-file-menu">
+        Yet another clone, in a different menu
+      </li>
+    </ul>
+
+    <p>
+      <b>Warning:</b> you should be careful not to create "recursive
+      menus".  They will work in "lazy" mode (when you pass "lazy:
+      true" at DynarchMenu.setup) but will crash the browser in normal
+      mode.  You have been warned.
+    </p>
+  </body>
+</html>
+<!--
+-->

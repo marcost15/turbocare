@@ -1,0 +1,79 @@
+{include file="cabecera.html" title=" Ficha Incidentes"}
+<h3>FICHA DE INCIDENTES</h3>
+
+<table class = "retiro" align = "center" border="1">
+
+	<tr>
+		<th>Fecha</th>
+		<td>{$ficha.fecha}</td>
+	</tr>
+	<tr>
+		<th>Hora</th>
+		<td>{$ficha.hora}</td>
+	</tr>
+	<tr>
+		<th>Personal</th>
+		<td>{$ficha.personal_id}</td>
+	</tr>
+	<tr>
+		<th>Empresas</th>
+		<td>{$ficha.empresa_id}</td>
+	</tr>
+	<tr>
+		<th>Secciones</th>
+		<td>{$ficha.seccion_id}</td>
+	</tr>
+	<tr>
+		<th>Clases</th>
+		<td>{$ficha.clase_id}</td>
+	</tr>
+	<tr>
+		<th>Tipos</th>
+		<td>{$ficha.tipo_id}</td>
+	</tr>
+	<tr>
+		<th>Condiciones</th>
+		<td>{$ficha.condicion_id}</td>
+	</tr>
+	<tr>
+		<th>Acciones</th>
+		<td>{$ficha.accion_id}</td>
+	</tr>
+	<tr>
+		<th>Regiones</th>
+		<td>{$ficha.region_id}</td>
+	</tr>
+	<tr>
+		<th>Causas</th>
+		<td>{$ficha.causa_id}</td>
+	</tr>
+	<tr>
+		<th>Acto</th>
+		<td>{$ficha.acto}</td>
+	</tr>
+	<tr>
+		<th>Area</th>
+		<td>{$ficha.area}</td>
+	</tr>
+	<tr>
+		<th>Tiempo Perdido</th>
+		<td>{$ficha.tiempo_perdido}</td>
+	</tr>
+		<tr>
+		<th>Proyecto</th>
+		<td>{$ficha.proyecto}</td>
+	</tr>
+		<tr>
+		<th>Descripcion</th>
+		<td>{$ficha.descripcion}</td>
+	</tr>
+	</tr>
+		<tr>
+		<th>Personal que Registra</th>
+		<td>{$ficha.personal_reg_id}</td>
+	</tr>
+</table>
+<p></p>
+<hr/>	
+<div id="boton" align="center"><a href="consmod_incidentes.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

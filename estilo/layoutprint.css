@@ -1,0 +1,49 @@
+@media print{
+#banner,#baner2,#titulo, #menu, #indice, #pie, #boton {
+	display:none;
+}
+#titulo2{
+	display:inline;
+}
+.enhancedtable{
+	text-align: center;
+	font: 90% sans-serif;
+}
+
+#fondoreporte{
+	width:100%;
+	position: relative;
+	background-color: transparent;
+	text-align::center;
+}
+#resultados_reporte{
+	text-align: center;
+	margin:auto;
+}
+#resultados{
+	text-align: center;
+	margin:auto;
+}
+#contenido{ 
+	border-style:none;
+	border-width:medium;
+	border-color:#0066CC;
+	text-align: center;
+	width:100%;
+}
+#contenido_reporte{
+    width: auto;
+	background-color: #ffffff;
+	text-align:center;
+}
+
+#imprimir .texto{
+	display:inline;
+	width:720px; 
+}
+
+#bannereporte {
+	text-align: center;
+	display:inline;
+}
+}

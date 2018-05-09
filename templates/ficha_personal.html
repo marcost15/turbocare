@@ -1,0 +1,69 @@
+{include file="cabecera.html" title=" Ficha Personal"}
+<h3>FICHA DE PERSONAL</h3>
+{if $ficha.foto}
+<div id = "foto15"><img src="./upload/personal/{$ficha.foto}" width="120" height="120" /></div>
+{/if}
+<table class = "retiro" align = "center" border="1">
+	<tr>
+		<th>Cedula</th>
+		<td>{$ficha.id}</td>
+	</tr>
+	<tr>
+		<th>Apellido</th>
+		<td>{$ficha.apellido}</td>
+	</tr>
+	<tr>
+		<th>Nombre</th>
+		<td>{$ficha.nombre}</td>
+	</tr>
+	<tr>
+		<th>Dirección</th>
+		<td>{$ficha.direccion}</td>
+	</tr>
+	{if $ficha.tlf_fijo}
+	<tr>
+		<th>Telefono Fijo</th>
+		<td>{$ficha.tlf_fijo}</td>
+	</tr>
+	{/if}
+	{if $ficha.tlf_movil}
+	<tr>
+		<th>Telefono Movil</th>
+		<td>{$ficha.tlf_movil}</td>
+	</tr>
+	{/if}
+	{if $ficha.correo}
+	<tr>
+		<th>Correo electronico</th>
+		<td>{$ficha.correo}</td>
+	</tr>
+	{/if}
+	<tr>
+		<th>Nombre de Usuario</th>
+		<td>{$ficha.login}</td>
+	</tr>
+	<tr>
+		<th>Estado</th>
+		<td>{$ficha.estado}</td>
+	</tr>
+	<tr>
+		<th>Nivel de Acceso</th>
+		<td>{$ficha.nivel_id}</td>
+	</tr>
+	<tr>
+		<th>Grado de Intruccion</th>
+		<td>{$ficha.grado_instr}%</td>
+	</tr>
+	<tr>
+		<th>Cargo</th>
+		<td>{$ficha.cargo_id}</td>
+	</tr>
+	<tr>
+		<th>Gerencia</th>
+		<td>{$ficha.gerencia_id}</td>
+	</tr>
+</table>
+<p></p>
+<hr/>	
+<div id="boton" align="center"><a href="consmod_personal.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

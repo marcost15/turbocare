@@ -1,0 +1,34 @@
+﻿{include file="cabecera.html" title="Consultas de Morbilidad"}
+<h4>BUSQUEDA DE MORBILIDAD</h4>
+{$f1}
+{if $datos}
+<h4>MORBILIDAD SOLICITADOS</h4>
+<div id="resultados">
+<table  class="enhancedtable" border="0" cellspacing="3" cellpadding="3" width="100%">
+<thead>
+	<tr> 
+		<th>id</th>
+		<th>Fecha</th>
+		<th>Persona Involucrada</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos}
+	<tr>
+		<td>{$datos[p].id}</td>
+		<td>{$datos[p].fecha}</td>
+		<td>{$datos[p].nombreape}</td>
+		<td><a href="ficha_morbilidad.php?id={$datos[p].id}"><img onmouseover='overlib("<strong>Ver Ficha</strong>",WIDTH, 70)' src="./imagenes/ver.ico" onmouseout='return nd();'/></a></td>
+		<td><a href="modificar_morbilidad.php?id={$datos[p].id}"><img onmouseover='overlib("<strong>Modificar</strong>",WIDTH, 70)' src="./imagenes/boton1.png" onmouseout='return nd();'/></a></td>
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	{if $error1 eq 2} 
+		<h3>NO SE ENCONTRÓ MORBILIDAD CON ESOS PARAMETROS, VERIFIQUE...</h3>
+	{/if}
+{/if}
+{include file="pie.html"}

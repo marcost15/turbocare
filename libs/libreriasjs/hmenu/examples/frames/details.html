@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset: utf-8" />
+    <title>DHTML Menu frames sample</title>
+    <link rel="stylesheet" type="text/css" href="../../src/skin-xp.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <script type="text/javascript" src="../../src/hmenu.js"></script>
+    <script type="text/javascript">MENU_ITEM='details'</script>
+  </head>
+  <body>
+    <div class="content">
+      <h1>Technical details</h1>
+
+      <p>
+        As we said previously, frames are difficult to work with
+        because they don't share the DOM tree, the JavaScript code and
+        memory space.  Frames are as independent as 2 windows of the
+        same browser instance.  No browser currently can display in a
+        frameset elements other than &lt;frame&gt;-s—in other
+        words, you simply <em>can't</em> display one element on top of
+        a frame boundary such that a part of it covers one frame, and
+        another part covers the other frame.  Neither can one element
+        from a frame be displayed in another.
+      </p>
+
+      <p>
+        So what DynarchMenu does is to create the elements in 2
+        different DOM-s.  The main menu bar goes in the “main” frame,
+        while the popups go in the “popups” frame.  This has a few
+        implications:
+      </p>
+
+      <ol>
+        <li>
+          We need to catch events in both frames, for smooth
+          operation.
+        </li>
+        <li>
+          When the “popups” frame changes URL, for instance when a new
+          document is loaded, the DynarchMenu popups are gone, event
+          handlers are gone—in one word, all state disappears.  That's
+          the reason why we need to use the "onload" event on the
+          “popups” frame in order to reconstruct the full menu.
+        </li>
+        <li>
+          The CSS and JavaScript files must be loaded in both frames.
+        </li>
+      </ol>
+
+      <p>
+        A lot of problems, as you can see.  Practically, it's more
+        code duplication and memory waste if you're using frames, than
+        if you don't.  If you need to use frames for the sole purpose
+        of having the main menu bar stay in a fixed position, there
+        are alternate and better ways to do it—without frames.
+      </p>
+
+      <h2>Frames are bad</h2>
+
+      <p>
+        Why's that?  Well, firstly because all the problems that we
+        described above and for a few more reasons:
+      </p>
+
+      <ul>
+        <li>
+          Search Engines don't like frames.  If your site uses frames,
+          you have a big black ball.
+        </li>
+        <li>
+          Users can't bookmark the URL—since it doesn't change.  They
+          always see the URL of the frameset.
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

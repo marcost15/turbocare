@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/xml; charset=utf-8" />
+    <title>DHTML menu :: Frames sample</title>
+    <script type="text/javascript">
+      // define the DynarchMenu path
+      _dynarch_menu_url = "../src/";
+      var menu;
+      function init() {
+        menu = DynarchMenu.setup("menu", {
+           electric: 350,
+           clone: true,
+           blink: 3,
+           frames: { "main": "main_frame", popups: "popups_frame" }
+        });
+        menu.items["item-" + window.frames.popups_frame.MENU_ITEM].disable();
+      }
+      var first_time = true;
+      function reinit() {
+        if (first_time)
+          first_time = false;
+        else {
+          menu.destroy();
+          delete menu;
+          init();
+        }
+      }
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <frameset rows="50,*" onload="init()" border="0" frameborder="0">
+    <frame name="main_frame"
+           marginwidth="0" marginheight="0" frameborder="0" noresize="noresize" scrolling="no" src="frames/top.html" />
+    <frame name="popups_frame"
+           onload="reinit()"
+           onunload="DynarchMenu._cleanUp()"
+           marginwidth="0" marginheight="0" frameborder="0" noresize="noresize" scrolling="yes" src="frames/index.html" />
+  </frameset>
+</html>
+<!--
+-->

@@ -1,0 +1,33 @@
+﻿{include file="cabecera.html"}
+<h4>INFORME DE MORBILIDAD</h4>
+{$f1}
+{if $datos}
+<h4>INFORMES SOLICITADOS</h4>
+<div id="resultados">
+<table  class="enhancedtable" border="0" cellspacing="3" cellpadding="3" width="100%">
+<thead>
+	<tr> 
+		<th>id</th>
+		<th>Fecha</th>
+		<th>Persona Involucrada</th>
+		<th>&nbsp;</th>
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos}
+	<tr>
+		<td>{$datos[p].id}</td>
+		<td>{$datos[p].fecha}</td>
+		<td>{$datos[p].nombreape}</td>
+		<td><a href="rp_cons_morbilidadxpers.php?id={$datos[p].id}"><img onmouseover='overlib("<strong>Generar Reporte</strong>",WIDTH, 70)' src="./imagenes/busca.png" onmouseout='return nd();'/></a></td>
+		
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	{if $error1 eq 2} 
+		<h3>NO SE ENCONTRÓ INFORME CON ESOS PARAMETROS, VERIFIQUE...</h3>
+	{/if}
+{/if}
+{include file="pie.html"}

@@ -1,0 +1,663 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+<h1>DynarchMenu Features</h1>
+
+<div class="content">
+
+<p>
+  DynarchMenu is probably the best Web-based menu system in the world.
+  This page should describe why, by listing its features.  Move the
+  mouse over each item for a description of it.
+</p>
+
+<table id="features"><tbody>
+  <tr>
+    <td valign="top">
+      <div id="first-feature" class="feature">
+        <div class="brief">
+          » <strong>Cross browser and cross platform</strong>
+        </div>
+        <div class="details">
+          <p>
+            DynarchMenu is built upon Web standards and therefore it works
+            on a wide range of browsers and platforms.
+          </p>
+          <p style="text-align: center; background-color: #fff; border: 1px solid #e5e5e5;">
+            <img style="margin: 10px" src="img/mozillalogo.jpg" alt="Mozilla" title="Supports Mozilla for any platform" />
+            <img style="margin: 10px" src="img/firefoxlogo.png" alt="Mozilla FireFox" title="Supports Mozilla FireFox for any platform" />
+            <br />
+            <img style="margin: 10px" src="img/ielogo.jpg" alt="Internet Explorer" title="Supports Internet Explorer for Windows" />
+            <img style="margin: 10px" src="img/operalogo.jpg" alt="Opera" title="Supports Opera for any platform" />
+            <img style="margin: 10px" src="img/safarilogo.jpg" alt="Apple Safari" title="Supports Apple Safari for Machintosh" />
+            <br />
+            <img style="margin: 10px" src="img/konquerorlogo.gif" alt="Konqueror" title="Supports Konqueror for Linux/Unix" />
+            <img style="margin: 10px" src="img/caminologo.gif" alt="Camino" title="Supports Camino for Machintosh" />
+          </p>
+          <p>
+            DynarchMenu is developed in Mozilla FireFox and tested with
+            Internet Explorer for Windows (versions 5.0, 5.5, 6.0), Opera
+            7.x for both Windows and Linux, Konqueror for Linux.  The menu
+            is known to work with Apple Safari too, as well as with any
+            Gecko-based browser such as Netscape 7.x, Galeon, Camino and
+            of course, Mozilla, most probably any version.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Keyboard</strong> navigation (unique)
+        </div>
+        <div class="details">
+          <p>
+            DynarchMenu provides outstanding keyboard navigation features.
+            Currently, keyboard support is fully functional with Internet
+            Explorer (all versions) and any Gecko-based browser (Mozilla,
+            FireFox, Netscape 7+, etc.).
+          </p>
+          <p>
+            There is a slight limitation in Internet Explorer (any
+            version): our menu can not completely override keys that open
+            the browser menus (such as ALT-F).  If your DynarchMenu
+            installation has menus that should open at ALT-F, then they
+            will work in IE, but the browser's menu will also open.  We
+            have found no workaround for this browser problem.
+          </p>
+          <p>
+            Keyboard shortcuts are extremely easy to specify: just
+            prefix the letter which you want to be the shortcut with
+            an underscore character (“_”).  The menu will understand
+            that that letter is the shortcut and will take care to
+            underline it and to include it in the menu's keymap.
+            Additionally, underlined keys from the toplevel menu bar
+            will respond to ALT-key shortcut which will open the
+            submenu associated for that item (or trigger other action).
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » Write <strong>semantic HTML</strong>&mdash;no JS needed (unique)
+        </div>
+        <div class="details">
+          <p>
+            The menu is generated from pure HTML code.  That is, you don't
+            have to mess with JavaScript code and internals.  You simply
+            write your menu as an HTML list (which may contain nested
+            lists&mdash;those are submenus) and only have to call
+            <em>one</em> JavaScript function, upon the &lt;body&gt;
+            “onload” event.
+          </p>
+          <p>
+            This way to set things up has far more advantages than just
+            being easy:
+          </p>
+          <ul>
+            <li>
+              It's <strong>friendly to search engines</strong>.  They all “speak”
+              HTML, while none does JavaScript.
+            </li>
+            <li>
+              <strong>Does not hide links</strong>.  Search engines will be able to
+              reach pages that your menu links to.
+            </li>
+            <li>
+              <strong>Does not require JS knowledge</strong>.  You can “draw” a menu
+              by just writing HTML, maybe even with an WYSIWYG editor.
+            </li>
+            <li>
+              <strong>Easy to generate dynamically</strong>.  Server-side scripts
+              facilitate generation of HTML code.
+            </li>
+            <li>
+              <strong>Degrades gracefully</strong>.  Your pages don't lose
+              functionality in browsers that don't understand JavaScript
+              (or even in text-only browsers) because your menu will be
+              fully functional, as a nested list.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » Protection for “<em><strong>Windowed controls</strong> in IE</em>”
+        </div>
+        <div class="details">
+          <p>
+            Our menu contains code to protect against the “z-index”
+            bug of windowed controls in Internet Explorer.  A windowed
+            control is for instance a <code>&lt;select&gt;</code>
+            element, or a &lt;textarea&gt;.  Other examples are
+            ActiveX objects, Java applets or Flash animations.
+          </p>
+          <p>
+            The bug is simple: no element can be layered on top of a
+            windowed control in Internet Explorer.  The windowed
+            control normally appears on top of “unprotected” elements,
+            no matter what “z-index” setting may they have in CSS.
+          </p>
+          <p>
+            Dynarch.com implemented code to protect against this IE
+            bug, using an idea emitted by Joe King.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » Support for <strong>cross frame menus</strong>
+        </div>
+        <div class="details">
+          <p>
+            DynarchMenu can be displayed across frames.  That is, you
+            can show the main menu in one frame, and make the popups
+            appear in another frame.  This is probably the easiest and
+            most portable way to make the menu stay fixed in page, and
+            it's a rare feature in DHTML menus.
+          </p>
+          <p>
+            Support for this has been added in version 2.8 and it is
+            considered beta, although our tests look quite good.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Context menus</strong> on a “per-element” basis
+        </div>
+        <div class="details">
+          <p>
+            Using our menu you can easily setup context menus for the
+            whole document object, or for certain specified elements;
+            you can even have different context menus for different
+            elements&mdash;after all, that's what the word “context”
+            is all about, right?
+          </p>
+          <p>
+            This is done extremely easy: just specify the ID of the
+            element which you would like to assign a context menu to
+            in a special class attribute at the &lt;LI&gt; tag that
+            surrounds the menu.  More information is available in our
+            <a href="examples/context.html" target="_blank"
+               title="Context menus example (opens new window)">context
+            menus sample</a>.
+          </p>
+          <p>
+            There is an alternate way.  You can provide a menu that is
+            also a part of the horizontal menu bar.  You don't even
+            need to write it twice. :-) If you have a supported
+            browser and you right-click in this page, you will see the
+            same popup that appears in the “Preferences” menu (and
+            notice that “Preferences” gets hovered while you're in the
+            “context menu”).
+          </p>
+          <p>
+            <strong>Note</strong>: this feature works in Gecko (Mozilla,
+            Netscape 7+, Galeon, Chimera, etc.) or Internet Explorer
+            5.0+ <em>for Windows</em>.  It also works in Opera,
+            assuming the end-user has configured the browser to pass
+            right clicks to JavaScript code.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » Can be <strong>dynamic</strong>ally generated
+        </div>
+        <div class="details">
+          <p>
+            As stated already, the menu is described through nested
+            HTML lists.  This makes it easy for one to generate a menu
+            based, for instance, on database queries.  You just output
+            HTML code.
+          </p>
+          <p>
+            Aside for this, one can also <em>change</em> menu
+            proprieties dynamically&mdash;they apply instantly,
+            without requiring a page refresh.  This is good for true
+            Web-based applications, where page reloads should be
+            practically inexistent (or better put, invisible).
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Smooth</strong> menu <strong>shadows</strong> (unique)
+        </div>
+        <div class="details">
+          <p>
+            Popup menus can (optionally and “on” by default) have shadows.
+            Most Web-based menus provide it, but what it's unique to our
+            menu are the <em>smooth</em>&mdash;blured, semi-transparent
+            and with rounded corners&mdash;shadows.
+          </p>
+          <p>
+            This makes high quality graphics that you usually find only in
+            desktop-based menu systems.  As far as we know, our menu is
+            the first that provides this feature.
+          </p>
+          <p>
+            <strong>Note:</strong> this feature is not available in Internet
+            Explorer 5.0 for Windows&mdash;it will show plain opaque
+            shadows.  But any other browser can do it.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Timeouts</strong>: relaxed navigation
+        </div>
+        <div class="details">
+          <p>
+            DynarchMenu allows one to set customizable timeouts for
+            popups.  That is, the popup will not appear instantly when
+            you hover an item that has a submenu, but rather after a
+            timeout.  Also, the popups will not close immediately
+            after the mouse hovers another element or leaves them, but
+            after the same timeout.
+          </p>
+          <p>
+            The “timeout idea” has been used for years in all
+            desktop-based menu systems, and newer even in Web menus.
+            It's good because it provides the end-user a short time
+            (“timeout”) to change his mind about a menu: if he
+            accidentaly leaved the submenu and chosed another item, he
+            can still turn back (during this timeout) and the submenu
+            will be “reactivated” (that is, it won't close at all).
+          </p>
+          <p>
+            Of course, this behavior is totally customizable&mdash;if
+            you want instant popups, then you can set the timeout to
+            zero.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Icons</strong> (in <a href="http://libpng.org" target="_blank"
+          title="The PNG Project page (opens new window)">PNG</a> too) (unique)
+        </div>
+        <div class="details">
+          <p>
+            As you might have already noticed, our menu supports icons.
+            Icons are entered as plain &lt;img&gt; tags (see our section
+            about how easy is it to setup) so you don't have to know any
+            JavaScript code for this either.
+          </p>
+          <p>
+            Using an additional helper script (“PieNG.js”) you can use PNG
+            icons and rest assured that they will work fine with Internet
+            Explorer too (5.5+).  “PieNG.js” is included in our menu
+            distribution, for your convenience.  This feature is unique to
+            our menu system&mdash;no other that we know of supports PNG
+            icons.
+          </p>
+          <p>
+            One more word about “PieNG.js”&mdash;it is a free script, also
+            developed by us, totally independent of DynarchMenu.  Using it
+            you can safely include PNG graphics all over your pages and we
+            <em>recommend</em> this.  PNG-s can be cool, while GIF or JPEG
+            can't.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » Arbitrary <strong>HTML in menus</strong> (unique)
+        </div>
+        <div class="details">
+          <p>
+            Our menu supports inclusion of arbitrary HTML in menu
+            items or menu popups.  This is also extremely easy to do,
+            since our menu is <em>defined</em> in HTML.
+          </p>
+          <p style="text-align: center">
+            <img src="img/htmlpopup.png" alt="Arbitrary HTML in popup menus"
+                 title="This is a picture." />
+          </p>
+          <p>
+            The above image shows a popup menu that contains both
+            normal items&mdash;that respond to keyboard events and get
+            “hover” and “active” states&mdash;and a more complex
+            HTML form.  You can see it live in our samples, in <a
+            title="HTML popup menus (opens new window)"
+            target="_blank"
+            href="examples/html-popups.html">html-popups.html</a>.
+          </p>
+
+          <p>
+            OK, we know that more Web-based menu systems have such
+            facilities; however, what is unique to our menu&mdash;to the
+            best of our knowledge&mdash;is the ability to <em>mix</em>
+            normal menu items with arbitrary HTML sections.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » Toplevel menu can be <strong>vertical</strong> too
+        </div>
+        <div class="details">
+          <p>
+            Though this demo shows it in its horizontal form, the main
+            menu can also be vertical.  This can easily be changed and
+            does not invlove you to relayout your menu&mdash;in other
+            words, the menu is defined in the exact same way; you just
+            need to pass “vertical: true” to the setup function.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Optimal positioning</strong> and dimensioning
+        </div>
+        <div class="details">
+          <p>
+            While you have absolute control on where the main menu bar
+            appears, when opened, submenus will be automatically displayed
+            at the most intuitive position.  They won't get off the
+            screen and they won't produce horizontal scroll-bars.
+          </p>
+          <p>
+            This makes things easy for development of menu-based
+            applications as you don't have to care and test where they
+            will be&mdash;our algorithm does its best to show submenus at
+            the right position, period.
+          </p>
+          <p>
+            Also, dimensions of submenus are dynamically computed based on
+            the submenu content, just like in any high quality menu
+            system.  You don't have to care about this and you don't have
+            to instruct DynarchMenu to give a certain width/height to
+            popups&mdash;it gives them the optimal dimensions.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Aligned submenus</strong> (unique)
+        </div>
+        <div class="details">
+          <p>
+            Submenus are perfectly aligned with the item that opened them.
+            See the following image: items “Dynarch<u>M</u>enu” and
+            “<u>D</u>ocumentation” are perfecly aligned, as well as are
+            “<u>D</u>ocumentation” and “<u>F</u>iles”.
+          </p>
+          <p style="text-align: center">
+            <img src="img/aligned.png" alt="Aligned submenus"
+                 style="width: 278px; height: 186px;"
+                 title="This is a picture." />
+          </p>
+          <p>
+            This is done in a stylesheet independent manner&mdash;you can
+            use any padding you want; DynarchMenu will compute positions
+            so that items remain aligned.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Help strings</strong>
+        </div>
+        <div class="details">
+          <p>
+            DynarchMenu supports help strings for menu items.  These are
+            actually the “title” attributes that you pass along &lt;li&gt;
+            or &lt;a&gt; elements, so they will work even with browsers
+            that don't understand JavaScript.
+          </p>
+          <p>
+            The help strings are displayed in the window status bar and,
+            optionally, as a tooltip.  Tooltip activation can be done very
+            easily by passing a certain parameter to the single JavaScript
+            function that you need to call&mdash;DynarchMenu.setup.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Check boxes</strong> and <strong>radio buttons</strong> (unique)
+        </div>
+        <div class="details">
+          <p>
+            With a bit of external JavaScript coding, DynarchMenu can
+            support check boxes and/or radio buttons.  See our preferences
+            for a real example.
+          </p>
+          <p style="text-align: center">
+            <img src="img/radiochecks.png"
+                 alt="Check boxes and radio buttons"
+                 title="This is a picture" />
+          </p>
+          <p>
+            The above picture shows our preferences menu.  The submenu
+            on the left contains some “check boxes” (they are
+            unrelated to each other), while the one on the right only
+            contain “radio buttons” (only one can be selected at a
+            time).  Of course, you can also mix them if appropriate.
+          </p>
+          <p>
+            You have complete control on how the menu behaves when a
+            check box or a radio button is clicked, or even on how the
+            small image (be it check box <img align="middle"
+            src="icons/checkbox-1.gif" alt="checkbox on" /> or radio
+            button <img src="icons/radio-1.gif" alt="radio button on"
+            align="middle" />) looks like.  You can even say when to
+            close the submenu and when not.  For instance, we chosen
+            to close the “<u>P</u>references” popup if a check box is
+            clicked and the menu is in “electric” mode, and to leave
+            it open in “normal” mode.
+          </p>
+          <p>
+            Additionally, changing of features that require a menu
+            redraw&mdash;like “shadows” preference or the skin&mdash;
+            will always close the popup (but this is also dictated by
+            outside scripts).
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Disabled/enabled</strong> menu items (unique)
+        </div>
+        <div class="details">
+          <p>
+            OK, we know that any menu supports <em>enabled</em> items.
+            They are normal menu items, after all.  But what about
+            <em>disabled</em> items?
+          </p>
+          <p>
+            DynarchMenu is the first Web-based menu system that we know of
+            to support disabled items.  That is, one
+            is&mdash;programatically&mdash;able to disable/enable items
+            without even requesting a page reload.  Of course, menu items
+            can be disabled initially and enabled after the page loads.
+          </p>
+          <p>
+            The very menu in this page is using this feature in order to
+            disable the menu item that points to the current documentation
+            page.  Also, in the “<u>P</u>references” submenu you can see
+            certain items that are only enabled if the feature that they
+            are related to is checked (such as “Timeout”&mdash;enabled
+            only if “Electric” mode is on).
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » Optional <strong>electric mode</strong>
+        </div>
+        <div class="details">
+          <p>
+            All Web-based menu systems that we know of only work in what
+            we call “electric” mode.  That is, submenus are opened on
+            “mouseover” event (when the cursor is over an item), without
+            waiting for a click.
+          </p>
+          <p>
+            Our menu also can work like a desktop-based menu: in order to
+            open a submenu one has to click on the item.  In order to
+            close all menus, one has to click somewhere outside them in
+            the document (or to press ESC).
+          </p>
+          <p>
+            We believe that this approach is the nicest and less confusing
+            one, because there are far more people accustomed to this
+            behavior than to the “electric” one.  However, by just passing
+            one parameter to the setup function, our menu can work in
+            “electric” mode too.  The timeout to close submenus is also
+            configurable.
+          </p>
+          <p>
+            You can dynamically enable/disable “electric” mode or set the
+            timeout from our “<u>P</u>references” menu.  Check it out,
+            it's cool. ;-)
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Carefully crafted skins</strong>
+        </div>
+        <div class="details">
+          <p>
+            Of course&mdash;do we have to even say it? ;-)&mdash;our menu
+            supports “skins”.  Skins are ordinary CSS files that define
+            how the menu looks like.
+          </p>
+          <p>
+            In the distribution ZIP you can find 7 fine tuned color
+            schemes that resemble the look of well known menus such as the
+            ones from Windows 98, 2000 and XP, Mozilla Modern colors and
+            of course, Aqua theme from Apple Mac OS X.  See our
+            “<u>P</u>references” menu.
+          </p>
+          <p style="text-align: center">
+            <img src="img/skins.png" alt="Skins" title="This is a picture."
+                 style="width: 332px; height: 292px;" />
+          </p>
+          <p>
+            (we spent tens of hours for working on them and we are
+            <em>positive</em> that you won't find better looking menus all
+            over the Web).
+          </p>
+          <p>
+            There also exists a “system” theme which will always use the
+            colors of the system where the browser runs on, therefore
+            making the difference between the application in browser and
+            other desktop applications transparent.
+          </p>
+          <p>
+            If you want to use a customized skin, it's very easy for you
+            to write your own.  We made things simple&mdash;the most
+            complex skin that we created so far, Aqua, only has 16 lines
+            of CSS code.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » <strong>Documentation</strong>
+        </div>
+        <div class="details">
+          <p>
+            OK, you'll say, the documentation is part of any product and
+            we agree.  But our documentation is more than just
+            documentation.  It's a complex, advanced example on what you
+            can do with our menu.  It's almost a site in
+            itself&mdash;simple, indeed, but it shows a lot of techniques
+            that you would probably like to know of, such as using
+            IFRAME-s for loading and displaying files without a full page
+            refresh, or dynamically changing stylesheets.
+          </p>
+          <p>
+            The menu documentation is perhaps the best menu sample in
+            itself.  Use it, read it, understand it and look through its
+            sources, and you'll learn a lot more than you could do from a
+            printed PDF file.
+          </p>
+          <p>
+            Of course, our product also contains simple, commented,
+            step-by-step tutorials helpful for a proper understanding of
+            how the menu is configured.  These can be found in the
+            “<a href="examples/" target="_blank" title="Index of example files"
+            >examples</a>” subdirectory from the ZIP file.
+          </p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="brief">
+          » Is it <strong>perfect</strong>?
+        </div>
+        <div class="details">
+          <p>
+            <strong>Perfect?</strong> Certainly not.  First of all, perfection
+            is unachievable: browsers contain mistakes that we can't
+            workaround.  They are <em>evolving</em>, certainly in the
+            right direction, but they (all of them) are far from being
+            perfect.
+          </p>
+          <p>
+            Given this condition, our menu can't be perfect.  But we
+            did our best, and we believe that it's the closest one to
+            perfection.
+          </p>
+          <p>
+            Currently, the known problems are:
+          </p>
+          <ul>
+            <li>
+              Keyboard support currently works only with Mozilla (and
+              related browsers such as Netscape 7+, FireFox) and
+              Internet Explorer.  Other browsers such as Opera, Safari
+              or Konqueror don't allow us to intercept ALT+key events
+              through JS.
+            </li>
+            <li>
+              Strange misalignments in Konqueror (and most probably,
+              in Safari too).  We found no explanation therefore no
+              solution for perfect alignment like other browsers do.
+              However, the menu is still very well functional in
+              Konqueror/Safari, and hopefully in the near future the
+              browser will be fixed (each new version in the last year
+              was sensibly better than the previous ones).
+            </li>
+            <li>
+              Text from menu items is selectable in Opera and IE 5.0.
+              While other browsers can properly stop events (or
+              provide alternate ways, such as the “unselectable”
+              attribute for IE 5.5+), Opera 7.x and IE 5.0 will ignore
+              this and will allow text to be selected.
+            </li>
+          </ul>
+          <p>
+            We believe that none of the above problems make a show
+            stopper for any Web application.  Also, we are positive
+            that any Web-based menu will have the above limitations,
+            as they are generated by browser problems.  If <em>we</em>
+            can't workaround them, then most probably no one can.
+          </p>
+        </div>
+      </div>
+    </td>
+    <td id="featdesc" valign="top">
+    </td>
+  </tr>
+</tbody></table>
+
+</div>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

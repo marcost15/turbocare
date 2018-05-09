@@ -1,0 +1,208 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+<h1>DynarchMenu.MenuItem -- the object</h1><!-- -*- nxml -*- -->
+
+<p>
+  When the action of some menu item involves calling a JavaScript
+  function, that function can determine what the clicked item is.
+  This helps having one handler for multiple actions, as you can learn
+  in <a onclick="showSection('actions'); return false;" href="actions.html">menu actions documentation</a>.  The
+  MenuItem object provides methods and properties that allow one to
+  investigate item properties or change its state, label, icon and so
+  on.
+</p>
+
+<h2>Determining the item</h2>
+
+<p>Say we have the following menu:</p>
+
+<pre>  &lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> href=<span class="string">&quot;javascript:retval = my_handler(this);&quot;</span>&gt;Item&lt;<span class="function-name">/a</span>&gt;&lt;<span class="function-name">/li</span>&gt;
+  &lt;<span class="function-name">/ul</span>&gt;</pre>
+
+<p>
+  That's a very simple menu with one item.  That item calls a function
+  handler and assigns its value to <tt>retval</tt>; we'll talk about
+  <tt>retval</tt> in a moment.  The function handler can be written
+  like this:
+</p>
+
+<pre>
+  function my_handler(action) {
+    var menu_item = action.info;
+    alert(menu_item.label);
+    return false;
+  }
+</pre>
+
+<p>
+  So, in order to retrieve the menu item just use the “info” property
+  of the first argument.  Note that in order for this to work we need
+  to include “this” when we designate my_handler (in the <tt>href</tt>
+  attribute).  The above handler just displays the label of the
+  clicked menu item, whatever would that be, using the “label”
+  property of the MenuItem object.
+</p>
+
+<p>
+  <tt>retval</tt> is a variable that exists in the context where the
+  event handler is evaluated; assigning false to it (or not assigning
+  it at all) will instruct DynarchMenu to close the popup shortly
+  after the handler executed.  There are cases where you might want to
+  keep the popup on screen, such as when you have one popup full of
+  checkboxes and you want to allow users to click them all before
+  closing the menu, so in that case you could simply return true from
+  the function handler; the value would be passed to <tt>retval</tt>
+  which is hooked by DynarchMenu.  Don't worry about globals--it's not
+  global in that context.
+</p>
+
+<h2>Want other items?</h2>
+
+<p>
+  On occasions you might need to modify items other than the clicked
+  one in an action handler, or even if you're not in some action
+  handler.  How do you get a reference to the item in this case?
+  DynarchMenu makes it pretty simple.  First, you must declare unique
+  ID-s (using the <tt>id</tt> attribute) to those LI-s that define
+  items you think you might need to access.  DynarchMenu internally
+  keeps a hash table that maps these ID-s to object references.
+  Example:
+</p>
+
+<pre>  &lt;<span class="function-name">script</span> type=<span class="string">&quot;text/javascript&quot;</span>&gt;
+    var menu;
+    function my_handler(action) {
+      var clicked_item = action.info;
+      var other_item = menu.items[<span class="string">&quot;item2&quot;</span>];
+      if (other_item.disabled) {
+         // let's enable it
+         other_item.disable(false);
+         clicked_item.setLabel(<span class="string">&quot;Disable next item&quot;</span>);
+      } else {
+         other_item.disable(true);
+         clicked_item.setLabel(<span class="string">&quot;Enable next item&quot;</span>);
+      }
+    };
+  &lt;<span class="function-name">/script</span>&gt;
+  &lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span>&gt;
+    &lt;<span class="function-name">li</span> id=<span class="string">&quot;item1&quot;</span>&gt;&lt;<span class="function-name">a</span> href=<span class="string">&quot;javascript:my_handler(this)&quot;</span>&gt;Enable next item&lt;<span class="function-name">/a</span>&gt;&lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span> id=<span class="string">&quot;item2&quot;</span> class=<span class="string">&quot;disabled&quot;</span>&gt;Foo Bar&lt;<span class="function-name">/li</span>&gt;
+  &lt;<span class="function-name">/ul</span>&gt;</pre>
+
+  <p>
+    The above example assumes that you initialize the menu with:
+  </p>
+
+  <pre>menu = DynarchMenu.setup(<span class="string">&quot;menu&quot;</span>);</pre>
+
+  <p>
+    that is, you need to keep a reference to the DynarchMenu object in
+    the “menu” variable.
+  </p>
+
+  <p>
+    So as you can see, if you have kept a reference to the DynarchMenu
+    object (the “menu” variable in our case) then you can use it to
+    retrieve items by ID, as in <tt>item = menu.items['id']</tt>.
+  </p>
+
+<h2>MenuItem properties</h2>
+
+<p>
+  The object has, besides “label”, a lot of other interesting
+  properties:
+</p>
+
+<ol>
+
+  <li><tt>id</tt> -- string.  This contains the item ID, when one has
+  been assigned.  You can assign an ID by passing it to the &lt;li&gt;
+  element: &lt;li id="our-item"&gt;.  Inside action handlers, you can
+  determine the item that has been clicked in the easiest way by
+  inspecting it's "id" property.
+  </li>
+
+  <li><tt>separator</tt> -- boolean, it is true if the item is a
+  separator.</li>
+
+  <li><tt>icon</tt> -- a reference to the IMG element that displays
+  the item icon, if any (beware that this is null when no icon is
+  present).</li>
+
+  <li><tt>label</tt> -- the item's label; might be HTML--you have been
+  warned! ;-)</li>
+
+  <li><tt>parent</tt> -- a reference to the parent menu item, which is
+  an object of the same type, or null if there is no parent (as is the
+  case for the toplevel menu bar).</li>
+
+  <li><tt>tooltip</tt> -- the item's tooltip.</li>
+
+  <li><tt>disabled</tt> -- true if the item is disabled, false if enabled</li>
+
+  <li><tt>visible</tt> -- true if the item is visible, false if hidden</li>
+
+  <li><tt>pressed</tt> -- true if the item is pressed, false if depressed</li>
+
+</ol>
+
+<p>
+  As you can see, there are some interesting properties, such as
+  “pressed”, “disabled” or “visible”--but setting them directly
+  doesn't have any effect.  The next section describes the methods
+  that you can use to set or change these properties.
+</p>
+
+<h2>MenuItem methods</h2>
+
+<ol>
+
+  <li><tt>disable(state)</tt> -- this method will disable the menu
+  item if the “state” parameter is <tt>true</tt>, will enable it if
+  “state” is <tt>false</tt> or will toggle the current state if no
+  argument was passed.</li>
+
+  <li><tt>display(state)</tt> -- this method will hide the item if
+  “state” is <tt>true</tt>, will make it visible if “state” is
+  <tt>false</tt> or will toggle the state if no argument was
+  passed.</li>
+
+  <li><tt>setPressed(state)</tt> -- this method will set the pressed
+  state of the item (useful in a <a target="_blank" title="Toolbar sample (opens new window)"
+  href="../examples/toolbar.html">toolbar</a>); similar to the above
+  functions, it will make the button pressed if the argument is
+  <tt>true</tt>, will make it depressed if the argument is
+  <tt>false</tt> or will toggle it if no argument was passed.</li>
+
+  <li><tt>setLabel(text)</tt> -- this method can be used to change the
+  item's label.  Just pass the new label.  Note that at this stage no
+  keybindings can be defined and the underscore characters will remain
+  intact.</li>
+
+</ol>
+
+<p>
+  The above properties and methods are exemplified in our complex
+  sample, <a target="_blank" title="Toolbar sample (opens new window)"
+  href="../examples/toolbar.html">Creating a toolbar</a>.
+</p>
+
+<!--
+-->
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

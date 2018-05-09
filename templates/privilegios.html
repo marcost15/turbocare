@@ -1,0 +1,22 @@
+{include file="cabecera.html" title="Privilegios de Accesos"}
+{$f1}
+<table class="enhancedtable" border="1" cellspacing="3" cellpadding="3" width="100%">
+	<tr>
+		<th rowspan="2">&nbsp;</th>	
+		<th rowspan="2">Pagina</th>
+		<th colspan="{$nniveles+1}">Privilegios</th>
+	</tr>
+	<tr>
+		{section name=n loop=$niveles}<th>{$niveles[n].nombre}</th>{/section}<th>&nbsp;</th>
+	</tr>
+	{section name=i loop=$tabla}<tr>
+		<th>{$smarty.section.i.index_next}</th>
+		<td><b>{$tabla[i].pagina}</b></td>
+		{section name=j loop=$tabla[i].priv}
+			<td align="center">{$tabla[i].priv[j]}</td>
+		{/section}
+		<td><a href="?accion=eliminar&amp;id={$ids[i].pagina}"><img onmouseover='overlib("<strong>Eliminar</strong>",WIDTH, 70)' src="./imagenes/eliminar.png" onmouseout='return nd();'/></a></td>
+	</tr>{/section}
+</table>
+<p></p>
+{include file="pie.html"}

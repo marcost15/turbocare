@@ -1,0 +1,152 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: context menus #4</title>
+    <style type="text/css"> @import url("../src/skin-yp.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">//<!--
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+
+      function ourActionHandler(action) {
+          var item = action.info;
+          var triggerElement = item.menu.target;
+          var text;
+          switch (item.id) {
+            case "item-clock":
+              text = "Clock area";
+              break;
+            case "item-target":
+              text = "Target display area";
+              break;
+            default:
+              text = item.label;
+          }
+          alert("\"" + text + "\" clicked on the element having innerHTML:\n\"" + triggerElement.innerHTML + "\"");
+      };
+      function beforePopup(el) {
+          if (this.id == "main-popup") {
+              // retrieve the "toplevel" menu object
+              var menu = this.menu;
+
+              // compute the hour
+              var d = new Date();
+              var h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
+              if (h < 10) h = "0" + h;
+              if (m < 10) m = "0" + m;
+              if (s < 10) s = "0" + s;
+
+              // set the hour on the first item label
+              menu.items["item-clock"].setLabel("Submenu opened at:<br />" + h + ":" + m + ":" + s);
+
+              // show/hide requested menu items
+              menu.items["item-edit"].display(document.getElementById("show-edit").checked);
+              menu.items["item-open"].display(document.getElementById("show-open").checked);
+              menu.items["item-print"].display(document.getElementById("show-print").checked);
+
+              // disable requested menu itesm (copy/paste)
+              menu.items["item-cut"].disable(document.getElementById("show-copy").checked);
+              menu.items["item-copy"].disable(document.getElementById("show-copy").checked);
+
+              // display the target text in the last item
+              menu.items["item-target"].setLabel("Target element shows:<br /><b>" + el.innerHTML + "</b>");
+
+              // only show the "Rate www.dynarch.com" item if the clicked element is that particular DIV
+              menu.items["item-dynarch"].display(el.id == "dynarch");
+          }
+      };
+    //--></script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+
+    <style type="text/css">
+      .hotspot { position: absolute; border: 1px solid #f00; background-color: #fea; color: #000; padding: 10px; }
+    </style>
+  </head>
+  <body onload="DynarchMenu.setup('menu', { context: true, onPopup: beforePopup });" id="document">
+    <div class="hotspot" style="left: 50px; top: 50px">Right click here</div>
+    <div class="hotspot dynarch-menu-ctxbutton-left" style="left: 50px; top: 100px">LEFT CLICK HERE</div>
+    <div id="dynarch" class="hotspot" style="left: 50px; top: 150px">www.dynarch.com</div>
+    <h2 style="margin-top: 300px">Dynamically modify the context menu</h2>
+
+    <blockquote>
+      <input id="show-edit" type="checkbox" checked /> <label for="show-edit">Show edit menu</label><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;<input id="show-copy" type="checkbox" /> <label for="show-copy">Disable cut/copy</label><br />
+      <input id="show-open" type="checkbox" checked /> <label for="show-open">Show open menu</label><br />
+      <input id="show-print" type="checkbox" checked /> <label for="show-print">Show print action</label><br />
+    </blockquote>
+
+    <p>
+      So what do we have here?  This sample shows you how you can
+      <em>dynamically</em> modify the content of the menu, based on a
+      series of factors such as external modifiers (the checkboxes) or
+      the clicked element (right-clicking on "www.dynarch.com"
+      displays an additional submenu "Rate www.dynarch.com" which
+      isn't available otherwise).
+    </p>
+
+    <p>
+      For all this we're using a single event handler ("onPopup")
+      which is passed to DynarchMenu.setup.  This is a function
+      reference.  This function gets called <em>each time a popup is
+      opened</em>, that is, for any popups and regardless the fact
+      that it's a context menu or not.  In this function we analize
+      the ID of the popup that is to be displayed, using "this.id",
+      and if that's "main-popup" we make a series of modifications to
+      the menu using the simple JavaScript API described in <a
+      href="../docs/item-object.html">the MenuItem Object</a>
+      documentation.
+    </p>
+
+    <p>
+      The label of the first item is set to the current hour—that will
+      be the time the popup has opened, and the label of the last item
+      will display the content of the element that was actually
+      clicked.
+    </p>
+
+    <ul id="menu" onclick="ourActionHandler(this)">
+      <li class="context-class-div-hotspot">
+        <ul id="main-popup">
+          <li id="item-clock">...</li>
+          <li></li>
+          <li id="item-dynarch">
+            Rate www.dynarch.com
+            <ul>
+              <li>Excellent</li>
+              <li>Gorgeous</li>
+              <li>Amazing</li>
+              <li>Wonderful</li>
+            </ul>
+          </li>
+          <li id="item-edit">
+            Edit
+            <ul>
+              <li id="item-cut">Cut</li>
+              <li id="item-copy">Copy</li>
+              <li>Paste</li>
+              <li></li>
+              <li>Select all</li>
+              <li>Delete</li>
+            </ul>
+          </li>
+          <li id="item-open">
+            Open
+            <ul>
+              <li>In a new window</li>
+              <li>In this window</li>
+              <li>In a text editor</li>
+            </ul>
+          </li>
+          <li id="item-print">Print...</li>
+          <li></li>
+          <li id="item-target">...</li>
+        </ul>
+      </li>
+    </ul>
+    <script type="text/javascript" src="../src/PieNG.js"></script>
+  </body>
+</html>
+<!--
+-->

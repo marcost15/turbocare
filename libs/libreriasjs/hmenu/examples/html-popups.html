@@ -1,0 +1,131 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: HTML popups</title>
+    <style type="text/css"> @import url("../src/skin-system.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="DynarchMenu.setup('menu');">
+
+    <p>
+      Sometimes, the HTML inside a popup menu can get quite
+      complicated.  In this case, it's desirable that it doesn't
+      behave like a menu item anymore, that is: it shouldn't get
+      “hover” or “active” states, it should be skipped by keyboard
+      navigation keys such as “up arrow” and “down arrow”, etc.
+    </p>
+
+    <p>
+      This page demonstrates how you can embed really complicated
+      stuff into a menu.  It's a normal menu which has some normal
+      menu items&mdash;they will behave as usual.  And inside it there
+      is a piece of HTML code which contains a form with a nested
+      table, labels, input fields, submit buttons, paragraphs, etc.
+    </p>
+
+    <p>
+      The way to do this is to embed the HTML in a DIV.  Therefore,
+      you have:
+    </p>
+
+    <ol>
+      <li>
+        The &lt;LI&gt; element, which defines the start of a menu
+        item.  This is required and has still to be present, even for
+        such complicated HTML.
+      </li>
+      <li>
+        Inside the &lt;LI&gt; you directly put a &lt;DIV&gt; element.
+        When DynarchMenu sees a DIV element, it will ignore all the
+        rest and make this item an “html popup” item.
+      </li>
+      <li>
+        You can put whatever you want in the DIV element.
+      </li>
+    </ol>
+
+    <p>
+      Do not try to include a submenu to an html item.  It will not
+      work.
+    </p>
+
+    <p>
+      Another thing to consider is that, this demo shows that you can
+      combine normal menu items with full HTML menu items.  But you're
+      in no way required to do that&mdash;you can of course have a
+      submenu which is entirely formed out of one (or more) HTML
+      items.  We don't like restrictions ;-)
+    </p>
+
+    <ul id="menu">
+      <li>
+        <a><span style="color: #00f; font-weight: bold">»</span> <i>More information</i></a>
+        <ul>
+          <li>
+            <img src="../icons/copy.gif" alt="" />
+            Item 1
+          </li>
+          <li>
+            Item 2
+          </li>
+          <li>
+            <img src="../icons/save.gif" alt="" />
+            Item 3
+          </li>
+          <li></li>
+          <li>
+            <div>
+              <p style="font-weight: bold; text-align: center;">
+                More items are available for registered users.<br />
+                Please login below:
+              </p>
+              <form action="#" method="get">
+                <table style="border: 0px" align="center">
+                  <tr>
+                    <td style="text-align: right">
+                      User ID:
+                    </td>
+                    <td>
+                      <input type="text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">
+                      Password:
+                    </td>
+                    <td>
+                      <input type="password" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align: center">
+                      <input type="submit" value="Login..." /> |
+                      <input type="submit" value="Register..." />
+                    </td>
+                  </tr>
+                </table>
+              </form>
+              <p style="text-align: center">
+                If you forgot your password, we can <a href="#">email it to you</a>.
+              </p>
+            </div>
+          </li>
+          <li></li>
+          <li>
+            And yet another item
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+  </body>
+</html>
+<!--
+-->

@@ -1,0 +1,18 @@
+html, body { margin: 0; padding: 0; background-color: #e0e5f5; color: #000;
+  font: 10pt "Trebuchet MS",Verdana,Tahoma,sans-serif;
+}
+div.content { margin: 1em 100px; }
+
+h1 { border-bottom: 1px solid #999; }
+
+div.noicons tr.item td.icon img,
+div.noicons tr.item td.icon div {
+  width: 0;
+}
+div.noicons tr.item td.icon {
+  width: 0;
+}
+
+.important { color: #d32; }
+
+div.dynarch-horiz-menu table, div.dynarch-popup-menu table { font: 10pt tahoma,verdana,sans-serif; }

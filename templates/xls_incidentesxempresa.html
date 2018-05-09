@@ -1,0 +1,68 @@
+{include file="cabecera2.html" title="Control de Incidentes"}
+
+<div id="resultados_reporte">
+<p>
+<div id = "indice">Control de Incidentes </br>Empresa: {$datos.empresa_id} </div>
+</p>
+{if $datos.datos}
+<div id="resultados">
+<table class="enhancedtable" cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+<thead>
+	<tr> 
+		<th>NRO</th>
+		<th>FECHA</th>
+		<th>HORA</th>
+		<th>PERSONA INVOLUCRADA</th>
+		<th>EDAD</th>
+		<th>CARGO</th>
+		<th>EMPRESA</th>
+		<th>GRADO INSTRUCCION</th>
+		<th>GERENCIA</th>
+		<th>AREA</th>
+		<th>SECCION</th>
+		<th>PROYECTO</th>
+		<th>CLASE</th>
+		<th>TIPO</th>
+		<th>CONDICION INSEGURA</th>
+		<th>ACTO INSEGURO</th>
+		<th>REGION AFECTADA</th>
+		<th>CAUSA DEL INCIDENTE</th>
+		<th>DESCRIPCION DEL EVENTO</th>
+		<th>TIEMPO PERDIDO</th>
+		<th>PERSONAL REGISTRA</th>
+		
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos.datos}
+	<tr>
+		<td>{$datos.datos[p].id}</td>
+		<td>{$datos.datos[p].fecha}</td>
+		<td>{$datos.datos[p].hora}</td>
+		<td>{$datos.datos[p].personal_id}</td>
+		<td>{$datos.datos[p].edad}</td>
+		<td>{$datos.datos[p].cargo_id}</td>
+		<td>{$datos.datos[p].empresa_id}</td>
+		<td>{$datos.datos[p].grado_instr}</td>
+		<td>{$datos.datos[p].gerencia_id}</td>
+		<td>{$datos.datos[p].area}</td>
+		<td>{$datos.datos[p].seccion_id}</td>
+		<td>{$datos.datos[p].proyecto}</td>
+		<td>{$datos.datos[p].clase_id}</td>
+		<td>{$datos.datos[p].tipo_id}</td>
+		<td>{$datos.datos[p].condicion_id}</td>
+		<td>{$datos.datos[p].acto}</td>
+		<td>{$datos.datos[p].region_id}</td>
+		<td>{$datos.datos[p].causa_id}</td>
+		<td>{$datos.datos[p].descripcion}</td>
+		<td>{$datos.datos[p].tiempo_perdido}</td>
+		<td>{$datos.datos[p].personal_reg_id}</td>
+		
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	<h3>NO SE ENCONTRÓ NINGUN DATO QUE CORRESPONDA, VERIFIQUE...</h3>
+{/if}
+{include file="pie.html"}

@@ -1,0 +1,143 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: menu actions</title>
+    <style type="text/css"> @import url("../src/skin-modern.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">//<![CDATA[
+
+      // CDATA delimiters are using to protect our JS code
+      // this should make valid XHTML documents.
+
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+
+      // ----------------------------------------------------------------------
+      // custom functions that will be called by certain menu items (see below)
+
+      function changeBG(bg) {
+        if (typeof bg == "undefined") bg = "#fff";
+        document.body.style.backgroundColor = bg;
+      }
+
+      var ps_visible = true;
+      function togglePVisibility() {
+        var ps = document.getElementsByTagName("p");
+        ps_visible = !ps_visible;
+        for (var i = 0; i < ps.length; ++i) {
+          ps[i].style.visibility = ps_visible ? "visible" : "hidden";
+        }
+        return true;
+      }
+    //]]></script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="DynarchMenu.setup('menu');">
+    <p>
+      A menu item can ordinarily do one of these two things:
+    </p>
+    <ol>
+      <li>Open a Web page &mdash; that is, go to a certain URL; this
+      can be done in the same window, in a new window (by specifying
+      the target="_blank" attribute to the link, <em>like in any HTML
+      document</em>) or in a named window (again, by specifying a
+      window name as the target attribute, just like in any HTML
+      document).</li>
+      <li>Execute JavaScript code.  This is done by specifying a
+      “href” attribute that starts with "javascript:", just like in
+      any HTML document.
+      </li>
+    </ol>
+
+    <p>
+      The careful reader will notice that even in browsers that don't
+      support our menu, the functionality is not lost because you are
+      using standard HTML ways to specify the action and target of a
+      link.  That is, we are relying to&mdash;and tricking the browser
+      about&mdash;standard HTML tags and attributes, in order to setup
+      the menu; this has the big advantage that even in browsers that
+      do not support our menu, the functionality of your application
+      will not be lost.
+    </p>
+
+    <p>
+      See the source of this page in order to understand the example.
+    </p>
+
+    <ul id="menu" style="visibility: hidden">
+      <li title="External links">
+        _Links
+        <ul>
+          <li>
+            <a href="http://dynarch.com"
+               title="Dynarch.com, the company">Dynarch.com</a>
+          </li>
+          <li>
+            <a href="http://dynarch.com/mishoo/"
+               title="Mishoo's homepage (opens new window)"
+               target="_blank">Mishoo</a>
+          </li>
+        </ul>
+      </li>
+      <li></li>
+      <li>
+        <!--
+          the following is an item from the main menu which does not
+          have any popups; when clicked, it will just open an URL
+          (google.com) in a new window.
+        -->
+        <a href="http://google.com"
+           title="Go to www.google.com (opens new window)"
+           target="_blank">
+          Google
+        </a>
+      </li>
+      <li></li>
+      <li>
+        _JavaScript
+        <ul>
+          <li>
+            <a href="javascript:alert(new Date());"
+               title="Show current date and time">Date/time
+            </a>
+          </li>
+          <li>
+            <a href="javascript:changeBG()"
+               title="Change page background">Make white background
+            </a>
+          </li>
+          <li>
+            <a href="javascript:changeBG(prompt('Please enter color'))"
+               title="Change page background (asks for new color)">Change background
+            </a>
+          </li>
+          <li>
+            <a href="javascript:retval=togglePVisibility()"
+               title="Toggle visibility of &lt;P&gt; elements">
+              Toggle &lt;P&gt;-s
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>
+      The last item from the last menu (“toggle &lt;P&gt;-s
+      visibility”) introduces you to another technique: when the
+      action of some menu item is to execute JavaScript code, you can
+      specify wether to close the submenu or not.  We are setting the
+      value of the “retval” variable to “true” (by returning “true”
+      from our function) and this specifies DynarchMenu that the popup
+      should remain visible.
+    </p>
+    <p>
+      If we'd set “retval” to “false” (or not set it at all) then
+      DynarchMenu will close the popup menus&mdash;it's likely that
+      you'd want to have this default.
+    </p>
+  </body>
+</html>
+<!--
+-->

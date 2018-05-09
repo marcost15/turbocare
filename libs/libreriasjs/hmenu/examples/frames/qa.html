@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset: utf-8" />
+    <title>DHTML Menu frames sample</title>
+    <link rel="stylesheet" type="text/css" href="../../src/skin-xp.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <script type="text/javascript" src="../../src/hmenu.js"></script>
+    <script type="text/javascript">MENU_ITEM='qa'</script>
+    <style type="text/css">
+      .q { font-weight: bold; font-style: italic; }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>Questions and answers</h1>
+
+      <ol>
+        <li>
+          <p class="q">
+            How did you make it disable the item for the current page?
+          </p>
+          <p>
+            Pretty easy.  We defined an ID for all menu items, so that
+            they can be accessed thereafter using "menu.items[ID]".
+            Then, each page defines a global variable MENU_ITEM, which
+            can be accessed from the toplevel frameset using
+            "window.frames.popups_frame.MENU_ITEM".  Then, after
+            retrieving the item, we simply call item.disable().
+            Something like this:
+          </p>
+          <pre>menu.items["item-" + window.frames.popups_frame.MENU_ITEM].disable();</pre>
+          <p>
+            Check the sources to see the exact code.
+          </p>
+        </li>
+
+        <li>
+          <p class="q">
+            What browsers has this been tested on?
+          </p>
+          <p>
+            We tested and found to work Mozilla/Firefox (any
+            platform), Internet Explorer 6 for Windows, Opera 8 (any
+            platform), Apple Safari (Macintosh) and Konqueror (Linux).
+          </p>
+          <p>
+            Also tested with IE7 Beta, works flawless.
+          </p>
+        </li>
+
+        <li>
+          <p class="q">
+            Does the “lazy” setting work with cross-frame menus?
+          </p>
+          <p>
+            Yes, but you won't be able to disable items as described in (1).
+          </p>
+        </li>
+
+        <li>
+          <p class="q">
+            Does keyboard navigation work?
+          </p>
+          <p>
+            Yes, with the same restrictions as in non frame-based
+            setups: only with IE and Mozilla/Firefox.
+          </p>
+        </li>
+
+        <li>
+          <p class="q">
+            Why are those "init" and "reinit" functions needed?<br />
+            They seem to do quite the same thing.
+          </p>
+          <p>
+            These functions are not doing the same thing.  The idea is
+            that "init()" is called once when <em>all</em> the frames
+            have loaded.  And it sets up the menu for the first time.
+            It is a requirement to make sure that all frames are
+            loaded, before setting up the menu—hence, this function is
+            called from the <em>frameset</em>'s "onload" event.
+          </p>
+          <p>
+            Right around that moment, the "reinit()" is called too,
+            because the second frame has finished loading—but we don't
+            know for sure that <em>all</em> frames have loaded, so we
+            can't simply construct the menu there.  Therefore, we
+            ignore the first call, using the "first_time" global
+            (which gets set to "false" this time).
+          </p>
+          <p>
+            Later, when the content of the "popups_frame" has changed,
+            we need to reinitialize the menu (for reasons described in
+            the <a href="details.html">technical notes</a>).  This is
+            now safely accomplished in the "reinit()" function, which
+            "knows" that the menu was instantiated once by examining
+            the "first_call" global: if it's "false", then call
+            "init()". ;-)
+          </p>
+          <p>
+            We find this model quite simple to understand and
+            implement.
+          </p>
+        </li>
+
+      </ol>
+
+    </div>
+  </body>
+</html>

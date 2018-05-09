@@ -1,0 +1,163 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+      <h1>Deviations from Web standards</h1>
+
+      <p>
+        This menu is built upon Web standards.  It makes use of
+        features guaranteed by Web standards, but certain workarounds
+        were necessary for browsers that do not follow Web standards.
+      </p>
+
+      <p>
+        You don't normally have to read this page, unless you are
+        curious which workarounds and for what browsers were needed in
+        order to make the menu work like it does.
+      </p>
+
+      <p>
+        The following is the browser situation at the time of this
+        writing.
+      </p>
+
+      <table style="font: 80% tahoma,verdana,sans-serif; width: 100%;" cellspacing="0" cellpadding="2">
+        <thead style="font-weight: bold">
+          <tr>
+            <td style="border-bottom: 1px solid #000">Browser</td>
+            <td style="border-bottom: 1px solid #000">Problem</td>
+            <td style="border-bottom: 1px solid #000">Workaround</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              IE 5.0, IE 5.5, IE 6.0
+            </td>
+            <td>
+              DOM Event Model broken
+            </td>
+            <td>
+              Using proprietary IE extensions.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              IE 5.0
+            </td>
+            <td>
+              No support for variable opacity in PNG-s
+            </td>
+            <td>
+              No workaround for IE 5.0.  Degrades: doesn't display smooth menu shadows.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              IE 5.5, IE 6.0
+            </td>
+            <td>
+              No support for variable opacity in PNG-s
+            </td>
+            <td>
+              Needed to use proprietary IE extensions in order to properly display PNG images.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              IE 5.0, IE 5.5, IE 6.0
+            </td>
+            <td>
+              “background-image”-s are not cached
+            </td>
+            <td>
+              IE seems to request images linked from CSS multiple
+              times.  <strike>No known workaround</strike>.  <b>Update
+              (DynarchMenu-2.4):</b> preloading images help improve
+              the “experience” of IE users.  <a
+              href="docs/faq.html#iecache" target="_blank"
+              title="opens new window">Read it in FAQ</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              IE 5.0, IE 5.5, IE 6.0
+            </td>
+            <td>
+              Ignores “position: fixed”.
+            </td>
+            <td>
+              Using “position: absolute” instead [drawback:
+              the popups will scroll with page].
+            </td>
+          </tr>
+          <tr>
+            <td>
+              IE 5.0, IE 5.5, IE 6.0
+            </td>
+            <td>
+              Can't properly stop events
+            </td>
+            <td>
+              Needed to use proprietary IE extension to make text unselectable.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              IE 5.0, IE 5.5, IE 6.0
+            </td>
+            <td>
+              Memory leaks when using closures with DOM elements.
+            </td>
+            <td>
+              Horrible workarounds were needed, <a
+href="http://www.dynarch.com/mishoo/articles.epl?art_id=824">described
+here</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Opera 7
+            </td>
+            <td>
+              Can't properly stop events
+            </td>
+            <td>
+              The menu items text is selectable.  Keyboard navigation doesn't work.  No known workaround.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Konqueror/Safari
+            </td>
+            <td>
+              Can't retrieve position/size of &lt;tr&gt; elements.
+            </td>
+            <td>
+              Using position of first/last &lt;td&gt; element.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        For Mozilla (+ any other Gecko-based browser) and Opera there
+        is no deviation from known Web standards; true it is that in
+        Opera there is this problem: text can't be unselectable;
+        however, as there is no workaround, there is no deviation from
+        Web standards.  Congratulations to Mozilla and Opera teams!
+      </p>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

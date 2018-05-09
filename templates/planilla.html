@@ -1,0 +1,156 @@
+<html>
+	<head>
+		<link rel="icon" href="./imagenes/favicon.ico" type="image/x-icon" /> 
+		<link rel="shortcut icon" href="./imagenes/favicon.ico" type="image/x-icon" /> 
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="robots" content="noindex,nofollow" />
+		<script type="text/javascript" src="./js/highlight.js"></script>
+		<script type="text/javascript" src="./js/domtableenhance.js"></script>
+		<script type="text/javascript" src="../libreriasphp/FH3/FHTML/overlib/overlib.js"></script>
+		<script type="text/javascript" src="./js/livevalidation.js"></script>
+		<script type="text/javascript" src="./js/validacion.js"></script>
+		<script type="text/javascript" src="./js/jquery/jquery.min.js"></script><!-- Jquery -->
+		<script type="text/javascript" src="./js/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+		<script type="text/javascript" src="./js/tinydropdown.js"></script><!-- Para el Menú -->
+		<link rel="stylesheet" type="text/css" href="./js/jquery/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="./estilo/layout.css"/> 
+		<link rel="stylesheet" type="text/css" href="./estilo/layoutprint.css" media="print"/>
+		<link rel="stylesheet" type="text/css" href="./estilo/menu.css"/>
+	</head>
+	<body>
+<div id = "titulo5">
+<table  class="enhancedtable" border="1" align="center" width="100%">
+ <tr>
+	<th width = "20%"><img src="./imagenes/tc_pequeño.jpg" align = "left" width="350" height="50"/></th>
+	<th width = "60%"><font SIZE=3>INFORME DE INSPECCIONES</font></th>
+ </tr>
+  <tr>
+	<th colspan = "2"><font SIZE=3>MANUAL DE SEGURIDAD Y SALUD OCUPACIONAL</font></th>
+ </tr>
+</table>
+</div>
+</p>
+<div id="resultados50">
+<table cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+	<tr> 
+		<td  colspan = "2" align="right"><b>Numero de Informe:</b> {$ficha.id}</td>
+	</tr>
+	<tr> 
+		<td colspan = "2" align="center"><font SIZE=3><b>DATOS GENERALES</b></font></td>
+	</tr>
+	<tr> 
+		<td colspan = "2"><b>Inspeccion Asociada al sistema de Gestion:</b> 
+		{section name=p loop=$gestion}{$gestion[p].nombre}: <b>{$gestion[p].check}</b> {/section}</td>
+	</tr>
+	<tr> 
+		<td width = "50%"><b>Fecha de Inspeccion:</b>{ $ficha.fecha}</td>
+		<td width = "50%"><b>Equipo Inspeccionado:</b> {$ficha.equipo_id}</td>
+	</tr>
+	<tr> 
+		<td colspan = "2" align="center"><font SIZE=3><b>SECCION INSPECCIONADA</b></font></td>
+	</tr>
+	</table>
+<table cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+	{section name=p loop=$tipos_seccion}
+		<tr>
+			<td colspan = "4" align="center"><b>{$tipos_seccion[p].nombre}</b></td>		
+		</tr>
+		
+				{section name=d loop=$tipos_seccion[p].secc_agrup}
+				<tr>
+					{section name=t loop=$tipos_seccion[p].secc_agrup[d].fila}
+						{if $tipos_seccion[p].secc_agrup[d].fila[t].nombre}
+							<td align="center"><font SIZE=2><b>{$tipos_seccion[p].secc_agrup[d].fila[t].nombre}:{$tipos_seccion[p].secc_agrup[d].fila[t].check}</font></b></td>
+						{/if}
+					{/section}
+				</tr>
+				{/section}
+			
+		
+	{/section}
+</table>
+<table cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+	<tr> 
+		<td colspan = "3" align="center"><font SIZE=3><b>HALLAZGOS</b></font></td>
+	</tr>
+	<tr> 
+		<td colspan = "3" align="center">{$ficha.hallazgos}</b></td>
+	</tr>
+	<tr> 
+		<td width = "70%"  align="center"><font SIZE=3><b>CORREPCIONES Y ACCIONES PREVENTIVAS</b></font></td>
+		<td colspan = "2" width = "30%"  align="center"><font SIZE=3><b>RESPONSABLE</b></font></td>
+	</tr>
+	<tr> 
+		<td  width = "70%" align="center">{$ficha.correcciones}</b></td>
+		<td colspan = "2" width = "30%" align="center">{$ficha.personal_id}</b></td>
+	</tr>
+	<tr> 
+		<td colspan = "3" align="center"><font SIZE=3><b>ACCIONES PREVENTIVAS</b></font></td>
+	</tr>
+	<tr> 
+		<td colspan = "3" align="center">{$ficha.acciones}</b></td>
+	</tr>
+	<tr> 
+		<td  width = "50%" align="center"><b>EVALUADOR:</b></td>
+		<td colspan = "2" width = "50%" align="center"><b>REVISADO POR:</b></td>
+	</tr>
+	<tr> 
+		{if $ficha.evaluador_id}
+			<td width = "50%" align="center">{$ficha.evaluador_id}</td>
+		{else}
+			<td>&nbsp;</td>
+		{/if}	
+		{if $ficha.personal_rev_id}
+			<td colspan = "2" width = "50%" align="center">{$ficha.personal_rev_id}</td>
+		{else}
+			<td colspan = "2">&nbsp;</td>
+		{/if}	
+	</tr>
+	<tr> 
+		<td  width = "50%" align="center">
+			<table border = "0"  width = "100%">
+				<tr>
+					<td  width = "50%" align="left"><b>Firma:</b></td>
+					<td  width = "50%" align="left"><b>Fecha:</b> {$ficha.fecha_eva}</td>
+				</tr>
+			</table>
+		</td>
+		<td  width = "50%" align="center">
+			<table border = "0"  width = "100%">
+				<tr>
+					<td  width = "50%" align="left"><b>Firma:</b></td>
+					<td width = "50%" align="left"><b>Fecha:</b> {$ficha.fecha_revi}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr> 
+		<td colspan = "3" align="center"><font SIZE=3><b>VERIFICACION DE CIERRE DE ACCIONES</b></font></td>
+	</tr>
+	<tr> 
+		<td colspan = "3" align="left"><b>Observaciones: {$ficha.observaciones}</b></td>
+	</tr>
+	<tr> 
+</table>
+<table border = "1"  width = "100%">
+			<tr>
+				<td  width = "35%" align="left"><b>Nombre y Apellido:</b> {$ficha.personal_obs_id}</td>
+				<td  width = "30%" align="left"><b>Fecha:</b> {$ficha.fecha_obs} </td>
+				<td  width = "35%" align="left"><b>Firma:</b></td>
+			</tr>
+		
+	</tr>
+</table>
+<p>
+<table border = "0"  width = "100%">
+			<tr>
+				<td align="center">ELABORADO POR DPTO DE PROTECCION INTEGRAL FECHA DE ELABORACION: {$fecha}</b></td>
+			</tr>
+		</table>
+</div>
+<p>
+<div id="boton" align="center">
+<a href='javascript:window.print(); void 0;'><img onmouseover='overlib("<strong>IMPRIMIR</strong>",WIDTH, 70)' src="./imagenes/imprimir.gif" onmouseout='return nd();'/></a>
+</div>
+</body>
+</html>

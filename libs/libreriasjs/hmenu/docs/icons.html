@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+      <h1>Some technical notes about icons</h1>
+
+      <p>
+        This section discusses some aspects about icons: sizes,
+        format, hints for good quality.
+      </p>
+
+      <h2>Format</h2>
+
+      <p>
+        First of all, the menu supports icons in any image format that
+        is supported by the browser.  That is, JPEG, GIF, PNG,
+        whatever.  In order to support PNG icons with variable
+        transparency in IE, you need to load the “PieNG.js” file at
+        the end of the page&mdash;the script fools IE to think that it
+        supports PNG images (and actually it does, the
+        “Microsoft-way”).
+      </p>
+
+      <p>
+        About icon format, we highly recommend PNG.  It's really the
+        most efficient format for storing icons, both because the
+        files are small (many times smaller than the “equivalent” GIF)
+        and more important, because you can have “semi-transparent”
+        areas.  This is a feature of the PNG format, and it means that
+        you can have pixels that are neither opaque neither fully
+        transparent.  For instance, you can have a pixel which is
+        clearly red, but allows whatever is behind it to be visible.
+        This is also called “alpha transparency”.
+      </p>
+
+      <p>
+        PNG icons are very good because they can avoid rough edges
+        that you usually see in GIF icons that have transparent
+        background.  GIF's transparency is reduced to “either
+        transparent, either fully opaque”, but as we all know, there
+        are more colors than just black and white.  This (and others)
+        major limitations of the GIF format makes us wonder how come
+        that a company the size and power of Microsoft can't even say
+        when PNG support will be available in their browser, let alone
+        availability itself.  But anyway, with our PieNG you can have
+        it in IE too, bypassing it's brain-dead way of including
+        transparent PNG-s.  Before the &lt;/body&gt; tag in your
+        documents, just add the following line:
+      </p>
+
+      <pre><span class="function-name">&lt;</span><span class="html-tag">script</span> <span class="variable-name">type=</span><span class="string">&quot;text/javascript&quot;</span> <span class="variable-name">src=</span><span class="string">&quot;/path/to/hmenu/PieNG.js&quot;</span><span class="function-name">&gt;&lt;</span><span class="html-tag">/script</span><span class="function-name">&gt;</span></pre>
+
+      <h2>Icon dimensions</h2>
+
+      <p>
+        The dimension of the menu icons is established through the
+        CSS file (it's not hard-coded in the JS file).  If you want to
+        use smaller (or bigger) icons, you'd have to edit the CSS file
+        that you're using (or even better, <a
+        href="javascript:showSection('skins')">create another
+        one</a>) and add the following rule:
+      </p>
+
+      <pre>div<span class="variable-name">.dynarch-popup-menu</span> tr<span class="variable-name">.item</span> td<span class="variable-name">.icon</span> img {
+  <span class="keyword">width:</span> 18px;
+  <span class="keyword">height:</span> 18px;
+}</pre>
+
+      <p>
+        The above shows the default icon dimensions (18px) when inside
+        the popup menus.  Icons displayed in the horizontal menu bar
+        can basically have any dimension (it's not expressed in the
+        CSS files) but we highly recommend to make them 14 pixels
+        high, at any width but leave 2 columns of pixels empty in the
+        right side (for spacing).  You should not declare padding
+        through the CSS files, or else PNG icons would be messed up in
+        Internet Explorer (bless its heart).
+      </p>
+
+      <h2>Hints for good icon quality</h2>
+
+      <p>
+        First of all, we are not experts at this point (graphic
+        design) but however, even given our limited experience in the
+        field, we figured out some small details that simply make
+        icons look better.
+      </p>
+
+      <ol>
+        <li>
+          Never use GIF nor JPEG.  Use PNG.
+        </li>
+        <li>
+          Use a transparent background.  Never make your icons on
+          white, black, blue or any other color.  Or else, you will
+          have trouble changing the colors.
+        </li>
+        <li>
+          If (advised) you make the icon on a transparent background,
+          you should delimit the icon drawing from the transparent
+          background by a thin outline.
+        </li>
+        <li>
+          Sometimes, even for very small icons, you can add a one or
+          two pixels shadow.  Believe us, it makes a big difference
+          ;-)
+        </li>
+      </ol>
+
+      <p>
+        To exemplify the above, here are 2 icons showing the dollar
+        sign.  The first one uses all the techniques above and it's a
+        PNG image, and the second one is a GIF image that doesn't use
+        any of the specified techniques (note that you have to be using any
+        browser <em>other than IE/Win 5.0</em> in order to properly see the
+        transparent PNG image):
+      </p>
+
+      <p style="text-align: center">
+        <img src="img/dollar.png" alt="" />
+           
+        <img src="img/dollar.gif" alt="" />
+      </p>
+
+      <p>
+        We won't ask which one do you like most. :-)
+      </p>
+
+      <h2>Note for PNG icons</h2>
+
+      <p>
+        If you are using PieNG.js to include PNG icons, it would be
+        good if you specify the icon size in the &lt;img&gt; tag, like
+        this: &lt;img src="/path/to/img.png" width="18" height="18"
+        /&gt; (of course, replace 18 with the actual dimensions of
+        your image).  Otherwise the PNG-s might have strange
+        (sometimes bigger) dimensions in Internet Explorer.
+      </p>
+
+      <h2>Acknowledgments</h2>
+
+      <p>
+        All our graphic stuff is made with <a
+        href="http://www.gimp.org" target="_blank"
+        title="Go to GIMP website (opens new window)">GIMP</a> (the GNU
+        Image Manipulation Program).  Though its name speaks for
+        itself, we would also add that it's a <em>highly evolved</em>
+        digital image processing program which runs on a lot of
+        platforms and operating systems and, in our opinion, it can
+        successfully rival with commercial sacred monsters such as
+        “Adobe Photoshop” or “Corel Photopaint”.
+      </p>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

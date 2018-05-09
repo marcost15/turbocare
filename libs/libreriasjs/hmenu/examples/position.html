@@ -1,0 +1,172 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: position test</title>
+    <style type="text/css">
+      @import url("../src/skin-win2k.css");
+      html, body {
+        background: #abf; margin: 0px; padding: 0px; height: 100%;
+        color: #000;
+      }
+      table {
+        font: 13px "trebuchet ms",verdana,tahoma,sans-serif;
+      }
+      /* some customization... ;-) */
+      div.dynarch-horiz-menu table tr td.item {
+        padding: 1px 8px; border: 2px solid;
+        border-color: #fff #808080 #808080 #fff;
+      }
+      div.dynarch-horiz-menu table tr td.active {
+        padding: 2px 7px 0px 9px;
+        border-color: #808080 #fff #fff #808080;
+      }
+      div.start-menu div.a { padding-left: 20px; background: url("left-dm.png") no-repeat 0 0; }
+      div.start-menu div.b { background: #d4d0c8 url("left-icon.png") no-repeat 2px 99%; }
+    </style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="DynarchMenu.setup('menu1');">
+    <table style="height: 100%; width: 100%;" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="top" height="100%" style="padding: 1em;">
+          <h1>DynarchMenu: positioning test</h1>
+          <p>
+            As you can see by looking in the sources of this page, our
+            menu gets positioned where the toplevel &lt;ul&gt; element
+            is.  In this page we included it in the second row of a
+            table and aligned it in such a way that it will stay at
+            the bottom of the page, assuming the page does fit in the
+            browser view.
+          </p>
+
+          <p>
+            In other words: why learning “yet another positioning
+            technique”?  You can rely on any technique that you know
+            so far; you position the menu just like you position any
+            HTML element in page&mdash;use TABLE, DIV-s, CSS, position
+            absolute or fixed, whatever.  The menu does not have to
+            care about this&mdash;it gets generated in place of the UL
+            element.
+          </p>
+
+          <p>
+            This page also demonstrates the fact that submenus will be
+            opened in the most intuitive position.  They won't get off
+            the screen.  The algorithm that does submenu positioning
+            works this way:
+          </p>
+
+          <ol>
+            <li>
+              Tries to put the newly opened submenu in the bottom of
+              the menu bar.  Then it checks for “out-of-window” case.
+              If this happens, then the submenu is moved above the
+              menu bar.  Note that there still is room for mistake: if
+              your popup menu is higher than the browser window, then
+              there's nothing we can do about it and it will be partly
+              visible.
+            </li>
+            <li>
+              Tries to put the newly opened submenu at the right of
+              the opening item.  If it fits, it is left that way.  If
+              it gets out of the browser window (horizontally) then it
+              will be moved to the left side.  The same reserves as
+              for the above rule apply: if your menu is too wide to be
+              visible on screen, then it will be partly visible.
+            </li>
+          </ol>
+
+          <p>
+            Normally, the reserves above <em>do not happen</em>.  If
+            they happen for your menus, then it's clear that you have
+            to rethink and reorganize your menus.  Remember this
+            golden rule: if your menu is too long, then people won't
+            browse it.  You don't want this to happen.  Categorize and
+            organize it (using submenus) so that it fits right.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td valign="bottom">
+          <ul id="menu1" style="visibility: hidden">
+            <li>
+              <a><b><i>Start</i></b></a>
+              <ul class="start-menu">
+                <li>Web browser</li>
+                <li></li>
+                <li>
+                  _Programs
+                  <ul>
+                    <li>
+                      _Accessories
+                    </li>
+                    <li>
+                      _System tools
+                    </li>
+                    <li></li>
+                    <li>etc.</li>
+                    <li></li>
+                    <li>
+                      This submenu is long
+                    </li>
+                    <li>
+                      so that you see
+                    </li>
+                    <li>
+                      that it gets positioned
+                    </li>
+                    <li>
+                      in the right place so that
+                    </li>
+                    <li>
+                      it doesn't get out of the
+                    </li>
+                    <li>
+                      browser view and does not
+                    </li>
+                    <li>
+                      produce scrollbars.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  _Documents
+                  <ul>
+                    <li class="disabled">Empty</li>
+                  </ul>
+                </li>
+                <li>
+                  _Settings
+                </li>
+                <li></li>
+                <li>
+                  _Search
+                  <ul>
+                    <li>Files or folders...</li>
+                    <li>The Internet...</li>
+                    <li></li>
+                    <li>Documents...</li>
+                  </ul>
+                </li>
+                <li></li>
+                <li>_Run...</li>
+                <li></li>
+                <li>Log _off...</li>
+                <li>Shut_down...</li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+<!--
+-->

@@ -1,0 +1,307 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+      <h1>Customization options</h1>
+
+      <p>
+        The function <tt>DynarchMenu.setup</tt>, called at
+        <tt>body.onload</tt>, actually accepts the following form:
+      </p>
+
+      <pre>DynarchMenu.setup(element_id, config);</pre>
+
+      <p>
+        The <tt>config</tt> parameter is optional; if present, it must
+        be a JavaScript object containing configuration info.
+        Currently it accepts the following parameters:
+      </p>
+
+      <dl>
+        <dt>“<tt>electric</tt>”</dt>
+        <dd>
+          <p>(boolean or number) which specifies wether the horizontal
+          menu items will open the submenus at mouseover or on click.
+          If “<tt>electric</tt>” is <tt>true</tt> or a number other
+          than zero, then submenus will be opened at mouseover (thus,
+          upon hover) and will automatically close at mouseout,
+          otherwise all the above happens upon click.  <b>Default:
+          <tt>false</tt></b>.</p>
+
+          <p>If a non-zero number is specified, then it configures the
+          submenu hide timeout, in milliseconds.  For instance if you
+          specified “500” then submenus will close in 500 milliseconds
+          after the mouse cursor leaves them.  If during this timeout
+          the mouse returns in the submenu, then the hiding action
+          will be canceled.</p>
+        </dd>
+        <dt>“<tt>timeout</tt>”</dt>
+        <dd>
+          <p>(number) which specifies the timeout, in milliseconds,
+          for opening/closing submenus.  The default is “150” and we
+          think it's a sane value.  Don't make it too big nor too
+          small, as it can get annoying.</p>
+
+          <p>Basically this means that an item which has a submenu
+          will open the submenu after this timeout has elapsed.  Also,
+          after leaving an item having a submenu which is visible,
+          that submenu will close after this timeout has elapsed; if,
+          during this time, the cursor returns to the item or to it's
+          submenu, then the submenu will be “reactivated” and its
+          closing will be cancelled.</p>
+        </dd>
+        <dt>“<tt>vertical</tt>”</dt>
+        <dd>
+          <p>
+            (boolean) default: false.  If this parameter is specified
+            as “true”, then the base menu will appear as a vertical
+            menu, instead of the horizontal bar.
+          </p>
+          <p>
+            This parameter also implies “electric: true”, unless
+            otherwise specified by the calling script.
+          </p>
+        </dd>
+        <dt>“<tt>context</tt>”</dt>
+        <dd>
+          <p>
+            (boolean) default: false.  When "context: true" is
+            specified, the main menu bar will never appear, and all
+            submenus defined within it can act as context menus for
+            different elements.  More details in the <a
+            href="examples/context.html">context menus sample</a>.
+          </p>
+          <p>
+            Note that you can setup context menus even without passing
+            this configuration option (but in this case the main menu
+            bar will be visible, like in this very page).
+          </p>
+        </dd>
+        <dt>“<tt>className</tt>”</dt>
+        <dd>
+          <p>If specified, the given string will be added to the menu's
+          and submenus' CSS class attributes.  This is useful for
+          customizing different color themes for different menus
+          within the same page.</p>
+        </dd>
+        <dt>“<tt>tooltips</tt>”</dt>
+        <dd>
+          <p>(boolean) specifies if the menu should display tooltips.
+          <b>Default: false</b>.</p>
+        </dd>
+        <dt>“<tt>shadows</tt>”</dt>
+        <dd>
+          <p>(array or null) default: [2, 2].  If “null” then the popup
+          menus will not display shadows.  If an array is passed then
+          it <em>must</em> have 2 elements, integers, and they signify
+          the shadow displacement relative to the popup menu position
+          (i.e. [4, 2] means “show shadows of width 4 and height 2
+          pixels”).</p>
+          <p>Of course, you can specify [0, 0] if you want no shadows.  But
+          using this instead of <tt>null</tt> will add a slight performance
+          penalty (it might not be noticeable at all, but we know that it
+          will be there) so if you don't want shadows, better pass
+          <tt>null</tt> here.</p>
+          <p><b>Note:</b> as of version 2.5, the shadows parameter can
+          be a 4 elements array, in which case they will have the
+          following meaning:</p>
+          <pre>[ dx, dy, dw, dh ]</pre>
+          <ul>
+            <li><tt>dx, dy</tt> -- have the same meaning as in the
+            2-elements variant.</li>
+            <li><tt>dw, dh</tt> -- are added to the shadow width,
+            height, in order to form a shadow bigger than the
+            popup.</li>
+          </ul>
+          <p>
+            Using the variant above you can specify negative values
+            for dx, dy and get shadows closer to shadows in Mac OSX,
+            i.e. bigger than the popups.  Example values:
+          </p>
+          <pre>[-2, -1, 6, 6]</pre>
+        </dd>
+        <dt>“<tt>smoothShadows</tt>”</dt>
+        <dd>
+          <p>(boolean) default: true, unless the browser is IE 5.0 in
+          which case this will be false.  This parameter takes effect
+          only if “shadows” are enabled, and if its value is true then
+          the displayed shadows will be “smooth”, meaning, they will
+          have smooth edges and corners, just like WinXP menus.  When
+          false the default shadows are used (a simple background of
+          dark color).</p>
+          <p>
+            Smooth shadows look better, but requires loading of a
+            (small) image from server.  The image will normally be
+            cached, so one should not worry about this.
+          </p>
+        </dd>
+        <dt>“<tt>blink</tt>”</dt>
+        <dd>
+          <p>(boolean) default: false.  If true is specified, menu
+          items will blink for a short time when they're clicked,
+          resembling menus found in NeXT interfaces.</p>
+          <p><b>Note:</b> as of version 2.5, this parameter can also
+          be specified as a number.  If 0, no blinking takes place.
+          If a positive integer, items will blink that many times
+          before the action is triggered.  We recommend 3 or 5 if
+          blinking is desired.</p>
+        </dd>
+        <dt>“<tt>lazy</tt>”</dt>
+        <dd>
+          <p>(boolean) default: false.  If “lazy” is passed true, the
+          menu will use a technique called “lazy initialization” in
+          order to display a long menu instantly.</p>
+        </dd>
+        <dt>“<tt>toolbar</tt>”</dt>
+        <dd>
+          <p>(boolean) default: false.  If you pass “true” to this
+          parameter, the menu will be assigned some special CSS bits
+          that make it more suitable to <a href="examples/toolbar.html"
+          title="Toolbar sample (opens new window)" target="_blank">create a toolbar.</a></p>
+        </dd>
+        <dt>“<tt>container</tt>”</dt>
+        <dd>
+          <p>(HTMLElement) default: document.body.  You can specify
+          here an element of your choice to contain the submenu
+          elements.  This defaults to document.body (by default all
+          popups are created as direct children of the BODY tag).  The
+          only reason why you would want to overwrite this is when you
+          have inline HTML containing form fields, so you'll normally
+          want them to appear inside some FORM element.  This feature
+          is experimental.  You will have problems if the container
+          element that you supply has for instance the style
+          "position: relative", or if any of its parents have
+          "position: relative".
+          </p>
+          <p>
+            In order to pass something here, you need to retrieve a
+            reference to the element in the DOM tree.  For example:
+          </p>
+          <pre>DynarchMenu.setup("menu", { container: document.getElementById("form1") });</pre>
+          <p>
+            and assign id="form1" to your FORM element.
+          </p>
+        </dd>
+        <dt>“<tt>clone</tt>”</dt>
+        <dd>
+          <p>
+            (boolean) default: false.  For performance reasons,
+            DynarchMenu doesn't clone the contents of the elements
+            used to initialize the menu—instead it just reuses the
+            same DOM nodes.  This means that if you assign an ID to
+            some IMG element used as an icon, for instance, you will
+            later be able to change that icon by looking the element
+            up with document.getElementById.  On the downside though,
+            if you want to clone a submenu in multiple menus, icons
+            and HTML-based popups will onlt display correctly in the
+            first instantiation.  If that's the case you need to pass
+            "clone: true" to all DynarchMenu.setup calls.
+          </p>
+        </dd>
+        <dt>“<tt>onPopup</tt>”</dt>
+        <dd>
+          <p>
+            (function).  This function handler will be called each
+            time a submenu or a context menu is displayed.  Example:
+          </p>
+          <pre><span class="keyword">function</span> <span class="function-name">onPopup</span>(target, item, pos) {
+  alert(<span class="keyword">this</span>.id); <span class="comment">// the ID of the submenu, as assigned to &lt;ul&gt;
+</span>  alert(item.label); <span class="comment">// label of the parent item
+</span>  alert(pos.x + <span class="string">&quot;,&quot;</span> + pos.y); <span class="comment">// requested position of the submenu
+</span>}</pre>
+          <p>
+            This handler allows you to modify the submenu right before
+            it is displayed, for instance to hide/show certain items,
+            or disable/enable, etc.  See <a target="_blank"
+            href="examples/context4.html">an example here</a>.
+          </p>
+        </dd>
+        <dt>“<tt>frames</tt>”</dt>
+        <dd>
+          <p>
+            (object).  You can use this parameter to tell DynarchMenu
+            to use 2 frames for the menus.  You must pass 2
+            properties: the name of the “main” frame (where the main
+            menu will appear), and the name of the “popups” frame,
+            where the popup menus will appear.
+          </p>
+<pre>  DynarchMenu.setup(<span class="string">&quot;menu&quot;</span>, {
+    frames: {
+      main: <span class="string">&quot;top_frame&quot;</span>,
+      popups: <span class="string">&quot;bottom_frame&quot;</span>
+    },
+    clone: <span class="keyword">true</span>
+  });</pre>
+          <p>
+            As you can see in the above example, we're passing to
+            DynarchMenu.setup the names of the two frames.  Then,
+            DynarchMenu will magically know to lookup the "menu" ul in
+            the "top_frame" frame, and will create the menu in such a
+            way that popups will display in "bottom_frame".
+          </p>
+          <p>
+            An important note is that we need to pass "clone: true",
+            because in cross-frame mode the menu must not destroy the
+            original elements.
+          </p>
+          <p>
+            Please <a target="_blank" href="examples/framesv.html">see
+            the frames sample</a> for more information.
+          </p>
+        </dd>
+        <dt>“<tt>scrolling</tt>”</dt>
+        <dd>
+          <p>
+            (boolean or object).  When you have really long menus and
+            you want they to fit on the screen with scroll arrows, you
+            can pass here <tt>true</tt> or an object of the following
+            form:
+          </p>
+<pre>{
+  step1: 5,
+  step2: 10,
+  speed: 30
+}</pre>
+          <p>
+            The above are the default values that are used when you
+            pass "true".  "step1" is the scrolling step in pixels when
+            the mouse hovers a scroll arrow, "step2" is the step in
+            pixels when the scroll arrow is pressed and "speed" is the
+            timeout in milliseconds between consecutive scroll
+            updates.
+          </p>
+        </dd>
+      </dl>
+
+      <h3>Examples</h3>
+
+      <p>
+        Setting a menu that opens submenus on “mouseover” and
+        instantly closes them on “mouseout”:
+      </p>
+
+      <pre>DynarchMenu.setup("menu", { electric: true });</pre>
+
+      <hr />
+
+      <p>
+        Setting a menu that opens submenus on “mouseover” and closes
+        them after 250 milliseconds on “mouseout”; additionally, this
+        one displays tooltips.
+      </p>
+
+      <pre>DynarchMenu.setup("menu", { electric: 250, tooltips: true });</pre>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

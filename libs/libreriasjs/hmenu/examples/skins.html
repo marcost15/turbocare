@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+      DynarchMenu: about skins and writing your own
+    </title>
+    <script type="text/javascript">
+      var _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+    <link rel="stylesheet" href="../src/skin-sample.css" />
+    <style type="text/css">
+      .my-item-open td.label { color: green; font: bold 12px verdana; }
+    </style>
+  </head>
+  <body onload="DynarchMenu.setup('menu')">
+    <ul id="menu" style="visibility: hidden">
+      <li>File
+        <ul>
+          <li>
+            _New
+            <ul>
+              <li>_Window</li>
+              <li></li>
+              <li>_Message</li>
+              <li>_Post</li>
+              <li>_Contact</li>
+              <li>_Internet Call</li>
+            </ul>
+          </li>
+          <li class="my-item-open">_Open...</li>
+          <li class="disabled">_Save</li>
+          <li>Save _As...</li>
+          <li></li>
+          <li>Page set_up</li>
+          <li>_Print</li>
+          <li>Print Pre_view</li>
+          <li></li>
+          <li>
+            S_end
+            <ul>
+              <li>_Page by Email...</li>
+              <li>_Link by Email...</li>
+              <li>_Shortcut to Desktop</li>
+            </ul>
+          </li>
+          <li>_Import and Export...</li>
+          <li></li>
+          <li>P_roperties</li>
+          <li>_Work offline</li>
+          <li>_Close</li>
+        </ul>
+      </li>
+      <li></li>
+      <li>Edit
+        <ul>
+          <li>Cut</li>
+          <li>Copy</li>
+          <li>Paste</li>
+          <li></li>
+          <li>Select all</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h1>Making skins</h1>
+
+    <p>
+      This document exemplifies a really gross skin that we created in
+      order to help you understand how to style the menu.  The CSS
+      file can be found in <a type="text/plain"
+      href="../src/skin-sample.css">src/skin-sample.css</a> and it is
+      properly commented.  Please read it and <em>experiment</em> on it. ;-)
+    </p>
+
+    <p>
+      Additionally, this file demonstrates that you can have items
+      with different style within the same submenu.  This is something
+      more related to your particular page than to the general menu
+      skin, therefore it is specified separately.  For instance, the
+      "Open" item from the "File" menu has a green color.  We achieve
+      this by specifying class="my-item-open" in the &lt;li&gt; that
+      defines the item, and adding the following after loading the
+      menu skin:
+    </p>
+
+    <pre>&lt;style type=<span class="string">&quot;text/css&quot;</span>&gt;
+      <span class="variable-name">.my-item-open</span> td<span class="variable-name">.label</span> { <span class="keyword">color:</span> green; }
+&lt;/style&gt;</pre>
+
+    <p>
+      Good luck! ;-)<br />
+      The <a href="http://www.dynarch.com/">Dynarch.com</a> team.
+    </p>
+  </body>
+</html>
+<!--
+-->

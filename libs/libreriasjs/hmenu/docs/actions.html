@@ -1,0 +1,212 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+<h1>Action handlers</h1><!-- -*- nxml -*- -->
+
+<p>
+  Albeit very flexible, writing an &lt;a&gt; tag inside every item can
+  sometimes become a pain.  For items that open URL-s, writing normal
+  link tags makes sense, because they ought to work in any browser,
+  even text-mode browsers.  However, for items that execute JavaScript
+  code dynamically, a more appropriate method can be used, starting
+  with version 2.4 of DynarchMenu.
+</p>
+
+<p>
+  While still uses plain HTML syntax in order to setup handlers,
+  <b>unified action handlers</b> allow you to catch events in a single
+  function, and pass to that function enough arguments to help
+  determining what item has been clicked.
+</p>
+
+<h2>First off, how do we define the menu?</h2>
+
+<p>
+  Defining the menu is plain easy, as usual:
+</p>
+
+<pre>  &lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span> onclick=<span class="string">&quot;master_handler(this)&quot;</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;Item 1&lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;Item 2&lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;
+      Item 3
+      &lt;<span class="function-name">ul</span>&gt;
+        &lt;<span class="function-name">li</span>&gt;SubItem 3.1&lt;<span class="function-name">/li</span>&gt;
+        &lt;<span class="function-name">li</span>&gt;SubItem 3.2&lt;<span class="function-name">/li</span>&gt;
+      &lt;<span class="function-name">/ul</span>&gt;
+    &lt;<span class="function-name">/li</span>&gt;
+  &lt;<span class="function-name">/ul</span>&gt;</pre>
+
+<p>
+  As you can see above, we defined a normal list with items that
+  apparently define no actions.  However, there's one special bit: the
+  definition of an <tt>onclick</tt> handler in the toplevel UL
+  element.  This handler calls a function defined by you, and passes
+  to it one parameter: “<tt>this</tt>”.  Contrary to what might seem
+  obvious, “this” won't pass a reference to the UL element, but to an
+  action object used internally by DynarchMenu.  This action object
+  has properties that help to uniquely identify the clicked item.
+  Following there is an example of function that simply displays the
+  item label:
+</p>
+
+<pre>  <span class="keyword">function</span> <span class="function-name">master_handler</span>(action) {
+      <span class="keyword">var</span> <span class="variable-name">menu_item</span> = action.info;
+      alert(menu_item.label);
+  }</pre>
+
+<p>
+  We first determine the menu <a onclick="showSection('item-object'); return false;" href="item-object.html">item
+  object</a> and then display its label by using the label property.
+  The item object contains lots of interesting properties and methods
+  that allow you to enable or disable it, show or hide it, change its
+  label or icon (if an icon is present), etc.  <a onclick="showSection('item-object'); return false;"
+  href="item-object.html">Read more about it</a>.
+</p>
+
+<h2>Additional information</h2>
+
+<p>
+  The “action” object additionally contains a “params” property which
+  is a reference to the LI element associated to the item.  This is
+  useful if you want to pass additional properties to your action
+  handler.  For instance:
+</p>
+
+<pre>  &lt;<span class="function-name">script</span> type=<span class="string">&quot;text/javascript&quot;</span>&gt;
+    function my_handler(action) {
+      var li = action.params;
+      alert(li.title);
+    };
+  &lt;<span class="function-name">/script</span>&gt;
+  &lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span> onclick=<span class="string">&quot;my_handler(this)&quot;</span>&gt;
+    &lt;<span class="function-name">li</span> title=<span class="string">&quot;We can pass this&quot;</span>&gt;Item 1&lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span> title=<span class="string">&quot;And this too&quot;</span>&gt;Item 2&lt;<span class="function-name">/li</span>&gt;
+  &lt;<span class="function-name">/ul</span>&gt;</pre>
+
+<p>
+  The above code shows how you can retrieve the “title” attribute from
+  the LI tag associated with the clicked menu item.  Using what
+  Microsoft calls “expando properties” we can push this even further:
+</p>
+
+<pre>  &lt;<span class="function-name">script</span> type=<span class="string">&quot;text/javascript&quot;</span>&gt;
+    function my_handler(action) {
+      var li = action.params;
+      var arg1 = li.getAttribute(<span class="string">&quot;arg1&quot;</span>);
+      var arg2 = li.getAttribute(<span class="string">&quot;arg2&quot;</span>);
+      alert(<span class="string">&quot;arg1 = &quot;</span> + arg1 + <span class="string">&quot;\narg2 = &quot;</span> + arg2);
+    };
+  &lt;<span class="function-name">/script</span>&gt;
+  &lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span> onclick=<span class="string">&quot;my_handler(this)&quot;</span>&gt;
+    &lt;<span class="function-name">li</span> arg1=<span class="string">&quot;We can pass this&quot;</span> arg2=<span class="string">&quot;fubar&quot;</span>&gt;Item 1&lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span> arg1=<span class="string">&quot;And this too&quot;</span> arg2=<span class="string">&quot;baz&quot;</span>&gt;Item 2&lt;<span class="function-name">/li</span>&gt;
+  &lt;<span class="function-name">/ul</span>&gt;</pre>
+
+<p>
+  The technique above allows you to pass multiple parameters to your
+  action handler; as you can see in the example, we passed 2 arguments
+  that are not defined in the HTML standard (“arg1” and “arg2”).  This
+  makes pages that will not validate; our opinion is that it shouldn't
+  matter all that much, but yours might vary.
+</p>
+
+<h2>Can I combine new style with old style handlers?</h2>
+
+<p>
+  Yes! :-)  You can.  Here's the (obvious) example:
+</p>
+
+<pre>  &lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span> onclick=<span class="string">&quot;master_handler(this)&quot;</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">a</span> href=<span class="string">&quot;http://www.dynarch.com/&quot;</span>&gt;Item 1&lt;<span class="function-name">/a</span>&gt;
+    &lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;Item 2&lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">a</span> href=<span class="string">&quot;javascript:alert('foobar')&quot;</span>&gt;Item 3&lt;<span class="function-name">/a</span>&gt;
+    &lt;<span class="function-name">/li</span>&gt;
+  &lt;<span class="function-name">/ul</span>&gt;</pre>
+
+<p>
+  The above menu defines 3 items.  “Item 1” will open the URL, “Item
+  3” will display “foobar” and “Item 2” will go through the default
+  handler which can do anything.  So, the golden rule is, items that
+  define actions will behave as usual, and items that don't define
+  actions will go through the master handler, if present.
+</p>
+
+<h2>Does “multiple master handlers” make sense?</h2>
+
+<p>
+  We'd say it does, and DynarchMenu supports it.  Here's an example:
+</p>
+
+<pre>  &lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span> onclick=<span class="string">&quot;master_handler(this)&quot;</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;Item 1&lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;
+      Item 2
+      &lt;<span class="function-name">ul</span> onclick=<span class="string">&quot;secondary_handler(this)&quot;</span>&gt;
+        &lt;<span class="function-name">li</span>&gt;SubItem 2.1&lt;<span class="function-name">/li</span>&gt;
+        &lt;<span class="function-name">li</span>&gt;SubItem 2.2&lt;<span class="function-name">/li</span>&gt;
+        &lt;<span class="function-name">li</span>&gt;SubItem 2.3&lt;<span class="function-name">/li</span>&gt;
+        &lt;<span class="function-name">li</span> onclick=<span class="string">&quot;third_handler(this)&quot;</span>&gt;
+          SubItem 2.4
+          &lt;<span class="function-name">ul</span>&gt;
+            &lt;<span class="function-name">li</span>&gt;SubItem 2.4.1&lt;<span class="function-name">/li</span>&gt;
+            &lt;<span class="function-name">li</span>&gt;SubItem 2.4.2&lt;<span class="function-name">/li</span>&gt;
+            &lt;<span class="function-name">li</span>&gt;SubItem 2.4.3&lt;<span class="function-name">/li</span>&gt;
+          &lt;<span class="function-name">/ul</span>&gt;
+        &lt;<span class="function-name">/li</span>&gt;
+      &lt;<span class="function-name">/ul</span>&gt;
+    &lt;<span class="function-name">/li</span>&gt;
+    &lt;<span class="function-name">li</span>&gt;Item 3&lt;<span class="function-name">/li</span>&gt;
+  &lt;<span class="function-name">/ul</span>&gt;</pre>
+
+<blockquote>
+  <p>
+    The above menu shows some possible combinations.  As you can see,
+    there's a “master_handler” assigned to the toplevel UL.  That will
+    be called for “Item 1”, “Item 2” and “Item 3”, because it's the
+    “closest”, so to say, handler above them.
+  </p>
+
+  <p>
+    However, there's also a “secondary_handler” defined in the submenu
+    of “Item 2”, which will get called for “SubItem 2.1”, “SubItem 2.2”
+    and “SubItem 2.3”.
+  </p>
+
+  <p>
+    “SubItem 2.4”, as you can see, defines a “third_handler”, which
+    will get called for “SubItem 2.4.1”, “SubItem 2.4.2” and “SubItem
+    2.4.3”.  Note that this time the handler is defined on a LI
+    element, instead of UL, but even so, the LI that defines it (2.4)
+    won't trigger any handler because <em>an item that has a submenu
+    will not go through the unified handlers</em>.
+  </p>
+</blockquote>
+
+<p>
+  So the above example should clear any confusion: the “onclick”
+  attribute can be defined on any UL or LI element involved in the
+  menu.  When an item that doesn't define an action in the classical
+  way is clicked, the chain of elements is parsed backwards and the
+  first onclick hander found will be called.  And that's all there is
+  to it.
+</p>
+
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

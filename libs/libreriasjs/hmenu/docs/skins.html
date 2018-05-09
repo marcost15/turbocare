@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+      <h1>DynarchMenu Skin files</h1>
+
+      <p>
+        The menu skin system is based on 2 kind of CSS files: ones
+        that only define the layout (no colors) and others that only
+        define colors (no layout).  Currently the following layout
+        files are distributed with DynarchMenu:
+      </p>
+
+      <ul>
+        <li><tt>hmenu.css</tt> &mdash; this is the basic style which
+        is included automatically by all others; it defines the menu
+        layout, at the most basic levels, with no colors
+        whatsoever.</li>
+
+        <li><tt>hmenu-3d.css</tt> &mdash; this layout adds pieces
+        needed for a “3D” menu look, like the Windows 9x/2K
+        menus.  Includes “hmenu.css”.</li>
+
+        <li><tt>hmenu-extended.css</tt> &mdash; this layout is
+        suitable for menus similar to Microsoft Office XP menus (flat
+        menus and highlighted items have a thin border).  Includes
+        “hmenu.css”.</li>
+      </ul>
+
+      <p>
+        The above files do not normally need to be included manually;
+        they are automatically included from the skin files (the ones
+        that define colors).  Currently there are 5 color themes (skin
+        files) distributed with DynarchMenu:
+      </p>
+
+      <ul>
+        <li><tt>skin-xp.css</tt> &mdash; color theme that resembles
+        Windows XP menus.  Includes “hmenu.css”.</li>
+
+        <li><tt>skin-modern.css</tt> &mdash; color theme that
+        resembles the menu colors from Mozilla Modern theme.  Includes
+        “hmenu-3d.css”.</li>
+
+        <li><tt>skin-win98.css</tt> &mdash; color theme that resembles
+        the menu colors in Windows 98.  Includes “hmenu-3d.css”.</li>
+
+        <li><tt>skin-win2k.css</tt> &mdash; color theme that resembles
+        the menu colors in Windows 2000 (or in XP with “Classic
+        Windows Theme”).  Includes “hmenu-3d.css”.</li>
+
+        <li><tt>skin-system.css</tt> &mdash; color themes that uses
+        the system colors on the end-user's machine.  This is very
+        appropriate for web-based applications.  Includes
+        “hmenu-3d.css”.</li>
+
+        <li><tt>skin-xp-extended.css</tt> &mdash; colors are similar
+        to those in Windows XP menus, additionally the items in popup
+        menus have a thin border like in Microsoft Office XP
+        menus.</li>
+      </ul>
+
+      <p>
+        You can switch themes from our “Preferences” menu, to see how
+        they look.
+      </p>
+
+      <h2>Writing your own CSS file</h2>
+
+      <p>
+        If you want to customize the CSS files, the method we
+        recommend is that you write your customizations in a separate
+        CSS file, similar to our default color themes.  Doing so will
+        ensure you that you won't have too much trouble if you ever
+        upgrade your installation of DynarchMenu, because you will
+        have the custom options in a separate file.
+      </p>
+
+      <p>
+        Following there is a small example.  Note how it loads the
+        original stylesheet first, and thereafter it customizes only
+        the desired elements.
+      </p>
+
+      <pre><span class="comment">/* file: skin-custom.css */</span>
+<span class="comment">/* loads layout: hmenu.css (suitable for flat menus) */</span>
+<span class="comment">/* if you put your stylesheet in the same directory as the default
+   stylesheets, then you can skip the path in the next line and only
+   import &quot;hmenu.css&quot; (the paths are relative to the CSS file which
+   issues the &quot;import&quot; command) */</span>
+<span class="keyword">@import</span> url(<span class="string">&quot;/path/to/hmenu/hmenu.css&quot;</span>);
+
+<span class="comment">/* Following you just need to define background, foreground and border
+   colors and you wrote your own theme!  Easy, isn't it?  For complete
+   examples see our default skins, for instance skin-xp.css. */</span>
+
+<span class="variable-name">.dynarch-horiz-menu</span> {
+  <span class="keyword">background-color:</span> <span class="constant">#000</span>; <span class="comment">/* black for the horizontal bar */</span>
+  <span class="keyword">color:</span> <span class="constant">#f22</span>;            <span class="comment">/* with a red foreground */</span>
+}
+
+<span class="variable-name">.dynarch-horiz-menu</span> <span class="variable-name">.item</span> {
+  <span class="keyword">border-color:</span> <span class="constant">#000</span>;     <span class="comment">/* make sure items also have a black border */</span>
+}
+
+<span class="variable-name">.dynarch-horiz-menu</span> <span class="variable-name">.hover</span> {
+  <span class="keyword">background-color:</span> <span class="constant">#600</span>; <span class="comment">/* hovered items show a dark red bg */</span>
+}
+
+<span class="variable-name">.dynarch-horiz-menu</span> <span class="variable-name">.active</span> {
+  <span class="keyword">background-color:</span> <span class="constant">#822</span>; <span class="comment">/* a bit lighter bg for the active item */</span>
+}
+
+<span class="variable-name">.dynarch-horiz-menu</span> <span class="variable-name">.separator</span> div {
+  <span class="comment">/* the vertical separator is a &quot;3D&quot; red line */</span>
+  <span class="keyword">border-left-color:</span> <span class="constant">#f22</span>;
+  <span class="keyword">border-right-color:</span> <span class="constant">#600</span>;
+}
+
+<span class="comment">/* etc. */</span></pre>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

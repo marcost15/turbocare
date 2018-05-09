@@ -1,0 +1,11 @@
+﻿{include file="cabecera.html" title="Modificar Informe"}
+{$f1}
+{include file="pie.html"}
+{literal}
+<script>
+	var f1 = new LiveValidation('area'); f1.add( Validate.Presence );
+	var f2 = new LiveValidation('hallazgos'); f2.add( Validate.Presence ); 
+	var f3 = new LiveValidation('correcciones'); f3.add( Validate.Presence ); 
+	var f4 = new LiveValidation('acciones'); f4.add( Validate.Presence ); 
+</script>
+{/literal}

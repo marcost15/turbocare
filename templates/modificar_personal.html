@@ -1,0 +1,13 @@
+﻿{include file="cabecera.html" title="Modificar Personal"}
+{$f1}
+{include file="pie.html"}
+{literal}
+<script>
+	var f2 = new LiveValidation('nombre'); f2.add( Validate.Presence ); 
+	var f3 = new LiveValidation('apellido'); f3.add( Validate.Presence ); 
+	var f4 = new LiveValidation('direccion'); f4.add( Validate.Presence ); 
+	var f6 = new LiveValidation('tlf_fijo'); f6.add( Validate.Length, { minimum: 7 } );
+	var f10 = new LiveValidation('tlf_movil'); f10.add( Validate.Length, { minimum: 7 } );
+	var f9 = new LiveValidation('correo'); f9.add( Validate.Email );
+</script>
+{/literal}

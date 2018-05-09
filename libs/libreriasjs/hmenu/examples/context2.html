@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: context menus #2</title>
+    <style type="text/css"> @import url("../src/skin-win2k.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+
+      function ourActionHandler(action) {
+          var item = action.info;
+          var triggerElement = item.menu.target;
+          alert("\"" + item.label + "\" clicked on the element having innerHTML:\n\"" + triggerElement.innerHTML + "\"");
+      };
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+
+    <style>
+      .hotspot { position: absolute; border: 1px solid #f00; background-color: #fea; color: #000; padding: 10px; }
+    </style>
+  </head>
+  <body onload="DynarchMenu.setup('menu', { context: true });" id="document">
+    <div class="hotspot context-align-bottom" style="left: 50px; top: 50px">This</div>
+    <div class="hotspot context-align-right" style="left: 200px; top: 30px">menu</div>
+    <div class="hotspot" style="left: 250px; top: 100px">is very</div>
+    <div class="hotspot" style="left: 150px; top: 200px">cool</div>
+    <div class="hotspot dynarch-menu-ctxbutton-left" style="left: 300px; top: 50px">left click here</div>
+    <div class="hotspot dynarch-menu-ctxbutton-both" style="left: 350px; top: 100px">left or right click here</div>
+    <h2 style="margin-top: 300px">Single [context] menu for multiple elements</h2>
+
+    <p>
+      This page demonstrates a feature of DynarchMenu which allows one
+      to configure the same context menu for multiple elements.
+      That's right, with one function call.
+    </p>
+
+    <p>
+      The magic, again, is made through a special CSS class which is
+      assigned to the LI element that defines the popup.  Here we have
+      set:
+    </p>
+
+    <pre>&lt;li class="context-class-<span style="color: #c55">div</span>-<span style="color: #f00">hotspot</span>"&gt;</pre>
+
+    <p>
+      And all <span style="color: #c55">div</span> elements having the
+      class "<span style="color: #f00">hotspot</span>" will
+      automagically be assigned a context menu.  Please note that you
+      also need to specify the tag name; if you want to have context
+      menus on something else than DIV-s, say SPAN-s, then your class
+      name will be: “context-class-span-hotspot” and all SPAN-s having
+      the class “hotspot” will gain a context menu.
+    </p>
+
+    <p>
+      Because it's <em>only one</em>
+      context menu for multiple elements, we need to use a special API
+      in order to detect which element is the context menu for.  The
+      function defined in this page is called “ourActionHandler” and
+      has the following definition:
+    </p>
+
+    <pre>function ourActionHandler(action) {
+  var item = action.info;
+  var triggerElement = item.menu.target;
+  alert("\"" + item.label + "\" clicked on the element having innerHTML:\n\"" + triggerElement.innerHTML + "\"");
+};</pre>
+
+    <p>
+      and we define menu items like this:
+    </p>
+
+    <pre><span class="function-name">&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;javascript:ourActionHandler</span><span class="function-name">(</span><span class="string">this</span><span class="function-name">)</span><span class="string">;&quot;</span><span class="function-name">&gt;</span><span class="warning">Foo Bar item 1</span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;</span></pre>
+
+    <p>
+      “this”, in this context, has a special meaning; it doesn't pass
+      a reference to the link element as one JS coder might think.  It
+      will pass an internal object (the DynarchMenu action handler).
+      Normally you shouldn't need to mess too much with this object; all
+      it's needed is the following:
+    </p>
+
+    <pre>var item = action.info;</pre>
+
+    <p>
+      This gets a reference to the clicked menu item.  Again, this is
+      an internal object.  We can get it's label by using:
+    </p>
+
+    <pre>var label = item.label;</pre>
+
+    <p>
+      Based on the label, we know what item has been clicked so we can
+      setup an unique handler.
+    </p>
+
+    <p>
+      The source element (element whose context menu triggered the
+      action) is retrieved like this:
+    </p>
+
+    <p>
+      var triggerElement = item.menu.target;
+    </p>
+
+    <ul id="menu">
+      <li class="context-class-div-hotspot">
+        <ul>
+          <li>
+            <a href="javascript:ourActionHandler(this);">Foo Bar item 1</a>
+          </li>
+          <li>
+            <a href="javascript:ourActionHandler(this);">Foo Bar item 2</a>
+          </li>
+          <li></li>
+          <li>
+            With submenu
+            <ul>
+              <li><a href="javascript:ourActionHandler(this);">Submenu 1 Item 1</a></li>
+              <li><a href="javascript:ourActionHandler(this);">Submenu 1 Item 2</a></li>
+              <li><a href="javascript:ourActionHandler(this);">Submenu 1 Item 3</a></li>
+              <li><a href="javascript:ourActionHandler(this);">Submenu 1 Item 4</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:alert(new Date())">This shows date</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <script type="text/javascript" src="../src/PieNG.js"></script>
+  </body>
+</html>
+<!--
+-->

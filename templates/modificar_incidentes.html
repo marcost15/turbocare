@@ -1,0 +1,12 @@
+﻿{include file="cabecera.html" title="Modificar Incidentes"}
+{$f1}
+{include file="pie.html"}
+{literal}
+<script>
+	var f1 = new LiveValidation('area'); f1.add( Validate.Presence );
+	var f2 = new LiveValidation('area'); f2.add( Validate.Presence );
+	var f3 = new LiveValidation('proyecto'); f3.add( Validate.Presence ); 
+	var f4 = new LiveValidation('descripcion'); f4.add( Validate.Presence ); 
+	var f5 = new LiveValidation('tiempo_perdido'); f5.add( Validate.Presence ); 
+</script>
+{/literal}

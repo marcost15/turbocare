@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: Individual customization of items and popups</title>
+    <style type="text/css"> @import url("../src/skin-yellow.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+    <style type="text/css">
+      /* a bigger font for all menus stuff */
+      div.dynarch-horiz-menu table, div.dynarch-popup-menu table { font-size: 15px }
+
+      div.browsers { background-color: #fff; }
+      div.ie, tr.ie td { background-color: #f88; }
+      tr.mozilla td { font: bold 150% arial; color: #00f; }
+      tr.safari td { background-color: #faa; }
+      tr.opera td { background-color: #fdd; }
+
+      tr.unix.hover td, tr.unix.active td { background-color: #7df; color: #000; }
+      div.unix, tr.unix td { background-color: #4ae; }
+      div.unix tr.hover td { background-color: #7df; color: #000; }
+
+      tr.windows.hover td, tr.windows.active td { background-color: #fec; color: #000; }
+      div.windows, tr.windows td { background-color: #fa9; }
+      div.windows tr.hover td { background-color: #fec; color: #000; }
+    </style>
+  </head>
+  <body onload="DynarchMenu.setup('menu');">
+    <blockquote>
+      <p>
+        Sample menu: demonstrates how one can customize individual menu
+        items or submenus to certain colors, backgrounds, fonts, etc.
+        All is CSS-based.  Please view the source of this page for
+        details.
+      </p>
+      <ul id="menu">
+        <li>
+          Browsers
+          <ul class="browsers">
+            <li class="ie">
+              Internet Explorer
+              <ul class="ie">
+                <li>5.0</li>
+                <li>5.5</li>
+                <li>6.0</li>
+              </ul>
+            </li>
+            <li class="mozilla">Mozilla Suite</li>
+            <li class="mozilla">Mozilla Firefox</li>
+            <li class="safari">Apple Safari</li>
+            <li class="opera">Opera</li>
+          </ul>
+        </li>
+        <li>
+          Operating systems
+          <ul class="oses">
+            <li class="unix">
+              Unix
+              <ul class="unix">
+                <li>Linux</li>
+                <li>FreeBSD</li>
+                <li>Darwin</li>
+              </ul>
+            </li>
+            <li class="windows">
+              Windows
+              <ul class="windows">
+                <li>MS-DOS</li>
+                <li>Windows 3.x</li>
+                <li>Windows 95</li>
+                <li>Windows 98</li>
+                <li>Windows 2000</li>
+                <li>Windows XP</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </blockquote>
+  </body>
+</html>
+<!--
+-->

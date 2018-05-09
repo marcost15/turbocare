@@ -1,0 +1,349 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+<h1 id="toc">Frequently asked questions</h1>
+
+<blockquote>
+  <ol><li><a href="#q1">While the page is loading, I can see the UL contents.  Is this supposed to happen?</a></li><li><a href="#q2">How can I remove the icon space?  I don't use any icons.</a></li><li><a href="#q3">Can I use DynarchMenu to create a toolbar?</a></li><li><a href="#q4">A menu with hundreds of items shows up too slow, can I do anything about it?</a></li><li><a href="#q5">How can I change fonts in menu items?</a></li><li><a href="#q6">Can I avoid flickering in IE with the Aqua/Rain skin?</a></li></ol>
+</blockquote>
+
+<p>
+  If you have a question not answered here, please feel free to <a
+  href="http://www.dynarch.com/contact.html">contact us</a>.  Please
+  note that in order to understand the answers it is recommended that
+  you walk through the rest of our documentation found in the menu.
+</p>
+
+<ol class="faq">
+
+<li>
+  <p class="q" id="q1">While the page is loading, I can see the UL contents.  Is this supposed to happen? (<a href="#toc">^^ toc ^^</a>)</p>
+
+  <div class="a">
+    <p>
+      Yes and no.  We don't want it to happen, but it happens because
+      the menu is defined in plain HTML.  However, there are simple
+      solutions to avoid the problem.
+    </p>
+    <ol>
+      <li>
+        <p>
+          <em>Give the UL the style “display: none”</em>.  This is the
+          simplest workaround and you can apply it by defining the
+          toplevel UL element like this:
+        </p>
+        <pre>&lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span> style=<span class="string">&quot;display: none&quot;</span>&gt;</pre>
+        <p>
+          Expectedly, it will hide the UL element; this will have no
+          effect on the menu itself, which means that the menu will
+          appear OK after the page finished loading, when
+          DynarchMenu.setup is called.
+        </p>
+        <p>
+          There is an important drawback: browsers that support CSS
+          and don't support JavaScript--perhaps because it was
+          disabled by end-user--will fail to display the UL, because
+          it was hidden.  The next solution deals with it.
+        </p>
+      </li>
+      <li>
+        <p>
+          <em>Set “display: none” from JavaScript</em>.  As you can
+          imagine, this will overcome the drawback of (1), because if
+          a browser supports JavaScript chances are that it will
+          support DynarchMenu, so it's good to hide the UL.  Here's
+          how we can do that:
+        </p>
+        <pre>&lt;<span class="function-name">script</span> type=<span class="string">&quot;text/javascript&quot;</span>&gt;//&lt;![CDATA[
+  document.writeln(<span class="string">&quot;&lt;style type='text/css'&gt;#menu { display: none; }&lt;/style&gt;&quot;</span>);
+//]]&gt;&lt;<span class="function-name">/script</span>&gt;
+&lt;<span class="function-name">ul</span> id=<span class="string">&quot;menu&quot;</span>&gt;
+  ... menu contents here ...
+&lt;<span class="function-name">/ul</span>&gt;</pre>
+        <p>
+          Note that it's not very orthodox, because we're writing a
+          &lt;style&gt; tag inside the document body.  It would
+          probably be better to put the SCRIPT part in the document
+          head.  But nevertheless, it does the job and does it well.
+          So what it does?  It dynamically writes a small CSS section
+          that specifies that the element having the id="menu" (this
+          is the “#menu” selector) should not be displayed.  Because
+          it's done from JavaScript, it's clear that browsers with no
+          JavaScript support <em>will</em> display the UL, which is
+          good because the menu won't work anyway.
+        </p>
+      </li>
+    </ol>
+  </div>
+</li>
+
+<li>
+  <p class="q" id="q2">How can I remove the icon space?  I don't use any icons. (<a href="#toc">^^ toc ^^</a>)</p>
+  <div class="a">
+    <p>
+      If you don't use icons at all, it indeed makes sense to remove
+      the icon space and it's very easy.  Just add the following lines
+      somewhere in your CSS code, but <em>after</em> loading the
+      DynarchMenu skin:
+    </p>
+    <pre>div<span class="variable-name">.dynarch-popup-menu</span> tr<span class="variable-name">.item</span> td<span class="variable-name">.icon</span> img,
+div<span class="variable-name">.dynarch-popup-menu</span> tr<span class="variable-name">.item</span> td<span class="variable-name">.icon</span> div {
+  <span class="keyword">width:</span> 0;
+}
+div<span class="variable-name">.dynarch-popup-menu</span> tr<span class="variable-name">.item</span> td<span class="variable-name">.icon</span> {
+  <span class="keyword">width:</span> 0;
+}</pre>
+    <p>
+      If you do this, no icons may appear in any menu.  Sometimes this
+      may not be desirable—perhaps you need to include icons in
+      certain popups and no icons in others.  So you can instead use
+      the following code:
+    </p>
+<pre>div<span class="variable-name">.noicons</span> tr<span class="variable-name">.item</span> td<span class="variable-name">.icon</span> img,
+div<span class="variable-name">.noicons</span> tr<span class="variable-name">.item</span> td<span class="variable-name">.icon</span> div {
+  <span class="keyword">width:</span> 0;
+}
+div<span class="variable-name">.noicons</span> tr<span class="variable-name">.item</span> td<span class="variable-name">.icon</span> {
+  <span class="keyword">width:</span> 0;
+}</pre>
+    <p>
+      and add the "noicons" class name to the UL elements that define
+      popups where you don't want icons, like this:
+    </p>
+<pre><span class="function-name">&lt;</span><span class="html-tag">ul</span> <span class="variable-name">class=</span><span class="string">&quot;noicons&quot;</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>Item without icon<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+  ...
+<span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span></pre>
+  </div>
+</li>
+
+<li>
+  <p class="q" id="q3">Can I use DynarchMenu to create a toolbar? (<a href="#toc">^^ toc ^^</a>)</p>
+  <div class="a">
+    <p>
+      Well, <a href="examples/toolbar.html" target="_blank"
+      title="Toolbar sample (opens new window)">check for yourself</a>. :-)
+      We say you can.
+    </p>
+  </div>
+</li>
+
+<li>
+  <p class="q" id="q4">A menu with hundreds of items shows up too slow, can I do anything about it? (<a href="#toc">^^ toc ^^</a>)</p>
+  <div class="a">
+    <p>
+      We considered the possibility of really big menus and we added a
+      configuration parameter that helps a lot.  Check our <a
+      onclick="showSection('config'); return false;" href="config.html">page
+      about customization</a> and look for the “lazy” parameter.  In
+      short, it features a technique called “lazy initialization”
+      which allows the menu to appear <em>instantly</em>, no matter
+      how many items does it have.
+    </p>
+  </div>
+</li>
+
+<li>
+  <p class="q" id="q5">How can I change fonts in menu items? (<a href="#toc">^^ toc ^^</a>)</p>
+
+  <div class="a">
+    <h5>» Theory</h5>
+
+    <p>
+      The fonts in DynarchMenu, like the colors and backgrounds, are
+      completely customizable through CSS.  As described in <a
+      onclick="showSection('skins'); return false;" href="skins.html">the Skins
+      section</a>, the CSS files are split into 2 types: “layout”
+      files, defining only borders, padding, margins and fonts, and
+      “look” files, defining colors and backgrounds.  The same layout
+      file can be used for multiple skins.  For instance, the Win98,
+      Win2k, Modern and System skins, all use “hmenu-3d.css”.  Since
+      the fonts are the same in all these skins, it made sense to only
+      define them in the layout file.
+    </p>
+
+    <p>
+      But wait, “hmenu-3d.css” doesn't define any fonts.  That's
+      because it includes the more generic “hmenu.css” (this is the
+      basic layout file, included directly or indirectly by all
+      skins).  In “hmenu.css” we can see the following CSS rule
+      (indented here for clarity):
+    </p>
+
+    <pre>div<span class="variable-name">.dynarch-horiz-menu</span> table, div<span class="variable-name">.dynarch-popup-menu</span> table
+{
+   <span class="keyword">font:</span> 11px tahoma,verdana,sans-serif;
+}</pre>
+
+    <p>
+      Modifying the above line will change fonts in (almost) all
+      skins.  Why “almost”?  Because skins can override it; for
+      instance, we are using this in our Aqua skin in order to provide
+      a font that more accurately resembles the wonderful Mac fonts:
+    </p>
+
+    <pre>div<span class="variable-name">.dynarch-horiz-menu</span> table, div<span class="variable-name">.dynarch-popup-menu</span> table
+{
+   <span class="keyword">font-family:</span> <span class="string">&quot;Lucida Grande&quot;</span>,<span class="string">&quot;trebuchet ms&quot;</span>,verdana,sans-serif;
+}</pre>
+
+    <p>
+      The above lines only override the font family, keeping the same
+      size as defined in “hmenu.css” (11px).  This works because
+      “hmenu.css” is imported before the above CSS rule.
+    </p>
+
+    <h5>» Practice</h5>
+
+    <p>
+      So if you want to modify fonts, it turns out you have several
+      options:
+    </p>
+    <ol>
+      <li><em>Change hmenu.css or skin files directly.</em> This seems
+      to be the easiest, but has the disadvantage that you need to
+      backup the file if you upgrade your DynarchMenu installation.</li>
+      <li><em>Write a different file that customizes your favorite
+      skin.</em> We recommed this because you don't change DynarchMenu
+      files directly.  Instead you only create a new file which
+      imports the DynarchMenu skin and adds additional rules to match
+      your taste.</li>
+    </ol>
+
+    <p>
+      Here's an example of how you could implement #2, assuming that
+      your DynarchMenu installation is located in "/hmenu/".  You hate
+      the fonts in Aqua so you thought you should “fix” them:
+    </p>
+
+    <pre><span class="keyword">@import</span> url(<span class="string">&quot;/hmenu/skin-aqua.css&quot;</span>);
+
+div<span class="variable-name">.dynarch-horiz-menu</span> table, div<span class="variable-name">.dynarch-popup-menu</span> table
+{
+   <span class="keyword">font:</span> 20px Arial,sans-serif;
+}</pre>
+
+    <p>
+      Save the above file in, say, "/my-dynarch-menu-skin.css", and in
+      your HTML pages, instead of loading "/hemu/skin-aqua.css" just
+      load "/my-dynarch-menu-skin.css".  As you can see, at the
+      beginning of the CSS file we import the DynarchMenu skin, which
+      in turn imports the right layout files, so you only need to load
+      one CSS file.  The above “skin” is based on Aqua and looks like
+      it with the difference that it has some really big fonts.
+    </p>
+  </div>
+</li>
+
+<li id="iecache">
+  <p class="q" id="q6">Can I avoid flickering in IE with the Aqua/Rain skin? (<a href="#toc">^^ toc ^^</a>)</p>
+
+  <div class="a">
+    <p>
+      Fortunately, yes (I can say this after spending literally days
+      of investigation).  IE has a broken cache.  Images linked from
+      CSS are requested from server <em>each time they are
+      displayed</em>.  A thorough analysis can be found <a
+      href="http://www.bazon.net/mishoo/articles.epl?art_id=958"
+      title="IE: popularity theft (opens new window)"
+      target="_blank">on my website</a>.
+    </p>
+    <p>
+      Finally, the solution is to preload all images that are linked
+      from DynarchMenu CSS files.  To make things easier, DynarchMenu
+      includes some plain text files that list all the images included
+      by every skin; using these files you can easily write a
+      server-side script that preloads them.  Here's for instance how
+      “<tt>I-skin-aqua.css.images</tt>” looks like:
+    </p>
+    <pre>img/aqua/rarrow-hover.gif
+img/aqua/normal-bg.png
+img/aqua/active-bg.png
+img/blank.gif
+img/aqua/rarrow.gif
+img/shadow.png
+img/rarrow-hover.gif
+img/rarrow.gif
+img/aqua/hover-bg.png
+img/aqua/right-bg.png
+img/aqua/left-bg.png</pre>
+    <p>
+      (the “I-*.images” files are in the “src/” subdirectory from your
+      DynarchMenu distribution, and are named by a simple rule:
+      “I-skin-name.css.images”, where “skin-name” is the name of the
+      CSS file, without the “.css” extension.)
+    </p>
+    <p>
+      The “I-*.images” files list all images that should be preloaded
+      by the page in order for it to work properly with Internet
+      Explorer.  Preloading the images simply means writing the
+      following code somewhere in your page:
+    </p>
+    <pre>&lt;<span class="function-name">div</span> style=<span class="string">&quot;display: none&quot;</span>&gt;
+  &lt;<span class="function-name">img</span> src=<span class="string">&quot;/hmenu/img/aqua/normal-bg.png&quot;</span> alt=<span class="string">&quot;&quot;</span> /&gt;
+  &lt;<span class="function-name">img</span> src=<span class="string">&quot;/hmenu/img/aqua/active-bg.png&quot;</span> alt=<span class="string">&quot;&quot;</span> /&gt;
+  [ ... ]
+&lt;<span class="function-name">/div</span>&gt;</pre>
+    <p>
+      The above can be done easily with any server-side scripting
+      language, or even manually (but I personally think that
+      automating things is the way computers should be used).  Just
+      prepend to any image listed in the “I-*” file the path to
+      your DynarchMenu installation.
+    </p>
+    <p>
+      <b>Please note that <a
+      href="http://support.microsoft.com/default.aspx?scid=kb;en-us;319546"
+      target="_blank" title="About this bug at Microsoft.com (opens new window)"
+      >Microsoft itself recommends preloading</a>.</b> As
+
+      you can see at the Microsoft website, this bug only happens in
+      IE&nbsp;5.5 or later (it wasn't there in 5.0) and it is not a
+      bug but, instead, it's something done “by design” (this means
+      “intentional”, right?) by the IE team.  Microsoft will not fix
+      the cache bug; the cache bug does not exist.  Instead, you are
+      expected to fix your stuff, and the recommended way is
+      preloading the images.  Thank you Microsoft for making things so
+      much easier for you.
+    </p>
+
+    <p>
+      <strong>UPDATE 2.7:</strong> — Starting with version 2.7,
+      DynarchMenu includes a function that makes image preloading much
+      easier.  You just need to include the following code just before
+      closing the &lt;/body&gt; tag:
+    </p>
+
+    <pre>  <strong><span class="function-name">&lt;</span><span class="html-tag">script</span> <span class="variable-name">type=</span><span class="string">&quot;text/javascript&quot;</span><span class="function-name">&gt;</span>
+    DynarchMenu.preloadImages<span class="function-name">(</span>new RegExp<span class="function-name">(</span><span class="string">&quot;^/hmenu/&quot;</span><span class="function-name">))</span>;
+  <span class="function-name">&lt;</span><span class="html-tag">/script</span><span class="function-name">&gt;</span></strong>
+<span class="function-name">&lt;</span><span class="html-tag">/body</span><span class="function-name">&gt;</span></pre>
+
+    <p>
+      The above assumes that your DynarchMenu is installed in
+      "/hmenu/", and it will preload all images that are defined in
+      any CSS files loaded from that location.
+    </p>
+  </div>
+</li>
+
+</ol>
+
+<!--
+-->
+
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

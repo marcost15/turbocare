@@ -1,0 +1,60 @@
+{include file="cabecera2.html" title="Control de Incidentes"}
+<div id = "titulo2">
+<table  class="enhancedtable" border="1" align="center" width="100%">
+ <tr>
+	<th width = "20%"><img src="./imagenes/tc_pequeño.jpg" align = "left" width="400" height="60"/></th>
+	<th width = "60%"><FONT SIZE=10>Relacion de Incidentes Turbo Care</th>
+	<th width = "20%"><img src="./imagenes/logos_iso.png" align = "right" width="400" height="60"/> </th>
+ </tr>
+</table>
+</div>
+<div id="resultados_reporte">
+<p>
+<div id = "indice">Control de Incidentes </br>Desde: {$fecha_ini} Hasta: {$fecha_fin} </div>
+</p>
+{if $datos}
+<div id="resultados">
+<table class="enhancedtable" cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+<thead>
+	<tr> 
+		<th>NRO</th>
+		<th>FECHA</th>
+		<th>TALLER</th>
+		<th>CAMPO</th>
+		<th>CONTRATISTA</th>
+		<th>IFB</th>
+		<th>IFN</th>
+		<th>IS</th>
+		<th>IM</th>
+		<th>TOTAL</th>
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos}
+	<tr>
+		<td>{$datos[p].id}</td>
+		<td>{$datos[p].fecha}</td>
+		<td>{$datos[p].taller}</td>
+		<td>{$datos[p].campo}</td>
+		<td>{$datos[p].contratista}</td>
+		<td>{$datos[p].ifb}</td>
+		<td>{$datos[p].ifn}</td>
+		<td>{$datos[p].ist}</td>
+		<td>{$datos[p].im}</td>
+		<td>{$datos[p].total}</td>
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	<h3>NO SE ENCONTRÓ NINGUN DATO QUE CORRESPONDA, VERIFIQUE...</h3>
+{/if}
+{if $datos}
+<p>
+<div id="boton">
+<a href="xls_hhexfecha.php" target="_xls"><img onmouseover='overlib("<strong>Generar .xls</strong>",WIDTH, 70)' src="./imagenes/excel.png" width="50" height="50" onmouseout='return nd();'/></a>
+<a href='./grafico_hhexfecha.php' class='claseiframe'><img onmouseover='overlib("<strong>Generar Grafico</strong>",WIDTH, 70)' src="./imagenes/grafico.png" width="50" height="50" onmouseout='return nd();'/></a></div>
+<p>
+</div>{/if}
+<div id="boton" align="center"><a href="rp_frm_hhexfecha.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

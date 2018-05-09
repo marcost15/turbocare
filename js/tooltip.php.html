@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr"><head><title>Script Javascript : Tooltip</title>
+
+
+
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="author" content="Laurent Jouanneau">
+    <meta name="description" content="Script d'affichage d'une bulle d'aide dans une page HTML conforme, en Javascript">
+    <meta name="keywords" content="javascript tooltip jstemplate jstemplatebuilder html xul">
+    <link rel="stylesheet" href="tooltip.php_files/ljweb.css" media="all" type="text/css">
+
+
+   <link rel="top" href="http://www.ljouanneau.com/" title="Page d'accueil du site">
+      <link rel="up" href="http://www.ljouanneau.com/softs/" title="Page principale de la rubrique logiciels">
+      <link rel="chapter" href="http://www.ljouanneau.com/softs/copix/" title="Copix">
+   <link rel="chapter" href="http://www.ljouanneau.com/softs/wikirenderer/" title="Wikirenderer">
+   <link rel="chapter" href="http://www.ljouanneau.com/softs/javascript/" title="bibliothèque javascript">
+   <link rel="chapter" href="http://www.ljouanneau.com/softs/kate/" title="fichiers de syntax pour kate (kde)"></head><body>
+<div id="entete">
+    <h1>Script Javascript : Tooltip</h1>
+   <ul>
+      <li><a href="http://www.ljouanneau.com/">Accueil</a></li>
+      <li><a href="http://www.ljouanneau.com/softs/">developpements</a></li>
+<li><a href="http://www.ljouanneau.com/softs/javascript/">Javascript</a></li><li><a href="http://www.ljouanneau.com/softs/javascript/tooltip.php">Tooltip</a></li>   </ul>
+</div>
+<div id="contenu">
+
+
+<h2>Tooltip 1.0</h2>
+<p>Ce script permet de réaliser des bulles d'aide sur des éléments HTML.
+Il permet d'avoir des bulles d'aide qui s'affichent instantannément, et
+qui "suivent" la souris.</p>
+<p>Ce script permet de garder le contenu de la bulle d'aide accessible, même aux
+navigateur qui ne disposent pas de javascript... En effet, le contenu de la bulle
+d'aide est celui de l'attribut <code>title</code> de l'élement HTML sur lequel la bulle
+s'affiche.</p>
+<p>Fonctionne sur les navigateurs conformes au DOM2, IE6 (et peut-être IE5 ou IE4 ?).
+Ne fonctionne pas sur Netscape 4.</p>
+
+<h3>Utilisation</h3>
+<p>Insérez le script dans votre page HTML, ainsi qu'un élement HTML vide ayant pour id,
+"tooltip" et qui sera utilisé pour l'affichage de la bulle d'aide&nbsp;:</p>
+<pre><code>
+&lt;script type="text/javascript" src="tooltip.js"&gt;&lt;/script&gt;
+&lt;div id="tooltip"&gt;&lt;/div&gt;
+</code></pre>
+<p>Insérer ceci qu'une seule fois dans votre page, même si vous voulez plusieurs bulles
+d'aides dans votre page</p>
+<p>Sur les élements où vous voulez qu'une bulle d'aide s'affiche, ajoutez les attributs
+<code>onmouseover</code> et <code>onmouseout</code> comme dans l'exemple,
+ainsi qu'un attribut <code>title</code>
+contenant le texte à afficher dans la bulle d'aide&nbsp;:</p>
+<pre><code>
+&lt;div onmouseover="tooltip.show(this)" onmouseout="tooltip.hide(this)"
+    title="Hello you !"&gt;Voici le contenu d'une div, avec un exemple de bulle d'aide.
+    Passez votre souris au dessus.&lt;/div&gt;
+</code></pre>
+<p>Cela donne &nbsp;:</p>
+
+<script type="text/javascript" src="tooltip.php_files/tooltip.js"></script>
+<div id="tooltip" style="border: 1px solid black; padding: 0.2em; position: absolute; visibility: hidden; background-color: rgb(255, 238, 199); font-size: 0.8em; left: 528px; top: 788px;">Hello you !</div>
+<div style="margin: 1em; background-color: rgb(54, 108, 147); color: rgb(255, 255, 255);" onmouseover="tooltip.show(this)" onmouseout="tooltip.hide(this)" title="Hello you !">Voici le contenu d'une div, avec un exemple de bulle d'aide.
+    Passez votre souris au dessus.</div>
+
+<p>Vous pouvez bien sûr modifier l'apparence de la bulle d'aide en utilisant des styles CSS.</p>
+
+<h3>Plugin smarty</h3>
+<p>L'archive est livrée avec deux plugins pour <a href="http://smarty.php.net/">smarty</a>,
+le moteur de template PHP. Le premier, <code>tooltipinit</code>
+insère dans le template la balise script et la div tooltip. Le deuxième, permet d'ajouter
+une bulle d'aide facilement sur un élément.</p>
+
+<pre><code>
+&lt;html&gt;
+&lt;head&gt;..&lt;/head&gt;
+&lt;body&gt;
+....
+<b>{tooltipinit}</b>
+
+&lt;div <b>{tooltip}</b> title="Hello you !"&gt;Voici le contenu d'une div,
+avec un exemple de bulle d'aide. Passez votre souris au dessus.&lt;/div&gt;
+...
+ou encore:
+&lt;div <b>{tooltip text="Hello You !"}</b>&gt;Voici le contenu d'une div,
+avec un exemple de bulle d'aide. Passez votre souris au dessus.&lt;/div&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+<h3>Téléchargement</h3>
+
+<ul>
+<li><a href="http://www.ljouanneau.com/softs/javascript/download/tooltip_1.0.zip">tooltip 1.0</a> (3ko)</li>
+</ul>
+
+
+
+
+</div>
+
+<!--
+<div id="sidebar">
+   <h2>Dans cette rubrique</h2>
+   <ul>
+      <li><a href="/softs/wikirenderer/">Wikirenderer</a></li>
+      <li><a href="/softs/copix/">Copix</a></li>
+      <li><a href="/softs/javascript/">Javascript</a></li>
+   </ul>
+
+</div>
+-->
+</body></html>

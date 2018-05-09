@@ -1,0 +1,18 @@
+/* printer */
+
+body { font-size: 9.5pt; color: #000; }
+
+#Kright-col { display: none; }
+#Ktop-links { display: none; }
+#Kbreadcrumb { display: none; }
+#Kcomment-form { display: none; }
+#Klogin-info { display: none; }
+#Kcomments .comment .controls { display: none; }
+#Kbottom-bar .dl-powered { display: none; }
+.ads { display: none; }
+
+pre { font-size: 9pt }
+
+a, a:visited, a:link { color: #000; }
+
+.GalImgPreview { float: left; }

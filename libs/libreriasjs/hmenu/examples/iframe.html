@@ -1,0 +1,184 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: an IFRAME demo</title>
+    <link rel="stylesheet" href="../src/skin-rain.css" title="Yp" />
+    <script type="text/javascript">
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+    <style type="text/css">
+      html, body { height: 100%; padding: 0; margin: 0; color: #000; background-color: #fff; }
+      table#fullpage { width: 100%; height: 100%; border-collapse: collapse; font: 11px Tahoma,Verdana,sans-serif; }
+      tr#fullpage-header,
+      td#fullpage-header-td { height: 1em; }
+      tr#fullpage-footer,
+      td#fullpage-footer-td { height: 1em; background: url("../src/img/rain/popup-normal-bg.png"); color: #000;
+        border-top: 1px solid #000;
+        font-weight: bold; text-align: center; padding: 2px 0; }
+      iframe#fullpage-content { width: 100%; height: 100%; border: 0; }
+      td#fullpage-leftbar {
+        background: url("../src/img/rain/popup-normal-bg.png");
+        width: 170px; border-right: 1px solid #aaa;
+        padding: 5px; vertical-align: top;
+      }
+      h1 { padding: 0; margin: 0; font-size: 150%; border-bottom: 1px solid #000; }
+      h2 { padding: 0; margin: 0; font-size: 120%; border-bottom: 1px solid #999; }
+    </style>
+    <script type="text/javascript">
+      function google() {
+        var search = prompt("Search google for:", "online editor");
+        if (search) {
+          var ifr = document.getElementById("fullpage-content");
+          var win = ifr.contentWindow || ifr.window;
+          if (win)
+            win.location = "http://www.google.com/search?q=" + search;
+          else window.open("http://www.google.com/search?q=" + search, "fullpage-content");
+        }
+      }
+      function gotoURL() {
+        var url = prompt("Enter URL:", "http://www.dynarch.com/");
+        if (url) {
+          var ifr = document.getElementById("fullpage-content");
+          var win = ifr.contentWindow || ifr.window;
+          if (win)
+            win.location = url;
+          else window.open(url, "fullpage-content");
+        }
+      }
+      var menu = null;
+      function init() {
+        menu = DynarchMenu.setup('menu', { electric: 250 });
+      }
+      var first_time = true;
+      function initFrame(frame) {
+        var win = frame.contentWindow || frame.window || frame;
+        DynarchMenu.watchFrame(win);
+        DynarchMenu.watchFrame(win.document);
+      }
+    </script>
+  </head>
+  <body onload="init()"><table id="fullpage" cellspacing="0" cellpadding="0">
+    <tr id="fullpage-header">
+      <td id="fullpage-header-td" colspan="2">
+        <ul id="menu" style="visibility: hidden">
+          <li>
+            _Links
+            <ul>
+              <li>
+                <a href="index.html" target="fullpage-content">DynarchMenu demos index</a>
+              </li>
+              <li></li>
+              <li>
+                <a href="javascript:google()">Google...</a>
+              </li>
+              <li>
+                Dynarch.com
+                <ul>
+                  <li><a href="http://www.dynarch.com/products/dhtml-menu/buy.html"
+                         target="fullpage-content">Buy DynarchMenu!</a></li>
+                  <li></li>
+                  <li><a href="http://www.dynarch.com/" target="fullpage-content">Closer to perfection</a></li>
+                  <li><a href="http://www.dynarch.com/products/chat/"
+                         target="fullpage-content">Cool Web chat software</a></li>
+                </ul>
+              </li>
+              <li>
+                <a target="fullpage-content" href="http://www.bazon.net/mishoo/">A developer's homepage</a>
+              </li>
+              <li>
+                On browsers
+                <ul>
+                  <li><a href="http://www.mozilla.org/products/firefox/" target="fullpage-content">Get Firefox now!</a></li>
+                  <li><a href="http://www.dropie.com/" target="fullpage-content">Drop Internet Explorer</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="javascript:gotoURL()">Go to _URL...</a></li>
+          <li>_File
+          <ul>
+            <li>
+              _New
+              <ul>
+                <li>_Window</li>
+                <li></li>
+                <li>_Message</li>
+                <li>_Post</li>
+                <li>_Contact</li>
+                <li>_Internet Call</li>
+              </ul>
+            </li>
+            <li>_Open...</li>
+            <li class="disabled">_Save</li>
+            <li>Save _As...</li>
+            <li></li>
+            <li>Page set_up</li>
+            <li>_Print</li>
+            <li>Print Pre_view</li>
+            <li></li>
+            <li>
+              S_end
+              <ul>
+                <li>_Page by Email...</li>
+                <li>_Link by Email...</li>
+                <li>_Shortcut to Desktop</li>
+              </ul>
+            </li>
+            <li>_Import and Export...</li>
+            <li></li>
+            <li>P_roperties</li>
+            <li>_Work offline</li>
+            <li>_Close</li>
+          </ul>
+          </li>
+          <li></li>
+          <li><a href="../">« DynarchMenu</a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr id="fullpage-body">
+      <td id="fullpage-leftbar">
+        <h1>What's this page?</h1>
+        <p>
+          This page exemplifies how you can use DynarchMenu in
+          conjunction with additional CSS and HTML techniques in order
+          to give a more "application" feel to your pages.  On the
+          right side there is an IFRAME which can contain any
+          document.  As you can see by clicking the menu options, in
+          that IFRAME we can load any URL, even external documents,
+          and the menu will still display right above it.
+        </p>
+        <h2>Browsers</h2>
+        <p>
+          This page works well with Gecko-based browsers (Firefox,
+          Mozilla, Netscape 7+) and Internet Explorer for Windows
+          5.5+.
+        </p>
+        <h2 style="color: red">Important (v2.8)</h2>
+        <p>
+          Please see the source of this page and note an "onload"
+          handler for the frame.  It calls the "initIframe()" function
+          which further calls DynarchMenu.watchFrame() in order to
+          setup custom event handlers for that frame.  Without this
+          trick, the menu won't work correctly (e.g. clicking inside
+          the frame won't close the menus).
+        </p>
+      </td>
+      <td id="fullpage-body-td">
+        <iframe id="fullpage-content" name="fullpage-content"
+                onload="initFrame(this)"
+                src="index.html"
+                frameBorder="0" marginHeight="20" marginWidth="20"></iframe>
+      </td>
+    </tr>
+    <tr id="fullpage-footer">
+      <td id="fullpage-footer-td" colspan="2">
+        <a
+        href="http://www.dynarch.com/products/dhtml-menu/">DynarchMenu</a>
+        is © <a href="http://www.dynarch.com/">Dynarch.com</a>
+        2003-2004.  Licensing is required.
+      </td>
+    </tr>
+  </table></body>
+</html>

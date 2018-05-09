@@ -1,0 +1,209 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+      <h1>The anatomy of a menu</h1>
+
+      <p>
+        As you can see, the menu is a list (<tt>ul</tt>).  This list
+        has items (<tt>li</tt>); these items translate to menu items.
+        Each item can optionally contain a list which if present will
+        be translated to the item's submenu.
+      </p>
+
+      <p>
+        As intuition tells you, the top-level list will be displayed
+        as a horizontal menu bar.  Level-one nested lists will be the
+        first level of popup menus, etc.
+      </p>
+
+      <h2>Menu items</h2>
+
+      <p>
+        Each menu item is described by a <tt>li</tt> (a list item)
+        element.  In the menu, it will belong to the (sub)menu defined
+        by the parent list.
+      </p>
+
+      <p>
+        A <tt>li</tt> that only opens a submenu can contain text (menu
+        label), an optional icon (which is an usual <tt>img</tt>
+        element) and a nested list.  A <tt>li</tt> which has an
+        associated action needs to contain an <tt>a</tt> (link)
+        element.  The action of a menu item can be either to trigger
+        the execution of some JavaScript code, or to open some URL.
+      </p>
+
+      <p>
+        If the action is to execute JavaScript code, then the link's
+        <tt>href</tt> argument will be in the form
+        "javascript:doAction()" where <tt>doAction</tt> is your custom
+        defined function.  If the action is to open an URL, the
+        <tt>href</tt> is the URL, as usual, and the link can
+        optionally include a <tt>target</tt> attribute which specifies
+        in which frame to open the URL (for example "_blank" will
+        cause the link to open in a new window).
+      </p>
+
+      <p>
+        Menu items can display a help string in the window status bar.
+        This help string is passed as the "title" argument to either
+        the <tt>li</tt> element or to the <tt>a</tt> element.
+      </p>
+
+      <p>
+        If present, the link element takes precedence over the
+        <tt>li</tt> element when deciding what label and help string
+        to assign to the menu item.
+      </p>
+
+      <h2>Menu item examples</h2>
+
+      <p>
+        Being the very simplest form of a menu “item”, here's how to
+        create a <em>separator</em>.  A separator is an empty list
+        item.  If the context is the main (horizontal) menu bar then
+        it will appear as a vertical separator; otherwise, if included
+        in a popup, then it will appear as a horizontal separator.
+      </p>
+
+      <pre><span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+
+      <hr />
+
+      <p>
+        Completely useless menu item (it doesn't declare any submenus,
+        no action when it's pressed, no keybinding and no icon):
+      </p>
+
+      <pre
+><span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>Label<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+
+      <hr />
+
+      <p>
+        Menu item that displays an alert, assigning "S" as shortcut
+        key.  Note that the shortcut assignment is extremely easy:
+        just prefix the letter which you want to be assigned with an
+        underscore character ('_').  In order to include a literal
+        underscore in the menu label, just write it twice ('__');
+      </p>
+
+      <pre
+><span class="function-name">&lt;</span><span class="html-tag">script</span> <span class="variable-name">type=</span><span class="string">&quot;text/javascript&quot;</span><span class="function-name">&gt;</span>
+  function showAlert<span class="function-name">()</span> <span class="function-name">{</span>
+    alert<span class="function-name">(</span><span class="string">&quot;Blah blah&quot;</span><span class="function-name">)</span>;
+  <span class="function-name">}</span>
+<span class="function-name">&lt;</span><span class="html-tag">/script</span><span class="function-name">&gt;</span>
+<span class="function-name">[</span> ... <span class="function-name">]</span>
+<span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;javascript:showAlert</span><span class="function-name">()</span><span class="string">&quot;</span><span class="function-name">&gt;</span><span class="warning">_Show something</span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+
+      <p>
+        The <tt>script</tt> section from above code should be included
+        in the page <tt>head</tt> element or in an external JavaScript
+        file which is included in the document.  Try not to mess HTML
+        with JavaScript ;-)
+      </p>
+
+      <p>
+        <b>Note (2.7):</b> Starting with version 2.7 there is an
+        alternate way to define key bindings: by using the “accesskey”
+        attribute of the &lt;a&gt; element.  Besides the obvious
+        semantic improvement, this leaves the label text intact so
+        that search engines won't see any underscores into it.  Here's
+        an example:
+      </p>
+
+      <pre><span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;&lt;</span><span class="html-tag">a</span> <span class="variable-name">accesskey=</span><span class="string">&quot;s&quot;</span> <span class="variable-name">href=</span><span class="string">&quot;javascript:showAlert</span><span class="function-name">()</span><span class="string">&quot;</span><span class="function-name">&gt;</span>Show something<span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+
+      <p>
+        OK, now it won't underline the character, but you can do this
+        manually if you wish:
+      </p>
+
+      <pre><span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;&lt;</span><span class="html-tag">a</span> <span class="variable-name">accesskey=</span><span class="string">&quot;s&quot;</span> <span class="variable-name">href=</span><span class="string">&quot;javascript:showAlert</span><span class="function-name">()</span><span class="string">&quot;</span><span class="function-name">&gt;&lt;</span><span class="html-tag">u</span><span class="function-name">&gt;</span><span class="html-helper-underline">S</span><span class="function-name">&lt;</span><span class="html-tag">/u</span><span class="function-name">&gt;</span>how something<span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+
+      <p>
+        It's all about your choice. ;-)
+      </p>
+
+      <hr />
+
+      <p>
+        Menu item that opens an URL.  It shows a help text in window
+        status bar ("Go to dynarch.com"), also registers "D" as the
+        shortcut key.  It displays an icon ("images/dynarch.gif"); the
+        icon image path must be either absolute or relative to the
+        current HTML page (after all, remember that you <em>are</em>
+        writing normal HTML).  When the menu item is clicked, the URL
+        is opened in a new window (target="_blank" is specified on the
+        link element).
+      </p>
+
+      <pre
+><span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">img</span> <span class="variable-name">src=</span><span class="string">&quot;images/dynarch.gif&quot;</span> <span class="variable-name">alt=</span><span class="string">&quot;&quot;</span> /<span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;http://dynarch.com&quot;</span> <span class="variable-name">title=</span><span class="string">&quot;Go to dynarch.com&quot;</span> <span class="variable-name">target=</span><span class="string">&quot;_blank&quot;</span><span class="function-name">&gt;</span><span class="warning">
+    _Dynarch.com
+  </span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;</span>
+<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+
+      <hr />
+
+      <p>
+        Item that contains a submenu.  The submenu is made of
+        "useless" items, that is, they don't register any actions, nor
+        do they have submenus.  Upon mouse hover, the "<u>F</u>ile"
+        item will display in the window.status "File options".
+        Because no link element is present, the <tt>title</tt>
+        attribute appears directly in the <tt>li</tt> element.
+      </p>
+
+<pre
+><span class="function-name">&lt;</span><span class="html-tag">li</span> <span class="variable-name">title=</span><span class="string">&quot;File options&quot;</span><span class="function-name">&gt;</span>
+  _File
+  <span class="function-name">&lt;</span><span class="html-tag">ul</span><span class="function-name">&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>_Open<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>_Save<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>Save _as...<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span>
+<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+
+      <h2>The horizontal menu bar</h2>
+
+      <p>
+        As long as you know how to define a submenu, then defining the
+        main menu bar is extremely easy: just put there an <tt>ul</tt>
+        element, whose ID you pass to DynarchMenu.setup.
+      </p>
+
+<pre
+><span class="function-name">&lt;</span><span class="html-tag">ul</span> <span class="variable-name">id=</span><span class="string">&quot;menu&quot;</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+    item 1
+    <span class="function-name">[</span>...<span class="function-name">]</span>
+  <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+<span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span></pre>
+
+      <p>
+        As you can see, we denoted an ID ("menu") for the top-level
+        list; this ID is important because that's how we identify our
+        menubar, when we call the <tt>body.onload</tt> handler:
+      </p>
+
+      <pre
+><span class="function-name">&lt;</span><span class="html-tag">body</span> <span class="variable-name">onload=</span><span class="string">&quot;DynarchMenu.setup</span><span class="function-name">(</span><span class="string">'menu'</span><span class="function-name">)</span><span class="string">&quot;</span><span class="function-name">&gt;</span></pre>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

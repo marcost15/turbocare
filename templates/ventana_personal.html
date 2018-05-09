@@ -1,0 +1,47 @@
+﻿{include file="cabecera2.html" title="Consultas de Personal"}
+<h4>BUSQUEDA DEL PERSONAL</h4>
+{$f1}
+{if $datos}
+<h4>Familiares Solicitados</h4>
+<div id="resultados">
+<table  class="enhancedtable" border="0" cellspacing="3" cellpadding="3" width="100%">
+<thead>
+	<tr> 
+		<th>Cédula</th>
+		<th>Apellidos y Nombres</th>
+		<th>&nbsp;</th>
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos}
+	<tr>
+		<td>{$datos[p].id}</td>
+		<td>{$datos[p].nombreape}</td>
+		<td><a href="javascript:void(0)" onClick="actualizar('{$datos[p].id}','{$datos[p].nombreape}');"><img onmouseover='overlib("<strong>Seleccionar</strong>",WIDTH, 70)' src="./imagenes/seleccionar.ico" onmouseout='return nd();'/></a></td></td>
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	{if $error1 eq 2} 
+		<h3>NO SE ENCONTRÓ PERSONAL CON ESOS PARAMETROS, VERIFIQUE...</h3>
+	{else}
+		{if $error1 eq 1} 
+			<h3>NO SE ENCONTRÓ PERSONAL CUYO APELLIDO COMIENZA POR ESA LETRA, VERIFIQUE...</h3>
+		{/if}
+	{/if}
+{/if}
+{include file="pie.html"}
+{literal}
+<script>
+function actualizar(id,nombreape)
+{  
+	if (document.forms["comisiones"]=opener.document.forms["comisiones"])
+	{
+		opener.document.forms["comisiones"].personal_id.value=id;
+		opener.document.forms["comisiones"].personal_nombre.value=nombreape;
+	}
+	close();
+}
+</script>
+{/literal}

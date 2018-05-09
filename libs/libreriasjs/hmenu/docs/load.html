@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+      <h1>Loading the scripts</h1>
+
+      <p>
+        The horizontal menu requires loading one JavaScript file and
+        one stylesheet (.css file).  They can be found in the
+        distribution archive as “src/hmenu.js” and “src/skin-*.css”.
+        You can load any skin file that you like, or you can <a href="skins.html"
+        onclick="showSection('skins'); return false;">write your own</a>.
+        The above code assumes that you're using the Windows XP skin.
+      </p>
+
+      <p>
+        Before loading the script, it is important to declare the URL,
+        absolute to your pages, where your menu instalation can be
+        found.  Here is an example of the HTML file header:
+      </p>
+
+      <pre
+><span class="function-name">&lt;</span><span class="html-tag">html</span> <span class="variable-name">xmlns=</span><span class="string">&quot;</span>http://www.w3.org/1999/xhtml<span class="string">&quot;</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">head</span><span class="function-name">&gt;</span>
+    <span class="comment">&lt;!-- load the menu stylesheet --&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">style</span> <span class="variable-name">type=</span><span class="string">&quot;text/css&quot;</span><span class="function-name">&gt;</span>
+      @import url<span class="function-name">(</span><span class="string">&quot;/hmenu/skin-xp.css&quot;</span><span class="function-name">)</span>;
+    <span class="function-name">&lt;</span><span class="html-tag">/style</span><span class="function-name">&gt;</span>
+    <span class="comment">&lt;!-- declare the menu location --&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">script</span> <span class="variable-name">type=</span><span class="string">&quot;text/javascript&quot;</span><span class="function-name">&gt;</span>
+      _dynarch_menu_url = <span class="string">&quot;/hmenu/&quot;</span>;
+    <span class="function-name">&lt;</span><span class="html-tag">/script</span><span class="function-name">&gt;</span>
+    <span class="comment">&lt;!-- load the menu program file --&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">script</span> <span class="variable-name">type=</span><span class="string">&quot;text/javascript&quot;</span> <span class="variable-name">src=</span><span class="string">&quot;/hmenu/hmenu.js&quot;</span><span class="function-name">&gt;&lt;</span><span class="html-tag">/script</span><span class="function-name">&gt;</span>
+    <span class="comment">&lt;!-- [ ... ] your HEAD declarations here --&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">/head</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">body</span> <span class="variable-name">onload=</span><span class="string">&quot;DynarchMenu.setup</span><span class="function-name">(</span><span class="string">'menu'</span><span class="function-name">)</span><span class="string">;&quot;</span><span class="function-name">&gt;</span></pre>
+
+      <p>
+        The above code assumes that you placed the menu files under
+        the “/hmenu/” directory in your document root, as described in the
+        <a href="files.html" onclick="showSection('files'); return false;">files section</a>.
+      </p>
+
+      <p>
+        Note a call to <tt>DynarchMenu.setup</tt> in the
+        <tt>body.onload</tt> event handler.  This is about the only
+        JavaScript code that you need to write in order to generate a
+        menu.  The <a href="setup.html" onclick="showSection('setup'); return false;">next
+        section</a> describes how you can generate a menu.
+      </p>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

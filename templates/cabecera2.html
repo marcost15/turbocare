@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<link rel="icon" href="./imagenes/favicon.ico" type="image/x-icon" /> 
+		<link rel="shortcut icon" href="./imagenes/favicon.ico" type="image/x-icon" /> 
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="robots" content="noindex,nofollow" />
+		<title>{$title|default:TurboCare}</title>
+		<script type="text/javascript" src="./js/highlight.js"></script>
+		<script type="text/javascript" src="./js/domtableenhance.js"></script>
+		<script type="text/javascript" src="../libreriasphp/FH3/FHTML/overlib/overlib.js"></script>
+		<script type="text/javascript" src="./js/livevalidation.js"></script>
+		<script type="text/javascript" src="./js/validacion.js"></script>
+		<script type="text/javascript" src="./js/jquery/jquery.min.js"></script><!-- Jquery -->
+		<script type="text/javascript" src="./js/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+		<script type="text/javascript" src="./js/tinydropdown.js"></script><!-- Para el Menú -->
+		<link rel="stylesheet" type="text/css" href="./js/jquery/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="./estilo/layout.css"/> 
+		<link rel="stylesheet" type="text/css" href="./estilo/layoutprint.css" media="print"/>
+		<link rel="stylesheet" type="text/css" href="./estilo/menu.css"/>
+	</head> 
+	<body background="./imagenes/papel_tapiz.jpg" topmargin="0" leftmargin="0">
+		<div id = "fondoreporte">
+		<div id="banner" align = "right"><img src="./imagenes/banner.jpg" width="1050" height="200"/></div>
+		<div id="titulo">GERENCIA DE PROTECCION INTEGRAL {if $smarty.session.usuario} Usuario: {$smarty.session.usuario.nombre} {$smarty.session.usuario.apellido}{/if}</div><!-- titulo -->				
+		<div id="contenido_reporte">

@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: menu actions</title>
+    <style type="text/css"> @import url("../src/skin-modern.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="DynarchMenu.setup('menu');">
+    <p>
+      The code in this page shows you various ways you can use to
+      include icons in menu items.  Again, remember, since our menu is
+      defined as plain HTML code, then you'd need no extra JS
+      knowledge in order to include an icon&mdash;you just need to
+      know how to use the IMG tag, which you do, right? ;-)
+    </p>
+
+    <ul id="menu">
+      <li>
+        <a href="http://dynarch.com"
+           title="Open dynarch.com website (in a new window)"
+           target="_blank">
+          <img src="../icons/dynarch-14.png" alt="" />
+        </a>
+      </li>
+      <li></li>
+      <li>
+        <img src="../icons/magnifier.gif" alt="" />
+        _File
+        <ul>
+          <li>
+            <img src="../icons/save.gif" alt="" />
+            <a href="javascript:alert('We do not save anything; this is just an example.')">
+              _Save
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>
+      So, if you look through the page source, the golden rule to
+      follow is simple: just include an &lt;IMG&gt; tag that displays
+      the icon, as you would in ordinary HTML.  For horizontal menu
+      items (top-level) put this link into the &lt;A&gt; tag.  For the
+      vertical menus items, make sure the &lt;IMG&gt; tag is outside
+      the link&mdash;we are using this in order to provide proper
+      alignment of menu icons.
+    </p>
+
+    <p>
+      You can safely include PNG icons with variable transparency, as
+      long as you also put this line at the end of your document,
+      before the end of the &lt;body&gt; tag:
+    </p>
+
+    <pre>&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;/path/to/hmenu/src/PieNG.js&quot;</span>&gt;&lt;/script&gt;</pre>
+
+    <p>
+      So, the idea is to have this script loaded as the last thing in
+      page; it will take care of patching all IMG tags to work
+      properly with Internet Explorer 5.5 or later (no need for such
+      patches for browsers such as Mozilla, Opera, Safari, Konqueror,
+      and maybe others, as they can display PNG-s correctly
+      out-of-the-box; as usual, from all lot, only IE needs special
+      treatment).
+    </p>
+
+    <script type="text/javascript" src="../src/PieNG.js"></script>
+
+  </body>
+</html>
+<!--
+-->

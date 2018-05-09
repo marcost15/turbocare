@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+<h1>Special class names</h1>
+
+<p>
+  Menu items and menu popups can be customized individually by writing
+  certain class names on the &lt;ul&gt; or &lt;li&gt; element that
+  defines the popup/item.
+</p>
+
+<p>
+  At the time of this writing (version 2.7), DynarchMenu supports the
+  following special classes:
+</p>
+
+<ul>
+  <li>
+    <p><tt>disabled</tt> — pass this class name if you wish the menu item
+    to be disabled, like this:</p>
+    <pre><span class="function-name">&lt;</span><span class="html-tag">li</span> <span class="variable-name">id=</span><span class="string">&quot;item-save-as&quot;</span> <span class="variable-name">class=</span><span class="string">&quot;disabled&quot;</span><span class="function-name">&gt;</span>Save as...<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+    <p>
+      That item can be later enabled from JavaScript like this:
+    </p>
+    <pre>menu.items[<span class="string">&quot;item-save-as&quot;</span>].disable(<span class="keyword">false</span>);</pre>
+    <p>
+      (where “menu” is a reference to the <tt>DynarchMenu</tt> object as returned by <tt>DynarchMenu.setup</tt>).
+    </p>
+  </li>
+
+  <li>
+    <p><tt>context-for-ELEMENT_ID</tt> — using this class name you can
+    define a context menu for a single element.  The ELEMENT_ID must
+    be the id of that element.  Unlike what would normally seem
+    obvious, this class name is assigned to the LI element that
+    contains the submenu, not to the UL element.  Please see our <a
+    target="_blank" href="examples/context.html">context menu
+    sample</a> for more information.
+    </p>
+  </li>
+
+  <li>
+    <p><tt>context-class-TAG-CLASS</tt> — with this class name you can
+    define a custom menu for multiple elements--that is, for all
+    elements that exist in the document having the tag “TAG” and the
+    class “CLASS”.  More information in our <a target="_blank"
+    href="examples/context2.html">second context menu sample</a>.</p>
+  </li>
+
+  <li>
+    <p><tt>open-left</tt> — use this class on an UL element that
+    defines a popup that you want to open to the left side.
+    DynarchMenu prefers to open popups to the right, unless there is
+    enough space—in which case it will open the popups to the left.
+    If you pass this option though, DynarchMenu will always open that
+    particular popup to the left.  Example:</p>
+    <pre><span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+  Help
+  <span class="function-name">&lt;</span><span class="html-tag">ul</span> <span class="variable-name">class=</span><span class="string">&quot;open-left&quot;</span><span class="function-name">&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>About us<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>Etc.<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span>
+<span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span></pre>
+    <p>
+      When one clicks the “Help” item above, the submenu that appears
+      will be opened to the left side.
+    </p>
+  </li>
+
+</ul>
+
+<h2>Not so special class names</h2>
+
+<p>
+  Any class name passed to the elements that define your menu will be
+  propagated in the menu itself.  This means that you can customize
+  individual items' appearance, for instance, by using your own class
+  names and by defining how you want those items or popups to look
+  like.  <a href="examples/different-colors.html" target="_blank">Here
+  is a sample</a> that shows you how to use this feature.
+</p>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

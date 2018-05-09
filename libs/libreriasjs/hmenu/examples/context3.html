@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: context menus #3</title>
+    <style type="text/css"> @import url("../src/skin-win98.css"); body { background-color: #dde; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+
+      function ourActionHandler(action) {
+          var item = action.info;
+          var triggerElement = item.menu.target;
+          alert("\"" + item.label + "\" clicked on the element having innerHTML:\n\"" + triggerElement.innerHTML + "\"");
+      };
+
+      var pos_x = 10;
+      var pos_y = 10;
+      var menu;
+      var dynamic_el = 0;
+      function newElementWithMenu() {
+          var div = document.createElement("div");
+          div.className = "hotspot";
+          div.style.left = pos_x + "px";
+          div.style.top = pos_y + "px";
+          div.innerHTML = "This is dynamic div #" + ++dynamic_el;
+          pos_x += 50;
+          pos_y += 20;
+          document.body.appendChild(div);
+          DynarchMenu.setupContext(div, menu.items["context-menu"]);
+          return false;
+      };
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+    <style>
+      html, body { height: 100%; margin: 0; }
+      .hotspot { position: absolute; border: 1px solid #f00; background-color: #fea; color: #000; padding: 10px; }
+    </style>
+  </head>
+  <body onload="menu = DynarchMenu.setup('menu', { context: true });" id="document">
+    <div style="height: 200px">&nbsp;</div>
+    <a href="#" onclick="return newElementWithMenu()">New Dynamic Element</a>
+    <ul id="menu">
+      <li id="context-menu">
+        <ul>
+          <li>
+            <a href="javascript:ourActionHandler(this);">Foo Bar item 1</a>
+          </li>
+          <li>
+            <a href="javascript:ourActionHandler(this);">Foo Bar item 2</a>
+          </li>
+          <li></li>
+          <li>
+            With submenu
+            <ul>
+              <li><a href="javascript:ourActionHandler(this);">Submenu 1 Item 1</a></li>
+              <li><a href="javascript:ourActionHandler(this);">Submenu 1 Item 2</a></li>
+              <li><a href="javascript:ourActionHandler(this);">Submenu 1 Item 3</a></li>
+              <li><a href="javascript:ourActionHandler(this);">Submenu 1 Item 4</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:alert(new Date())">This shows date</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <script type="text/javascript" src="../src/PieNG.js"></script>
+  </body>
+</html>
+<!--
+-->

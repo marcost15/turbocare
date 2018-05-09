@@ -1,0 +1,69 @@
+{include file="cabecera2.html" title="Control de Morbilidad"}
+
+<div id="resultados_reporte">
+<p>
+<div id = "indice">Relacion de Morbilidad Turbo Care </br>Seccion: {$datos.personal_id} </div>
+</p>
+{if $datos.datos}
+<div id="resultados">
+<table class="enhancedtable" cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+<thead>
+	<tr> 
+		<th>NRO</th>
+		<th>FECHA</th>
+		<th>APELLIDO Y NOMBRE</th>
+		<th>GERENCIA</th>
+		<th>SECCION</th>
+		<th>PATOLOGIA</th>
+		<th>AMEZULIA</th>
+		<th>CONSULTA EXTERNA</th>
+		<th>REPOSO AC/EC</th>
+		<th>REPOSO AT/EO</th>
+		<th>DIAS PERDIDOS/REPOSO MEDICO</th>
+		<th>OBSERVACIONES/COMENTARIOS</th>
+		<th>PERSONAL REGISTRA</th>
+		
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos}
+	<tr>
+		<td>{$datos.datos[p].id}</td>
+		<td>{$datos.datos[p].fecha}</td>
+		<td>{$datos.datos[p].personal_id}</td>
+		<td>{$datos.datos[p].gerencia_id}</td>
+		<td>{$datos.datos[p].seccion_id}</td>
+		<td>{$datos.datos[p].patologia}</td>
+		<td>{$datos.datos[p].amezulia}</td>
+		{if $datos.datos[p].amezulia eq 'SI'}
+		<td>X</td>
+		{else}
+		<td>&nbsp;</td>
+		{/if}
+		{if $datos.datos[p].consulta_ext eq 'SI'}
+		<td>X</td>
+		{else}
+		<td>&nbsp;</td>
+		{/if}
+		{if $datos.datos[p].reposos_ac_ec eq 'SI'}
+		<td>X</td>
+		{else}
+		<td>&nbsp;</td>
+		{/if}
+		{if $datos.datos[p].reposo_at_eo eq 'SI'}
+		<td>X</td>
+		{else}
+		<td>&nbsp;</td>
+		{/if}
+		<td>{$datos.datos[p].dias_perdido}</td>
+		<td>{$datos.datos[p].observaciones}</td>
+		<td>{$datos.datos[p].personal_reg_id}</td>	
+		
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	<h3>NO SE ENCONTRÓ NINGUN DATO QUE CORRESPONDA, VERIFIQUE...</h3>
+{/if}
+{include file="pie.html"}

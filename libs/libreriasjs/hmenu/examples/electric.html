@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: electric</title>
+    <style type="text/css"> @import url("../src/skin-xp-extended.css"); body { background: #aaa; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="DynarchMenu.setup('menu', { electric: 250 });">
+    <p>
+      The following menu is “electric”.  This means, submenus are
+      opened when the mouse “hovers” menu items (at the “onmouseover”
+      event); they won't wait for a click.  Also, in this mode the
+      submenus will close automatically when the cursor is moved
+      outside, with a timeout of 250 milliseconds.
+    </p>
+    <p>
+      For demo simplicity, we didn't include icons nor actions for
+      menu items.
+    </p>
+    <p>
+      See the page source: the main thing demonstrated in this page is
+      the electric functionality, which can be obtained by setting up
+      the menu with the following function call:
+    </p>
+    <pre>DynarchMenu.setup('menu', { electric: 250 });</pre>
+    <p>
+      The value “250” in the function call is the timeout after which
+      submenus will be closed if the mouse cursor leaves them.
+    </p>
+    <ul id="menu" style="visibility: hidden">
+      <li>
+        _File
+        <ul>
+          <li>_Open...</li>
+          <li>_Save...</li>
+          <li>Save _as...</li>
+          <li></li>
+          <li>Import...</li>
+          <li>
+            Export to
+            <ul>
+              <li>Microsoft Word document</li>
+              <li>OpenOffice document</li>
+              <li>Portable Document Format</li>
+            </ul>
+          </li>
+          <li></li>
+          <li>_Properties</li>
+          <li></li>
+          <li>_Quit</li>
+        </ul>
+      </li>
+      <li>
+        _Edit
+        <ul>
+          <li>_Copy</li>
+          <li>Cu_t</li>
+          <li>_Paste</li>
+          <li></li>
+          <li>_Delete</li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+</html>
+<!--
+-->

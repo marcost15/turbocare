@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: context menus #5 -- menus upon keybindings</title>
+    <style type="text/css"> @import url("../src/skin-win2k.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+
+      function ourActionHandler(action) {
+          var item = action.info;
+          var triggerElement = item.menu.target;
+          alert("\"" + item.label + "\" triggered on the element having innerHTML:\n\"" + triggerElement.innerHTML + "\"");
+      };
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+
+    <style type="text/css">
+      html { height: 100%; }
+      a.hotspot { text-decoration: none; color: #f00; font-weight: bold; }
+      a.different { text-decoration: none; color: #480; font-weight: bold; }
+    </style>
+  </head>
+  <body onload="DynarchMenu.setup('menu', { context: true });" id="document">
+    <h1>Popup menus triggered by keybindings</h1>
+
+    <blockquote>
+
+      <p>
+        This
+        <a accesskey="p" class="hotspot context-align-bottom dynarch-menu-ctxbutton-both" href="#"
+           onfocus="this.blur();this.onclick(event);return false;"><u>p</u>age</a>
+        demonstrates how you can setup
+        <a accesskey="m" class="hotspot context-align-bottom dynarch-menu-ctxbutton-both" href="#"
+           onfocus="this.blur();this.onclick(event);return false;">popup <u>m</u>enus</a>
+        that can be accessed by
+        <a accesskey="k" class="hotspot context-align-bottom dynarch-menu-ctxbutton-both" href="#"
+           onfocus="this.blur();this.onclick(event);return false;"><u>k</u>eybindings</a>.
+        Just press i.e. ALT-P to trigger the menu on the “page” link, etc.
+      </p>
+
+      <p>
+        <a accesskey="n" class="different context-align-bottom dynarch-menu-ctxbutton-both" href="#"
+           onfocus="this.blur();this.onclick(event);return false;"><u>N</u>ote</a>
+        that it's possible to have
+        <a accesskey="d" class="different context-align-bottom dynarch-menu-ctxbutton-both" href="#"
+           onfocus="this.blur();this.onclick(event);return false;"><u>d</u>ifferent</a>
+        menus too—and you can easily group them by class name.
+      </p>
+
+    </blockquote>
+
+    <p>
+      DynarchMenu does not provide <em>direct</em> support for the
+      above feature, but as you can see it's quite easy to “fake” it
+      by assigning an onfocus handler for each link.  Currently if you
+      want to be able to popup menus upon keybindings, as in the
+      example above, you <em>have</em> to use links (&lt;a&gt;
+      elements).
+    </p>
+
+    <ul id="menu">
+      <li class="context-class-a-hotspot">
+        <ul onclick="ourActionHandler(this)">
+          <li>
+            Item _1
+            <ul>
+              <li>Item 1.1</li>
+              <li>Item 1.2</li>
+              <li>Item 1.3</li>
+            </ul>
+          </li>
+          <li>Item _2</li>
+          <li>Item _3</li>
+        </ul>
+      </li>
+      <li class="context-class-a-different">
+        <ul onclick="ourActionHandler(this)">
+          <li>Having</li>
+          <li>a different</li>
+          <li>popup menu</li>
+          <li>is also possible.</li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+</html>
+<!--
+-->

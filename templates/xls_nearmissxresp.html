@@ -1,0 +1,50 @@
+{include file="cabecera2.html" title="Control Near Miss"}
+
+<div id="resultados_reporte">
+<p>
+<div id = "indice">CONTROL DE NEAR MISS </br>Personal Responsable: {$datos.personal_id} </div>
+</p>
+{if $datos.datos}
+<div id="resultados">
+<table class="enhancedtable" cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+<thead>
+	<tr> 
+		<th>NRO</th>
+		<th>FECHA DE DETECCION</th>
+		<th>AREA</th>
+		<th>HALLAZGO</th>
+		<th>ACCIONNES</th>
+		<th>CORRECCIONES</th>
+		<th>RESPONSABLE</th>
+		{section name=m loop=$datos.secc}
+			<th>{$datos.secc[m].nombre}</th>
+		{/section}
+		<th>FECHA DE CIERRE</th>
+		<th>STATUS</th>
+		
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos.datos}
+	<tr>
+		<td>{$datos.datos[p].id}</td>
+		<td>{$datos.datos[p].fecha}</td>
+		<td>{$datos.datos[p].area}</td>
+		<td>{$datos.datos[p].hallazgos}</td>
+		<td>{$datos.datos[p].acciones}</td>
+		<td>{$datos.datos[p].correcciones}</td>
+		<td>{$datos.datos[p].personal_id}</td>
+		{section name=h loop=$datos.datos[p].secciones_marc}
+			<td>{$datos.datos[p].secciones_marc[h].seccion_id}</td>
+		{/section}
+		<td>{$datos.datos[p].fecha_obs}</td>
+		<td>{$datos.datos[p].status}</td>
+		
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	<h3>NO SE ENCONTRÓ NINGUN DATO QUE CORRESPONDA, VERIFIQUE...</h3>
+{/if}
+{include file="pie.html"}

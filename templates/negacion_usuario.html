@@ -1,0 +1,16 @@
+﻿{include file="cabecera.html"}
+<div id="mensaje">
+<p>NO TIENE LOS PERMISOS NECESARIOS PARA ACCEDER</p> 
+<div><center><img src="./imagenes/stop.png" width="150" height="155"/></center></div>
+<p>POR FAVOR CONTACTE AL ADMINISTRADOR</p> 
+<p>...Espere por favor, será redireccionado en 5 segundos...</p> 
+</div>
+{literal}
+<script type="text/javascript"> 
+function redireccionar(){ 
+  window.location="index.php"; 
+}  
+setTimeout ("redireccionar()", 5000); //tiempo expresado en milisegundos 
+</script> 
+{/literal}
+{include file="pie.html"}

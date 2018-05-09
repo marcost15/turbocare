@@ -1,0 +1,226 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+      <h1>How to setup the menu</h1>
+
+      <p>
+        The setup process is extremely simple.  You just need to write
+        the menu as structured HTML (nested lists).  No JavaScript
+        code needed (except <em>one single function call</em> at
+        “onload”).  This way of setting things up has lots of
+        advantages over pure JavaScript-based methods that you can
+        find in most menus:
+      </p>
+
+      <ul>
+        <li>
+          It's friendly to search engines.  All search engines
+          understand HTML.
+        </li>
+        <li>
+          Browsers that do not support this menu will still get
+          understandable markup (therefore it degrades gracefully).
+        </li>
+        <li>
+          Even non-JavaScript-enabled browsers will still be able to
+          access your pages (no functionality lost).
+        </li>
+        <li>
+          It's easier to generate markup than to generate JavaScript
+          from server-side scripts.
+        </li>
+        <li>
+          Easy for non-technical people to generate a menu.  They
+          don't need to know JavaScript.
+        </li>
+      </ul>
+
+      <p>
+        Here is a complete menu example:
+      </p>
+
+      <pre
+><span class="function-name">&lt;</span><span class="html-tag">body</span> <span class="variable-name">onload=</span><span class="string">&quot;DynarchMenu.setup</span><span class="function-name">(</span><span class="string">'menu'</span><span class="function-name">)</span><span class="string">&quot;</span><span class="function-name">&gt;</span>
+<span class="function-name">[</span>...<span class="function-name">]</span></pre>
+
+      <p>
+        Upon <tt>body</tt> <tt>onload</tt> event we called
+        “DynarchMenu.setup('menu')”, which will patch the list with
+        the given ID ("menu") to become a horizontal menu.  And the
+        following code should be placed somewhere in your page, at the
+        position where you want the horizontal menu bar to appear.
+      </p>
+
+      <pre
+><span class="function-name">&lt;</span><span class="html-tag">ul</span> <span class="variable-name">id=</span><span class="string">&quot;menu&quot;</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">li</span> <span class="variable-name">title=</span><span class="string">&quot;Contains file operation options&quot;</span><span class="function-name">&gt;</span>
+    _File
+    <span class="function-name">&lt;</span><span class="html-tag">ul</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;javascript:doOpen</span><span class="function-name">()</span><span class="string">;&quot;</span> <span class="variable-name">title=</span><span class="string">&quot;Open a new file&quot;</span><span class="function-name">&gt;</span><span class="warning">
+          _Open
+        </span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;javascript:doSave</span><span class="function-name">()</span><span class="string">;&quot;</span> <span class="variable-name">title=</span><span class="string">&quot;Save the current file&quot;</span><span class="function-name">&gt;</span><span class="warning">
+          _Save
+        </span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;javascript:doSaveAs</span><span class="function-name">()</span><span class="string">;&quot;</span> <span class="variable-name">title=</span><span class="string">&quot;Save as a new file&quot;</span><span class="function-name">&gt;</span><span class="warning">
+          Save _as...
+        </span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">li</span> <span class="variable-name">title=</span><span class="string">&quot;Links to other sites&quot;</span><span class="function-name">&gt;</span>
+    _Links
+    <span class="function-name">&lt;</span><span class="html-tag">ul</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">img</span> <span class="variable-name">src=</span><span class="string">&quot;icons/mozilla.gif&quot;</span> <span class="variable-name">alt=</span><span class="string">&quot;&quot;</span> /<span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;http://www.mozilla.org&quot;</span>
+           <span class="variable-name">title=</span><span class="string">&quot;Mozilla browser </span><span class="function-name">(</span><span class="string">opens new window</span><span class="function-name">)</span><span class="string">&quot;</span>
+           <span class="variable-name">target=</span><span class="string">&quot;_blank&quot;</span><span class="function-name">&gt;</span><span class="warning">
+          _Mozilla
+        </span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">li</span><span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">img</span> <span class="variable-name">src=</span><span class="string">&quot;icons/opera.gif&quot;</span> <span class="variable-name">alt=</span><span class="string">&quot;&quot;</span> /<span class="function-name">&gt;</span>
+        <span class="function-name">&lt;</span><span class="html-tag">a</span> <span class="variable-name">href=</span><span class="string">&quot;http://www.opera.com&quot;</span> <span class="variable-name">title=</span><span class="string">&quot;Opera browser&quot;</span><span class="function-name">&gt;</span><span class="warning">_Opera</span><span class="function-name">&lt;</span><span class="html-tag">/a</span><span class="function-name">&gt;</span>
+      <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+    <span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span>
+  <span class="function-name">&lt;</span><span class="html-tag">/li</span><span class="function-name">&gt;</span>
+<span class="function-name">&lt;</span><span class="html-tag">/ul</span><span class="function-name">&gt;</span></pre>
+
+      <p>
+        The above code generates the following menu:
+      </p>
+
+      <ul>
+        <li title="Contains file operation options">
+          _File
+          <ul>
+            <li>
+              <a href="javascript:doOpen();" title="Open a new file">
+                _Open
+              </a>
+            </li>
+            <li>
+              <a href="javascript:doSave();" title="Save the current file">
+                _Save
+              </a>
+            </li>
+            <li>
+              <a href="javascript:doSaveAs();" title="Save as a new file">
+                Save _as...
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li title="Links to other sites">
+          _Links
+          <ul>
+            <li>
+              <img src="icons/mozilla.gif" alt="" />
+              <a href="http://www.mozilla.org"
+                 title="Mozilla browser (opens new window)"
+                 target="_blank">
+                _Mozilla
+              </a>
+            </li>
+            <li>
+              <img src="icons/opera.gif" alt="" />
+              <a href="http://www.opera.com" title="Opera browser">_Opera</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>
+        Upon the body "onload" event, at the call to
+        DynarchMenu.setup("menu"), the above list will be hidden and a
+        menu similar to the one existent in this page will be
+        displayed.  The underscore character placed before a letter
+        means that the letter will be <u>u</u>nderlined in the final
+        menu and a shortcut key will be registered for that key so
+        that the end-user can press the key directly, assuming that
+        the popup containing the item is visible.
+      </p>
+
+      <p>
+        The result can be seen below, assuming you're using a
+        supported browser.  If you look into the page source, you'll
+        see the same HTML code as written above, below this paragraph.
+      </p>
+
+      <ul id="menu">
+        <li title="Contains file operation options">
+          _File
+          <ul>
+            <li>
+              <a href="javascript:doOpen();" title="Open a new file">
+                _Open
+              </a>
+            </li>
+            <li>
+              <a href="javascript:doSave();" title="Save the current file">
+                _Save
+              </a>
+            </li>
+            <li>
+              <a href="javascript:doSaveAs();" title="Save as a new file">
+                Save _as...
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li title="Links to other sites">
+          _Links
+          <ul>
+            <li>
+              <img src="icons/mozilla.gif" alt="" />
+              <a href="http://www.mozilla.org"
+                 title="Mozilla browser (opens new window)"
+                 target="_blank">
+                _Mozilla
+              </a>
+            </li>
+            <li>
+              <img src="icons/opera.gif" alt="" />
+              <a href="http://www.opera.com" title="Opera browser">_Opera</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>
+        In very good browsers (Mozilla-based or even Internet
+        Explorer), the main menu items (“<u>F</u>ile” and
+        “<u>L</u>inks”) can be accessed at any time from keyboard by
+        pressing ALT-F or ALT-L.  Note that some keybindings (such as
+        ALT-F) can't be blocked in Internet Explorer so you'll also
+        get to open the browser menu.  We have found no workaround for
+        this bug in IE.
+      </p>
+
+      <p>
+        The <a href="anatomy.html" onclick="showSection('anatomy'); return false;">next
+        section</a> describes in greater detail how a menu item is
+        composed and what features you have in order to create fully
+        customized menus.
+      </p>
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

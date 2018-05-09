@@ -1,0 +1,84 @@
+{include file="cabecera2.html" title="Control de Incidentes"}
+<div id = "titulo2">
+<table  class="enhancedtable" border="1" align="center" width="100%">
+ <tr>
+	<th width = "20%"><img src="./imagenes/tc_pequeño.jpg" align = "left" width="400" height="60"/></th>
+	<th width = "60%"><FONT SIZE=10>Relacion de Incidentes Turbo Care</th>
+	<th width = "20%"><img src="./imagenes/logos_iso.png" align = "right" width="400" height="60"/> </th>
+ </tr>
+</table>
+</div>
+<div id="resultados_reporte">
+<p>
+<div id = "indice">Relacion de Incidentes Turbo Care </br>Desde: {$fecha_ini} Hasta: {$fecha_fin} </div>
+</p>
+{if $datos}
+<div id="resultados">
+<table class="enhancedtable" cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+<thead>
+	<tr> 
+		<th>NRO</th>
+		<th>FECHA</th>
+		<th>HORA</th>
+		<th>PERSONA INVOLUCRADA</th>
+		<th>EDAD</th>
+		<th>CARGO</th>
+		<th>EMPRESA</th>
+		<th>GRADO INSTRUCCION</th>
+		<th>GERENCIA</th>
+		<th>AREA</th>
+		<th>SECCION</th>
+		<th>PROYECTO</th>
+		<th>CLASE</th>
+		<th>TIPO</th>
+		<th>CONDICION INSEGURA</th>
+		<th>ACTO INSEGURO</th>
+		<th>REGION AFECTADA</th>
+		<th>CAUSA DEL INCIDENTE</th>
+		<th>DESCRIPCION DEL EVENTO</th>
+		<th>TIEMPO PERDIDO</th>
+		<th>PERSONAL REGISTRA</th>
+		
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos}
+	<tr>
+		<td>{$datos[p].id}</td>
+		<td>{$datos[p].fecha}</td>
+		<td>{$datos[p].hora}</td>
+		<td>{$datos[p].personal_id}</td>
+		<td>{$datos[p].edad}</td>
+		<td>{$datos[p].cargo_id}</td>
+		<td>{$datos[p].empresa_id}</td>
+		<td>{$datos[p].grado_instr}</td>
+		<td>{$datos[p].gerencia_id}</td>
+		<td>{$datos[p].area}</td>
+		<td>{$datos[p].seccion_id}</td>
+		<td>{$datos[p].proyecto}</td>
+		<td>{$datos[p].clase_id}</td>
+		<td>{$datos[p].tipo_id}</td>
+		<td>{$datos[p].condicion_id}</td>
+		<td>{$datos[p].acto}</td>
+		<td>{$datos[p].region_id}</td>
+		<td>{$datos[p].causa_id}</td>
+		<td>{$datos[p].descripcion}</td>
+		<td>{$datos[p].tiempo_perdido}</td>
+		<td>{$datos[p].personal_reg_id}</td>
+		
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	<h3>NO SE ENCONTRÓ NINGUN DATO QUE CORRESPONDA, VERIFIQUE...</h3>
+{/if}
+{if $datos}
+<p>
+<div id="boton">
+<a href="xls_incidentesxfecha.php" target="_xls"><img onmouseover='overlib("<strong>Generar .xls</strong>",WIDTH, 70)' src="./imagenes/excel.png" width="50" height="50" onmouseout='return nd();'/></a>
+<a href='./grafico_incidentexfecha.php' class='claseiframe'><img onmouseover='overlib("<strong>Generar Grafico</strong>",WIDTH, 70)' src="./imagenes/grafico.png" width="50" height="50" onmouseout='return nd();'/></a></div>
+<p>
+</div>{/if}
+<div id="boton" align="center"><a href="rp_frm_incidentesxfecha.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

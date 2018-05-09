@@ -1,0 +1,64 @@
+@import "hmenu.css";
+div.dynarch-horiz-menu {
+background-color:#F3F5F4;
+border-color:DarkRed;
+color:#000000;
+}
+div.dynarch-horiz-menu table {
+color:#000000;
+}
+div.dynarch-horiz-menu table tr td.hover {
+background-color:DarkRed;
+color:#FFFFFF;
+}
+div.dynarch-horiz-menu table tr td.active {
+background-color:DarkRed;
+color:#FFFFFF;
+}
+div.dynarch-horiz-menu table tr td.pressed {
+background-color:DarkRed;
+padding:3px 2px 1px 4px;
+}
+div.dynarch-horiz-menu table tr td.hover table, div.dynarch-horiz-menu table tr td.active table {
+color:#FFFFFF;
+}
+div.dynarch-horiz-menu table tr td.separator {
+width:7px;
+}
+div.dynarch-horiz-menu table tr td.separator div {
+border-left:medium none;
+border-right-color:DarkRed;
+margin-right:3px;
+}
+div.dynarch-popup-menu {
+background-color:#FFFFFF;
+border-color:DarkRed;
+color:#000000;
+padding:0pt;
+}
+div.dynarch-popup-menu div.d {
+border-left:1px solid DarkRed;
+}
+div.dynarch-popup-menu div.c {
+border-left:1px solid DarkRed;
+}
+div.dynarch-popup-menu div.b {
+border-left:2px solid DarkRed;
+}
+div.dynarch-popup-menu div.a {
+border-left:1px solid DarkRed;
+}
+div.dynarch-popup-menu tr.item td.icon {
+padding:1px 1px 1px 3px;
+}
+div.dynarch-popup-menu tr.separator td div {
+background:transparent url(img/xp/separator.gif) no-repeat scroll 50%;
+}
+div.dynarch-popup-menu tr.item.hover, div.dynarch-popup-menu tr.item.active {
+background-color:DarkRed;
+color:#FFFFFF;
+}
+div.dynarch-popup-menu tr.item.hover td.icon, div.dynarch-popup-menu tr.item.active td.icon {
+background-color:DarkRed;
+}
+

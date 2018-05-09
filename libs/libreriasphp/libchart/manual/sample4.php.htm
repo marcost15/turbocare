@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Libchart - Simple PHP chart drawing library</title>
+
+
+
+	
+	<link rel="shortcut icon" type="images/x-icon" href="http://naku.dohcrew.com/libchart/favicon.ico">
+	<link rel="icon" type="image/png" href="http://naku.dohcrew.com/libchart/images/favicon.png">
+	<meta http-equiv="Description" content="Libchart is a simple PHP chart drawing library">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+	<meta name="keywords" content="php chart graph library script plot drawing image bar pie histogram gd data visualization">
+	<link rel="stylesheet" href="sample4.php_archivos/style.css" type="text/css" media="screen">
+	<script src="sample4.php_archivos/urchin.js" type="text/javascript"></script>
+	<script type="text/javascript">_uacct = "UA-52991-1"; urchinTracker();</script></head><body>
+
+<div id="page">
+	<div id="header">
+		<div id="logo">
+			<h1>Lib<span class="logotext">chart</span></h1>
+			<div class="description"><em>Simple PHP chart drawing library</em></div>
+		</div>
+		<div id="menubar">
+		<ul>
+			<li class="selected"><a href="http://naku.dohcrew.com/libchart/pages/introduction/">Introduction</a></li>
+			<li><a href="http://naku.dohcrew.com/libchart/pages/download/">Download</a></li>
+			<li><a href="http://naku.dohcrew.com/libchart/pages/samplecode/">Sample Code</a></li>
+			<li><a href="http://naku.dohcrew.com/libchart/pages/documentation/">Reference API</a></li>
+			<li><a href="http://naku.dohcrew.com/libchart/pages/links/">Links</a></li>
+		</ul>
+		</div>
+		<div id="banner">
+                <script type="text/javascript"><!--
+                google_ad_client = "pub-4829451855637342";
+                google_ad_width = 728;
+                google_ad_height = 90;
+                google_ad_format = "728x90_as";
+                google_ad_type = "text_image";
+                google_ad_channel ="";
+                google_color_border = ["336699","000000","B4D0DC","A8DDA0"];
+                google_color_text = ["000000","000000","6F6F6F","6F6F6F"];
+                google_color_bg = ["FFFFFF","F0F0F0","ECF8FF","EBFFED"];
+                google_color_link = ["0000FF","0000FF","0000CC","0000CC"];
+                google_color_url = "008000";
+                //--></script><script type="text/javascript" src="sample4.php_archivos/show_ads.js"></script><iframe name="google_ads_frame" src="sample4.php_archivos/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" frameborder="0" height="90" scrolling="no" width="728"></iframe>
+	</div>
+	<div id="content">
+	<h2>Line chart sample</h2>
+
+	<img class="centered" alt="Line chart sample" src="sample4.php_archivos/sample4.png" height="250" width="600">
+
+	<h2>Source Code</h2>
+
+	<div class="code"><pre>	&lt;?php
+	include "libchart/libchart.php";
+
+	header("Content-type: image/png");
+	
+	$chart = new LineChart();
+
+	$chart-&gt;addPoint(new Point("06-01", 273));
+	$chart-&gt;addPoint(new Point("06-02", 421));
+	$chart-&gt;addPoint(new Point("06-03", 642));
+	$chart-&gt;addPoint(new Point("06-04", 799));
+	$chart-&gt;addPoint(new Point("06-05", 1009));
+	$chart-&gt;addPoint(new Point("06-06", 1406));
+	$chart-&gt;addPoint(new Point("06-07", 1820));
+	$chart-&gt;addPoint(new Point("06-08", 2511));
+	$chart-&gt;addPoint(new Point("06-09", 2832));
+	$chart-&gt;addPoint(new Point("06-10", 3550));
+	$chart-&gt;addPoint(new Point("06-11", 4143));
+	$chart-&gt;addPoint(new Point("06-12", 4715));
+
+	$chart-&gt;setTitle("Sales for 2006");
+	$chart-&gt;render();
+	?&gt;
+	</pre></div>
+	
+	<p><a href="http://naku.dohcrew.com/libchart/pages/introduction/">Back</a></p>
+	</div>
+	<hr>
+	<div id="footer">
+		<p>
+			Site last modified <em>April 2nd, 2006</em> by <a href="mailto:jm.tremeaux-at-gmail-dot-com">Jean-Marc Trémeaux</a>
+		</p>
+	</div>
+</div>
+
+
+</div></body></html>

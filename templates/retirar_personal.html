@@ -1,0 +1,62 @@
+{include file="cabecera.html" title="Retirar Personal"}
+<h3>ATENCIÓN</h3>
+<p>Usted esta a punto de retirar a:</p>
+<table class = "retiro" align = "center" border="1">
+{if $ficha.foto}
+<div id = "foto15"><img src="./upload/personal/{$ficha.foto}" width="120" height="120" /></div>
+{/if}
+	<tr>
+		<th>Cedula</th>
+		<td>{$ficha.id}</td>
+	</tr>
+	<tr>
+		<th>Apellido</th>
+		<td>{$ficha.apellido}</td>
+	</tr>
+	<tr>
+		<th>Nombre</th>
+		<td>{$ficha.nombre}</td>
+	</tr>
+	<tr>
+		<th>Dirección</th>
+		<td>{$ficha.direccion}</td>
+	</tr>
+	{if $ficha.tlf_fijo}
+	<tr>
+		<th>Telefono Fijo</th>
+		<td>{$ficha.tlf_fijo}</td>
+	</tr>
+	{/if}
+	{if $ficha.tlf_movil}
+	<tr>
+		<th>Telefono Movil</th>
+		<td>{$ficha.tlf_movil}</td>
+	</tr>
+	{/if}
+	{if $ficha.correo}
+	<tr>
+		<th>Correo electronico</th>
+		<td>{$ficha.correo}</td>
+	</tr>
+	{/if}
+	<tr>
+		<th>Nombre de Usuario</th>
+		<td>{$ficha.login}</td>
+	</tr>
+	<tr>
+		<th>Estado</th>
+		<td>{$ficha.estado}</td>
+	</tr>
+	<tr>
+		<th>Nivel de Acceso</th>
+		<td>{$ficha.nivel_id}</td>
+	</tr>
+</table>
+<hr />
+<p>¿Esta seguro de que desea hacerlo?</p>
+<hr />	
+<div align="left"><a href="consmod_personal.php"><img onmouseover='overlib("<strong>No retirar</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" width="70" height="40" onmouseout='return nd();'/></a></div>
+<hr />
+<div align="right"><a href="retirar_personal2.php?id={$ficha.id}"><img onmouseover='overlib("<strong>Si, retirar</strong>",WIDTH, 70)' src="./imagenes/pensil.png" width="60" height="70" onmouseout='return nd();'/></a></div>
+<hr />
+{include file="pie.html"}

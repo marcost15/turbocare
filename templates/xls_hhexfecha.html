@@ -1,0 +1,44 @@
+{include file="cabecera2.html" title="Control de H"}
+
+<div id="resultados_reporte">
+<p>
+<div id = "indice">Control de Horas Hombre </br>Desde: {$datos.fecha_ini} Hasta: {$datos.fecha_fin} </div>
+</p>
+{if $datos.datos}
+<div id="resultados">
+<table class="enhancedtable" cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+<thead>
+	<tr> 
+		<th>NRO</th>
+		<th>FECHA</th>
+		<th>TALLER</th>
+		<th>CAMPO</th>
+		<th>CONTRATISTA</th>
+		<th>IFB</th>
+		<th>IFN</th>
+		<th>IS</th>
+		<th>IM</th>
+		<th>TOTAL</th>
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos.datos}
+	<tr>
+		<td>{$datos.datos[p].id}</td>
+		<td>{$datos.datos[p].fecha}</td>
+		<td>{$datos.datos[p].taller}</td>
+		<td>{$datos.datos[p].campo}</td>
+		<td>{$datos.datos[p].contratista}</td>
+		<td>{$datos.datos[p].ifb}</td>
+		<td>{$datos.datos[p].ibn}</td>
+		<td>{$datos.datos[p].ist}</td>
+		<td>{$datos.datos[p].im}</td>
+		<td>{$datos.datos[p].total}</td>
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	<h3>NO SE ENCONTRÓ NINGUN DATO QUE CORRESPONDA, VERIFIQUE...</h3>
+{/if}
+{include file="pie.html"}

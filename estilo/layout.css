@@ -1,0 +1,221 @@
+#titulo2 {
+ display: none;
+}
+#fondo{
+    width:1052px;
+	background-color: #ffffff;
+	margin:auto;
+	border: solid 2px #6684C1;
+	-moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+#fondoreporte{
+	width:2000px;
+	position: relative;
+	background-color: transparent;
+	margin:auto;
+	text-align::center;
+}
+#contenido{
+    width:900px;
+	background-color: #ffffff;
+	margin:auto;
+	float:right;
+	text-align:center;
+	min-height: 400px;
+	border: solid 2px #6684C1;
+}
+#contenido_sinmenu{
+    width:100%;
+	background-color:#ffffff;
+	margin:auto;
+	text-align:center;
+}
+#contenido_reporte{
+	background-color: #ffffff;
+	text-align:center;
+}
+#divmenu{
+    width:200px;
+	position: relative;
+}
+
+#pie{ 
+	text-align:center;
+	padding:15px;
+	clear: both;
+	border: solid 2px #6684C1;
+	-moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+/* Tablas
+***********************************************************/
+#resultados{
+	background-color: #EBEEF7;
+}
+tfoot th{
+	text-align:right;
+}
+.enhancedtable{
+	background:#EBEEF7;
+	border:2px solid #6684C1;
+	text-align: center;
+}
+.enhancedtable td,.enhancedtable th {
+	text-align: center;
+}
+.enhancedtablecolouredrow{
+	background:#ffffff;
+}
+.enhancedtablerowhover{
+	background:#6684C1;
+}
+.enhancedtableactive{
+	background:#6684C1;
+}
+#resultadosxgrilla{
+	overflow: auto;
+	width:870px;
+	height: 532px;
+	background-color: #6684C1;
+	text-align: center;
+}
+/* Tablas
+***********************************************************/
+#indice{
+	text-align: center;
+	font-weight:bolder
+}
+a:link{color:#000000;text-decoration:underline}
+a:hover{color:#268C04;text-decoration:underline;}
+a:active{color:#268C04;font-weight:bolder} 
+a:visited{color:#000000;font-style:italic}
+
+#fondo table.ficha{
+	text-align: left;
+	border-collapse: collapse;
+	border: solid 2px #000000;
+}
+#fondo table.ficha th{
+	background-color:#268C04;
+	font-weight:bolder
+}
+#titulo{
+	text-align:center;
+	background-color:#6684C1;
+	color:White;
+	font-weight:bold;
+	font-size:medium;
+	padding:1px;
+	height: 20px;
+}
+h1,h2,h3,h4,h5{
+	text-align: center;
+	color: red;
+	background-color: #ffffff;
+}
+.abc{
+	text-align : center;
+	font-weight:bolder;
+	text-decoration: none;	
+}
+#mensaje{
+	width : 100%;
+	background-color: transparent;
+	text-align : center;
+	font-weight:bolder;
+	font-size:medium;
+	color:red;
+}
+#foto15{
+	width : 20%;
+	background-color: #FFFFFF;
+	float : right;
+	text-align : center;
+}
+#documentos{
+	width : 100%;
+	font-size:medium;
+	font-family:arial;
+	line-height : 35px;
+	text-align:justify;
+}
+.tabla_reporte{
+	width : 100%;
+	font-size:medium;
+	font-family:arial;
+	line-height : 35px;
+	text-align:left;
+	border: collapse;
+	
+}
+
+#busqueda2{
+	width : 50%;
+	float : left;
+	background-color: #FFFFFF;
+}
+#busqueda3{
+	background-color: #FFFFFF;
+	float:right;
+	width : 50%;
+}
+
+#fondo table.firma{
+	text-align : center;
+}
+table.sortable a img {
+    border: 0;
+  }
+
+table.sortable tr.even td {
+    background-color: #ffffff;
+  }
+
+table.sortable tr.odd td {
+    background-color: #ffffff;
+}
+
+.listado {
+    border : transparent solid 1px;
+  }
+
+.listadob {
+    border : black solid 1px;
+    background : white;
+  }
+
+.listado,.listadob {
+/*    background-color : lightgrey;*/
+  }
+  
+  .LV_validation_message{
+    font-weight:bold;
+    margin:0 0 0 5px;
+}
+
+.LV_valid {
+    color:#00CC00;
+}
+	
+.LV_invalid {
+    color:#CC0000;
+}
+    
+.LV_valid_field,
+input.LV_valid_field:hover, 
+input.LV_valid_field:active,
+textarea.LV_valid_field:hover, 
+textarea.LV_valid_field:active {
+    border: 1px solid #00CC00;
+}
+    
+.LV_invalid_field, 
+input.LV_invalid_field:hover, 
+input.LV_invalid_field:active,
+textarea.LV_invalid_field:hover, 
+textarea.LV_invalid_field:active {
+    border: 1px solid #CC0000;
+}

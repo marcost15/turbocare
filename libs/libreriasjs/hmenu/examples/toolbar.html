@@ -1,0 +1,310 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: creating a toolbar</title>
+    <link id="theme-skin-modern" rel="stylesheet" href="../src/skin-modern.css" title="Modern" />
+    <link id="theme-skin-win98" rel="alternate stylesheet" href="../src/skin-win98.css" title="Win98" />
+    <link id="theme-skin-win2k" rel="alternate stylesheet" href="../src/skin-win2k.css" title="Win2k" />
+    <link id="theme-skin-xp" rel="alternate stylesheet" href="../src/skin-xp.css" title="WinXP" />
+    <link id="theme-skin-xp-apps" rel="alternate stylesheet" href="../src/skin-xp-apps.css" title="WinXP-apps" />
+    <link id="theme-skin-aqua" rel="alternate stylesheet" href="../src/skin-aqua.css" title="Aqua" />
+    <style type="text/css">
+      @import url("../code.css");
+      body { background-color: #cdf; margin: 10px 100px; }
+      .font-size td.label { text-align: center; }
+      .fonts .big td.label { font-size: 18px; text-align: center; }
+      div.dynarch-popup-menu.justify tr.item.hover td.icon,
+      div.dynarch-popup-menu.justify tr.item.active td.icon { background-color: #68e; }
+      div.dynarch-horiz-menu { border: 1px solid #000; }
+      .color-red { background-color: red; }
+      .color-cyan { background-color: cyan; }
+      .color-white { background-color: white; }
+      .color-yellow { background-color: yellow; }
+      .color-green { background-color: green; }
+      .color-blue { background-color: blue; }
+      .background img { border: 1px solid #888; }
+    </style>
+    <script type="text/javascript">
+      _dynarch_menu_url = "../src/";
+      var menu;
+      function my_dynarchmenu_handler(action) {
+	      var li = action.params;
+	      var style = document.getElementById("content").style;
+	      if (/^FONT-SIZE\/(.*)/.test(li.title)) {
+		      var font_size_item = menu.items["font-size"];
+		      font_size_item.setLabel(RegExp.$1);
+		      style.fontSize = RegExp.$1;
+	      } else if (/^FONT\/(.*)/.test(li.title)) {
+		      var font_item = menu.items["fonts"];
+		      font_item.setLabel(action.info.label);
+		      style.fontFamily = RegExp.$1;
+	      } else if (/^JUSTIFY\/(.*)/.test(li.title)) {
+		      var justify_item = menu.items["justify"];
+		      justify_item.icon.src = action.info.icon.src;
+		      style.textAlign = RegExp.$1;
+	      } else if (/^FORMAT\/(.*)/.test(li.title)) {
+		      var value = RegExp.$1;
+		      action.info.setPressed();
+		      if (value == "bold") {
+			      style.fontWeight = action.info.pressed ? "bold" : "normal";
+		      } else if (value == "italic") {
+			      style.fontStyle = action.info.pressed ? "italic" : "normal";
+		      } else if (value == "underline") {
+			      style.textDecoration = action.info.pressed ? "underline" : "none";
+			      menu.items["strike"].setPressed(false);
+		      } else if (value == "strike") {
+			      style.textDecoration = action.info.pressed ? "line-through" : "none";
+			      menu.items["underline"].setPressed(false);
+		      }
+	      } else if (/^BG\/(.*)/.test(li.title)) {
+		      var color = RegExp.$1;
+                      if (color != "none")
+			      style.backgroundColor = color;
+		      else
+			      style.backgroundColor = "";
+		      var icon = menu.items["background"].icon;
+                      icon.className = "color-" + color;
+              } else {
+		      alert(li.title);
+	      }
+      };
+      function toggleJustify(action) {
+	      var item = menu.items["justify"];
+	      item.display();
+	      action.info.icon.src = item.visible ? "../icons/checkbox-1.gif" : "../icons/checkbox-0.gif";
+              return true;
+      };
+      function togglePaste(action) {
+	      var item = menu.items["paste"];
+	      item.disable(!item.disabled);
+	      action.info.icon.src = item.disabled ? "../icons/checkbox-0.gif" : "../icons/checkbox-1.gif";
+              return true;
+      };
+      function toggleTooltips(action) {
+	      var item = action.info;
+	      var menu = item.menu;
+	      menu.config.tooltips =! menu.config.tooltips;
+	      item.icon.src = menu.config.tooltips ? "../icons/checkbox-1.gif" : "../icons/checkbox-0.gif";
+              return true;
+      };
+      function selectSkin(action) {
+	      var item = action.info;
+	      var a = ["modern", "xp", "xp-apps", "win2k", "win98", "aqua"], l;
+	      for (var i = 0; i < a.length; ++i) {
+		      l = document.getElementById("theme-skin-" + a[i]);
+		      if (l)
+			      l.disabled = true;
+	      }
+	      l = document.getElementById("theme-" + item.id);
+	      if (l) {
+		      l.disabled = false;
+		      menu.items["skin"].setLabel("Skin: " + l.title);
+	      }
+      };
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="menu = DynarchMenu.setup('menu', { toolbar: true });">
+    <p style="text-align: center; font: bold 12px verdana; color: #d00;">
+      <a href="http://www.dynarch.com/products/dhtml-menu/buy.html">
+        DynarchMenu</a> -- Now you can also create complex Toolbars!
+    </p>
+    <ul id="menu" onclick="my_dynarchmenu_handler(this)">
+      <li onclick="selectSkin(this)" id="skin">
+        Skin: Modern
+        <ul>
+          <li id="skin-modern">Mozilla Modern</li>
+          <li id="skin-win2k">Windows 2000</li>
+          <li id="skin-win98">Windows 98</li>
+          <li id="skin-aqua">Aqua</li>
+          <li id="skin-xp">Windows XP</li>
+          <li id="skin-xp-apps">Windows XP apps</li>
+        </ul>
+      </li>
+      <li></li>
+      <li title="Main menu ;-)">
+        <img src="../icons/save.gif" alt="" />
+        <ul>
+          <li title="Overwrite existing document">Overwrite existing document</li>
+          <li title="Save as a new file">Save as a new file...</li>
+          <li></li>
+          <li>
+            <img src="../icons/checkbox-0.gif" alt="" />
+            <a href="javascript:retval=toggleTooltips(this)" title="Toggle menu tooltips">Show tooltips</a>
+          </li>
+          <li>
+            <img src="../icons/checkbox-1.gif" alt="" />
+            <a href="javascript:retval=toggleJustify(this)" title="Hide/show the justify menu">Display “justify” menu</a>
+          </li>
+          <li>
+            <img src="../icons/checkbox-0.gif" alt="" />
+            <a href="javascript:retval=togglePaste(this)" title="Enable/disable the paste button">Enable “paste” button</a>
+          </li>
+        </ul>
+      </li>
+      <li></li>
+      <li><a title="Cut selection to clipboard" href="javascript:alert('Cut clicked')"><img src="../icons/cut.gif" alt="" /></a></li>
+      <li><a title="Copy selection to clipboard" href="javascript:alert('Copy clicked')"><img src="../icons/copy.gif" alt="" /></a></li>
+      <li id="paste" class="disabled"><a title="Paste from clipboard" href="javascript:alert('Paste clicked')"><img src="../icons/paste.gif" alt="" /></a></li>
+      <li></li>
+      <li id="background" title="Background color" class="background">
+        <img class="color-white" src="../src/img/blank.gif" width="12" height="12" alt="" style="margin-right: 2px;" />
+        Background
+        <ul>
+          <li title="BG/none" class="color-none"><a>None</a></li>
+          <li></li>
+          <li title="BG/white" class="color-white"><a>White</a></li>
+          <li title="BG/yellow" class="color-yellow"><a>Yellow</a></li>
+          <li title="BG/cyan" class="color-cyan"><a>Cyan</a></li>
+          <li title="BG/green" class="color-green"><a>Green</a></li>
+          <li title="BG/blue" class="color-blue"><a>Blue</a></li>
+          <li title="BG/red" class="color-red"><a>Red</a></li>
+        </ul>
+      </li>
+      <li></li>
+      <li id="justify" title="Set text alignment">
+        <img src="../icons/ed_align_left.gif" alt="left" />
+        <ul class="justify">
+          <li title="JUSTIFY/left"><img src="../icons/ed_align_left.gif" alt="" /><a>Left</a></li>
+          <li title="JUSTIFY/center"><img src="../icons/ed_align_center.gif" alt="" /><a>Center</a></li>
+          <li title="JUSTIFY/right"><img src="../icons/ed_align_right.gif" alt="" /><a>Right</a></li>
+          <li title="JUSTIFY/justify"><img src="../icons/ed_align_justify.gif" alt="" /><a>Full</a></li>
+        </ul>
+      </li>
+      <li id="font-size" title="Set font size">
+        12pt
+        <ul class="font-size">
+          <li title="FONT-SIZE/8pt"><a><span style="font-size: 8pt">8pt</span></a></li>
+          <li title="FONT-SIZE/9pt"><a><span style="font-size: 9pt">9pt</span></a></li>
+          <li title="FONT-SIZE/10pt"><a><span style="font-size: 10pt">10pt</span></a></li>
+          <li title="FONT-SIZE/11pt"><a><span style="font-size: 11pt">11pt</span></a></li>
+          <li title="FONT-SIZE/12pt"><a><span style="font-size: 12pt">12pt</span></a></li>
+          <li title="FONT-SIZE/14pt"><a><span style="font-size: 14pt">14pt</span></a></li>
+          <li title="FONT-SIZE/16pt"><a><span style="font-size: 16pt">16pt</span></a></li>
+          <li title="FONT-SIZE/18pt"><a><span style="font-size: 18pt">18pt</span></a></li>
+          <li title="FONT-SIZE/20pt"><a><span style="font-size: 20pt">20pt</span></a></li>
+          <li title="FONT-SIZE/24pt"><a><span style="font-size: 24pt">24pt</span></a></li>
+          <li title="FONT-SIZE/26pt"><a><span style="font-size: 26pt">26pt</span></a></li>
+        </ul>
+      </li>
+      <li id="fonts">
+        <a title="Set font family"><span style="font-family: georgia">Georgia</span></a>
+        <ul class="fonts">
+          <li class="big" title="FONT/Arial"><a><span style="font-family: arial">Arial</span></a></li>
+          <li class="big" title="FONT/Times"><a><span style="font-family: 'times new roman'">Times New Roman</span></a></li>
+          <li class="big" title="FONT/Verdana"><a><span style="font-family: verdana">Verdana</span></a></li>
+          <li class="big" title="FONT/Tahoma"><a><span style="font-family: tahoma">Tahoma</span></a></li>
+          <li class="big" title="FONT/Courier"><a><span style="font-family: 'courier new'">Courier New</span></a></li>
+          <li class="big" title="FONT/Georgia"><a><span style="font-family: georgia">Georgia</span></a></li>
+          <li class="big" title="FONT/Impact"><a><span style="font-family: impact">Impact</span></a></li>
+          <li></li>
+          <li>
+            Standard family
+            <ul class="fonts">
+              <li class="big" title="FONT/Serif"><a><span style="font-family: serif">Serif</span></a></li>
+              <li class="big" title="FONT/Sans-serif"><a><span style="font-family: sans-serif">Sans serif</span></a></li>
+              <li class="big" title="FONT/Monospace"><a><span style="font-family: monospace">Monospace</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li></li>
+      <li title="FORMAT/bold"><a title="Bold"><img src="../icons/ed_format_bold.gif" alt="" /></a></li>
+      <li title="FORMAT/italic"><a title="Italic"><img src="../icons/ed_format_italic.gif" alt="" /></a></li>
+      <li></li>
+      <li id="strike" title="FORMAT/strike"><a title="Strikeout"><img src="../icons/ed_format_strike.gif" alt="" /></a></li>
+      <li id="underline" title="FORMAT/underline"><a title="Underline"><img src="../icons/ed_format_underline.gif" alt="" /></a></li>
+    </ul>
+    <div id="content" style="font-family: georgia; font-size: 12pt; background-color: #fff; height: 300px; border: 1px solid #000; border-top: none; padding: 0 1em; overflow: auto;">
+      <h1 style="margin-top: 0; padding-top: 1em;">Creating a toolbar</h1>
+      <blockquote>
+        <p>
+          This is a complex sample demonstrating lots of DynarchMenu
+          features, focusing on those that enables you to create
+          custom toolbars.  In order to enable functionality, we wrote
+          a few JavaScript functions that handle actions on various
+          buttons.
+        </p>
+        <p>
+          The first thing to note in the source of this page is that
+          we setup the menu like this:
+        </p>
+        <pre>&lt;<span class="function-name">body</span> onload=<span class="string">&quot;menu = DynarchMenu.setup('menu', { toolbar: true });&quot;</span>&gt;</pre>
+        <p>
+          So, note the “toolbar: true” parameter in the menu
+          configuration; it has the only effect that DynarchMenu adds
+          some special CSS bits that make the main menu bar thinner,
+          more suitable for a toolbar.  We keep the return value in a
+          global variable (“menu”) in order to access some features
+          later.
+        </p>
+      </blockquote>
+      <h2>Unified action handler</h2>
+      <blockquote>
+        <p>
+          This is the first example that demonstrates a certain
+          feature of DynarchMenu: you can catch all menu actions in a
+          single handler.  This comes in handy when writing a toolbar
+          because it's much easier to process events in a single
+          place than to write &lt;a&gt; tags that call functions
+          everywhere.
+        </p>
+        <p>
+          Unified action handlers are <a
+          href="../docs/actions.html">properly described</a>--please
+          read the documentation.
+        </p>
+      </blockquote>
+      <h2>Dynamically changing items</h2>
+      <blockquote>
+        <p>
+          This page exemplifies how you can determine the clicked menu
+          item and how you can change its state.  It shows you how can
+          you disable or enable items, show or hide items, modify the
+          icon or toggle buttons.
+        </p>
+        <p>
+          The API used is described in <a
+          href="../docs/item-object.html">the MenuItem object
+          documentation</a>.
+        </p>
+      </blockquote>
+      <h2>Other interesting techniques</h2>
+      <blockquote>
+        <p>
+          This page uses a simple technique in order to customize the
+          look of only certain menus or menu items.  For instance, the
+          fonts in the font selection menu are increased by assigning
+          a CSS class to all LI elements inside it, and customizing
+          that class from the page's CSS, like this:
+        </p>
+        <pre>&lt;<span class="function-name">li</span> class=<span class="string">&quot;big&quot;</span>&gt;menu item&lt;<span class="function-name">/li</span>&gt;</pre>
+        <p>
+          and in CSS we have:
+        </p>
+        <pre><span class="variable-name">.fonts</span> <span class="variable-name">.big</span> td<span class="variable-name">.label</span> { <span class="keyword">font-size:</span> 18px; <span class="keyword">text-align:</span> center; }</pre>
+        <p>
+          Similar tricks were used to center the labels in the “font
+          size” menu.
+        </p>
+      </blockquote>
+      <h2>May the source be with you</h2>
+      <blockquote>
+        <p>
+          Because we included proper documentation (please check the
+          links above), there's no more description on this page,
+          except for the page itself ;-)  So please view its source.
+        </p>
+      </blockquote>
+      <p>&nbsp;</p>
+    </div>
+    <p style="text-align: center; font: bold 12px verdana; color: #d00;">
+      Can you believe it's done with a <a
+      href="http://www.dynarch.com/products/dhtml-menu/">JavaScript
+      Menu</a>?
+    </p>
+  </body>
+</html>
+
+<!--
+-->

@@ -1,0 +1,203 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset: utf-8" />
+    <title>DHTML Menu frames sample</title>
+    <link rel="stylesheet" type="text/css" href="../../src/skin-xp.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <script type="text/javascript" src="../../src/hmenu.js"></script>
+    <script type="text/javascript">MENU_ITEM='index'</script>
+  </head>
+  <body>
+    <div class="content">
+      <h1>DHTML Menu across frames</h1>
+      <p>
+        As of version 2.8, DynarchMenu introduces support for
+        cross-frame menus.  If you're with us for a long time, you
+        know our opinion about frames: <em>do not use</em> ;-).  But,
+        our customer is our master — this feature was widely requested
+        so there you have it!  And even if we don't like frames, let
+        us congratulate ourselves and tell you that we did a very good
+        job.  Our cross-frames menu works better than any other menu
+        we've seen.  In particular, navigating through the menu (that
+        is, <em>using</em> the menu) is as smooth as it gets—just as
+        if no frames would be there.  Trust us, it wasn't easy.
+      </p>
+
+      <h2>General information</h2>
+
+      <p>
+        So this feature allows DynarchMenu to display the main menu in
+        one frame, and the popup menus (submenus) in another.  You can
+        have multiple frames in your frameset, but only 2 matter:
+      </p>
+
+      <ul>
+        <li>
+          The frame that contains the main menu (in this case, the
+          frame at the top, in white background).  We will call it the
+          “main” frame.
+        </li>
+        <li>
+          The frame where the popup menus will be displayed, which
+          we'll call the “popups” frame.
+        </li>
+      </ul>
+
+      <p>
+        If you see the source of this frameset, the frames are called
+        "main_frame" and "popup_frame".  You can name them whatever
+        you like, but you'll have to pass these names to
+        DynarchMenu.setup as we'll show later.
+      </p>
+
+      <p>
+        Frames are quite difficult to work with (especially when it
+        comes to cross-frame scripting) because they don't share the
+        same DOM tree.  In fact, they don't share anything.  For the
+        curious, we will detail the <a href="details.html">technical
+        aspects</a> later—but you don't really need to know that in
+        order to use our menu.  Here are the few important
+        requirements:
+      </p>
+
+      <ol>
+        <li>
+          <span class="important">The “hmenu.js” program file must be
+          loaded in both frames <em>and</em> in the frameset page</span>.
+        </li>
+        <li>
+          <span class="important">The skin CSS file must be loaded in
+          both frames</span>.  You can even load different skins, as
+          you can see in our example (the main menu bar uses
+          “skin-yp.css” and the popup frame uses “skin-xp.css”).
+        </li>
+        <li>
+          <span class="important">The documents inside both frames and
+          in the frameset must reside on the same (sub)domain</span>.
+          This means that you can't have your “main” frame on
+          "www.mydomain.com" and the “popups” frame on "www.yahoo.com"
+          and expect to be able to display menus on it.  This is a
+          browser restriction which was necessary for security reasons
+          (in short, if the above would be possible then one could
+          steal cookies from other domains such as paypal.com; we
+          don't want to explain how could this result in a
+          catastrophe; by the way, in Internet Explorer this
+          <em>was</em> possible).
+        </li>
+      </ol>
+
+      <h2>How to setup</h2>
+
+      <p>
+        You can check our frameset source code (examples/frames.html)
+        to see how it's done.  It looks like this:
+      </p>
+
+<pre>&lt;!DOCTYPE HTML PUBLIC <span class="string">&quot;-//W3C//DTD HTML 4.01 Frameset//EN&quot;</span>
+    <span class="string">&quot;http://www.w3.org/TR/html4/frameset.dtd&quot;</span>&gt;
+&lt;html xmlns=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv=<span class="string">&quot;content-type&quot;</span> content=<span class="string">&quot;text/xml; charset=utf-8&quot;</span> /&gt;
+    &lt;title&gt;DHTML menu :: Frames sample&lt;/title&gt;
+    &lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;
+      // define the DynarchMenu path
+      _dynarch_menu_url = <span class="string">&quot;../src/&quot;</span>;
+      var menu;
+      function init() {
+        menu = DynarchMenu.setup(<span class="string">&quot;menu&quot;</span>, { electric: 350,
+                                           clone: true,
+                                           frames: { main: <span class="string">&quot;main_frame&quot;</span>,
+                                                     popups: <span class="string">&quot;popups_frame&quot;</span> }
+                                         });
+      }
+      var first_time = true;
+      function reinit() {
+        if (first_time)
+          first_time = false;
+        else {
+          menu.destroy();
+          delete menu;
+          init();
+        }
+      }
+    &lt;/script&gt;
+    &lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;../src/hmenu.js&quot;</span>&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;frameset rows=<span class="string">&quot;50,*&quot;</span> onload=<span class="string">&quot;init()&quot;</span> border=<span class="string">&quot;0&quot;</span> frameborder=<span class="string">&quot;0&quot;</span>&gt;
+    &lt;frame name=<span class="string">&quot;main_frame&quot;</span>
+           marginwidth=<span class="string">&quot;0&quot;</span> marginheight=<span class="string">&quot;0&quot;</span> frameborder=<span class="string">&quot;0&quot;</span> noresize=<span class="string">&quot;noresize&quot;</span>
+           scrolling=<span class="string">&quot;no&quot;</span> src=<span class="string">&quot;frames/top.html&quot;</span> /&gt;
+    &lt;frame name=<span class="string">&quot;popups_frame&quot;</span>
+           onload=<span class="string">&quot;reinit()&quot;</span>
+           onunload=<span class="string">&quot;DynarchMenu._cleanUp()&quot;</span>
+           marginwidth=<span class="string">&quot;0&quot;</span> marginheight=<span class="string">&quot;0&quot;</span> frameborder=<span class="string">&quot;0&quot;</span> noresize=<span class="string">&quot;noresize&quot;</span>
+           scrolling=<span class="string">&quot;yes&quot;</span> src=<span class="string">&quot;frames/index.html&quot;</span> /&gt;
+  &lt;/frameset&gt;
+&lt;/html&gt;</pre>
+
+      <p>
+        So, it does the following:
+      </p>
+
+      <ol>
+        <li>
+          Loads “hmenu.js” and sets up "_dynarch_menu_url" as
+          described in the documentation.
+        </li>
+        <li>
+          On the frameset "onload" event it calls the "init()"
+          function which calls DynarchMenu.setup to configure the menu
+          and remembers the object in a global "menu" variable.  This
+          is important.
+        </li>
+        <li>
+          The “popups” frame needs to define some special event
+          handlers.  The most important is "onload", which calls the
+          "reinit()" function.  As you can see, this function won't do
+          anything on the first call, since everything is taken care
+          by "init()".  However, on subsequent calls, "reinit()" will
+          destroy the menu and create it again.  If you're curious to
+          know why this is needed, read on the <a
+          href="details.html">technical details</a> page.  The second
+          event handler, "onunload", will call
+          "DynarchMenu._cleanUp()" in an attempt to reduce memory
+          consumption in Internet Explorer.
+        </li>
+      </ol>
+
+      <p>
+        A nice trick is that we pass the ID of an element from another
+        frame.  That's right, the &lt;ul&gt; that defines the menu is
+        defined in the “main” frame (the one containing the main menu
+        bar); DynarchMenu figures this out because we passed the frame
+        name in the "frames" configuration option.
+      </p>
+
+      <p>
+        In order to have links open in the other frame, menu items
+        must link with target="popups_frame", like this:
+      </p>
+
+<pre>&lt;ul id=<span class="string">&quot;menu&quot;</span>&gt;
+  &lt;li&gt;
+    _Index
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=<span class="string">&quot;index.html&quot;</span> target=<span class="string">&quot;popups_frame&quot;</span>&gt;Home&lt;/a&gt;&lt;/li&gt;
+      ...
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;</pre>
+
+      <p>
+        So, perfectly intuitive: you write plain HTML.
+      </p>
+
+      <p>
+        We also wrote some more <a href="details.html">technical
+        details</a>, in case you wonder why the setup is that
+        complicated (but it's not <em>too</em> complicated, right?).
+      </p>
+    </div>
+  </body>
+</html>

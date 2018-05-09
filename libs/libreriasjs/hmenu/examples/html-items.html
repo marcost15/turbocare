@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: HTML in menu items</title>
+    <style type="text/css"> @import url("../src/skin-modern.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+
+      // the global variable "menu" will remember a reference to our menu object
+      // it will be used to set configuration options later, from the menu item with the input field
+      var menu = null;
+      function initDocument() {
+        menu = DynarchMenu.setup('menu', { electric: 250 });
+      };
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="initDocument()">
+    <ul id="menu">
+      <li>
+        <a><span style="color: #00f; font-weight: bold">»</span> <i>More information</i></a>
+        <ul>
+          <li><a href="#"><b>A _bold item</b></a></li>
+          <li><a href="#">_Item with <b>bold</b> text</a></li>
+          <li></li>
+          <li><a href="#"><span style="color: red">_Red item</span></a></li>
+          <li></li>
+          <li>
+            <a href="javascript:retval=true; var fld=document.getElementById('f-timeout'); menu.config.electric=fld.value; fld.select(); fld.focus();">
+              Electric _timeout:
+              <input id="f-timeout" style="border-width: 1px;"
+                     type="text" value="250" size="3"
+              />
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>
+      The above menu shows how one can include arbitrary HTML inside
+      menu <em>items</em>.  If you look into the page source, you'll
+      find out that it's pretty straight-forward: all you need to do
+      is to embed the item inside an &lt;A&gt; tag, even if it has no
+      action associated.
+    </p>
+
+    <p>
+      Everything inside an &lt;A&gt; tag will be copied into the menu
+      “<em>ad literam</em>”, meaning, any formatting attributes will
+      be retained, and even more complicated HTML, as shown by the
+      last item.
+    </p>
+
+    <p>
+      The last item (Electric timeout) shows a rather complicated
+      technique.  It embeds an input field where the end-user can
+      enter values.  It makes use of the “href” attribute in order to
+      setup the following item action: when clicked, the input field
+      will gain focus and it's value will be applied.  Please look
+      into the source to see how easy it is.
+    </p>
+
+    <p>
+      One more note about the last field.  The menu intercepts keys
+      defined in the popup keymap (the underlined letters) and this
+      works even if the input field is focused.  Therefore, even if
+      the end-user is editing the input field, keys that trigger menu
+      actions will keep doing that (and probably close the menu).
+      Currently there is no workaround for this problem, so we suggest
+      that if you put input fields in some submenu, then you should
+      not define any keyboard shortcuts for it.
+    </p>
+  </body>
+</html>
+<!--
+-->

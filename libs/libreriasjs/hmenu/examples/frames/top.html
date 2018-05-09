@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset: utf-8" />
+    <title>DHTML Menu</title>
+    <link rel="stylesheet" type="text/css" href="../../src/skin-yp.css" />
+    <script type="text/javascript" src="../../src/hmenu.js"></script>
+    <style type="text/css">
+      html, body { margin: 0; padding: 0; background-color: #fff; color: #000; font: 9pt Verdana,Tahoma,sans-serif; }
+      div.dynarch-horiz-menu table, div.dynarch-popup-menu table { font: 10pt tahoma,verdana,sans-serif; }
+    </style>
+    <script type="text/javascript">
+      function ourAction(arg) {
+        alert(arg.info.label + " is supported");
+      }
+    </script>
+  </head>
+  <body>
+    <div style="position: absolute; bottom: 0px; left: 100px; ">
+      <ul id="menu" class="noicons">
+        <li>
+          _Index
+          <ul class="noicons">
+            <li id="item-index"><a href="index.html" target="popups_frame">General info</a></li>
+            <li id="item-details"><a href="details.html" target="popups_frame">Technical details</a></li>
+            <li id="item-qa"><a href="qa.html" target="popups_frame" title="Questions and answers">_Questions &amp; answers</a></li>
+            <li></li>
+            <li><a target="_parent" href="../framesv.html">Vertical layout</a></li>
+            <li></li>
+            <li id="item-lorem"><a href="lorem1.html" target="popups_frame">Lorem Ipsum</a></li>
+          </ul>
+        </li>
+        <li></li>
+        <li>
+          Bigger _menu
+          <ul class="noicons">
+            <li>
+              _Other stuff
+              <ul class="noicons">
+                <li>
+                  Browsers
+                  <ul onclick="ourAction(this)">
+                    <li>
+                      <img src="../../icons/win.gif" />
+                      Internet Explorer 6
+                    </li>
+                    <li>
+                      <img src="../../icons/win.gif" />
+                      Internet Explorer 7 Beta
+                    </li>
+                    <li>
+                      <img src="../../icons/mozilla.gif" />
+                      Mozilla/Firefox
+                    </li>
+                    <li>
+                      <img src="../../icons/apple.gif" />
+                      Apple Safari
+                    </li>
+                    <li>
+                      <img src="../../icons/opera.gif" />
+                      Opera 8
+                    </li>
+                    <li>
+                      <img src="../../icons/konqueror.gif" />
+                      Konqueror
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  _Programming
+                  <ul class="noicons">
+                    <li>JavaScript</li>
+                    <li>Perl</li>
+                    <li>Ruby</li>
+                    <li>Lisp</li>
+                    <li>C/C++</li>
+                    <li>Python</li>
+                  </ul>
+                </li>
+                <li>Food</li>
+                <li></li>
+                <li>
+                  _Cars
+                  <ul class="noicons">
+                    <li>BMW</li>
+                    <li>Mercedes</li>
+                    <li>Audi</li>
+                    <li>Volkswagen</li>
+                    <li>Peugeot</li>
+                  </ul>
+                </li>
+                <li></li>
+                <li>Some more</li>
+                <li>Items...</li>
+              </ul>
+            </li>
+            <li></li>
+            <li>Cut</li>
+            <li>Copy</li>
+            <li>Paste</li>
+          </ul>
+        </li>
+        <li>
+          _Another menu
+          <ul class="noicons">
+            <li>Please note _that</li>
+            <li>_keyboard navigation</li>
+            <li>works too.</li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+    <div style="position: absolute; bottom: 2px; right: 100px; font: 12pt Impact;">
+      <a target="_top" style="color: red;" target="popups_frame" href="http://www.dynarch.com/products/dhtml-menu/">DynarchMenu: The Ultimate </a><a target="_top" style="color: red;" href="http://www.dynarch.com/products/dhtml-menu/">DHTML Menu</a>
+    </div>
+  </body>
+</html>

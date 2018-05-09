@@ -1,0 +1,153 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: menu actions</title>
+    <style type="text/css"> @import url("../src/skin-xp.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">//<![CDATA[
+      _dynarch_menu_url = "../src/";
+    //]]></script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+    <style type="text/css">
+      /* remove any paddings from the top menu bar.
+
+         Also, note that the main menu bar is embedded in a div with
+         style="float: left" in order to make the menu have the
+         minimum width (otherwise it'll take all the available
+         horizontal space).
+      */
+      div.dynarch-horiz-menu { padding: 0; }
+      div.dynarch-horiz-menu table { padding: 0; border-collapse: collapse; }
+      div.dynarch-horiz-menu table tr td.item table td.icon,
+      div.dynarch-horiz-menu table tr td.item,
+      div.dynarch-horiz-menu table tr td.hover,
+      div.dynarch-horiz-menu table tr td.active,
+      div.dynarch-horiz-menu table tr td.pressed { padding: 0; border: none; }
+
+      /* uncomment the following line if you wish to remove the border too */
+      /* div.dynarch-horiz-menu { border: none; } */
+
+      /* Configure your images.
+         Note that the real "src" of the img tags is a 1x1 blank.gif image.
+         We need this trick in order to be able to do "hover" and "active" effects.
+         "td.hover" means the state of the item when the mouse cursor is over it
+         "td.active" means the state of the item when it's popup is active, even if the mouse left it.
+
+         Note that it is necessary to specify image width and height (otherwise you get an 1x1 item ;-)
+      */
+
+      /* first item, img with class="menubar-company" */
+      img.menubar-company {
+        background-image: url("company.png");
+        width: 76px;
+        height: 27px;
+      }
+      td.hover img.menubar-company { background-image: url("company-hover.png"); }
+      td.active img.menubar-company { background-image: url("company-hover.png"); }
+
+      /* second item, img with class="menubar-products" */
+      img.menubar-products {
+        background-image: url("products.png");
+        width: 80px;
+        height: 27px;
+      }
+      td.hover img.menubar-products { background-image: url("products-hover.png"); }
+      td.active img.menubar-products { background-image: url("products-hover.png"); }
+
+      /* third item, img with class="menubar-partners" */
+      img.menubar-partners {
+        background-image: url("partners.png");
+        width: 81px;
+        height: 27px;
+      }
+      td.hover img.menubar-partners { background-image: url("partners-hover.png"); }
+      td.active img.menubar-partners { background-image: url("partners-hover.png"); }
+
+      /* of course, you can put all of the above in a separate .css
+         file and thus reduce page load time and required bandwidth. */
+    </style>
+  </head>
+  <body onload="DynarchMenu.setup('menu', { electric: 350 });">
+    <!-- preload the images to avoid initial flicker -->
+    <div style="display: none">
+      <img src="company-hover.png" alt="" />
+      <img src="products-hover.png" alt="" />
+      <img src="partners-hover.png" alt="" />
+      <!-- not necessary to preload the others are they will be displayed initially anyway -->
+    </div>
+    <div style="float: left">
+      <ul id="menu">
+        <li>
+          <!-- note we can still include key bindings ;-) -->
+          <a accesskey="c"><img src="../src/img/blank.gif" alt="Company" class="menubar-company" /></a>
+          <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>History</li>
+          </ul>
+        </li>
+        <li>
+          <img src="../src/img/blank.gif" alt="Products" class="menubar-products" />
+          <ul>
+            <li><a href="http://www.dynarch.com/products/dhtml-menu/">DHTML Menu</a></li>
+            <li><a href="http://www.dynarch.com/products/dhtml-tabs/">DHTML Tabs</a></li>
+            <li><a href="http://www.dynarch.com/products/navbar/">Navigation bar</a></li>
+          </ul>
+        </li>
+        <li>
+          <img src="../src/img/blank.gif" alt="Partners" class="menubar-partners" />
+          <ul class="open-left">
+            <li>Doe Enterprises</li>
+            <li>Blah</li>
+            <li>Etc.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h1 style="clear: both; padding-top: 1em;">Including images in the main menu bar</h1>
+
+    <p>
+      The above menu uses images instead of text labels for the items
+      in the main menu bar.  This allows for nicer look, at the price
+      of some bandwidth.  Note that accessibility is still not a
+      problem (try this page with Lynx or other text-mode browser, or
+      with a graphic browser with JS disabled).  That's because we
+      included "alt" tags for images.
+    </p>
+
+    <p>
+      This setup is quite simple and it requires you to write some
+      small CSS rules that specify images for the normal item, for
+      hover-ed items and for active items, and to remove the padding
+      and spacing from the main menu bar items.
+    </p>
+
+    <h2>Note on IE</h2>
+
+    <p>
+      For reasons beyond understanding, Internet Explorer 6 fails by
+      one pixel <em>if</em> the image height is an even number.  For
+      instance, our images are exactly 26 pixels high, but if we pass
+      height: 26px IE will leave a 1px top margin (!!).  This browser
+      has a mind of its own.  Resolution was to pass 27px.  In
+      conclusion, try to create images with an odd height. :-)
+    </p>
+
+    <h2>How?</h2>
+
+    <p>
+      Please see the source of this page to see how it's done.  The
+      code is heavily commented for your reference.
+    </p>
+
+    <hr />
+
+    <p style="text-align: right">
+      <small>
+        Err, don't kill me for those images, I'm not an artist. ;-)
+      </small>
+    </p>
+  </body>
+</html>
+<!--
+-->

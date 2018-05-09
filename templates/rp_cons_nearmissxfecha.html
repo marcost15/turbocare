@@ -1,0 +1,66 @@
+{include file="cabecera2.html" title="Control Near Miss"}
+<div id = "titulo2">
+<table  class="enhancedtable" border="1" align="center" width="100%">
+ <tr>
+	<th width = "20%"><img src="./imagenes/tc_pequeño.jpg" align = "left" width="400" height="60"/></th>
+	<th width = "60%"><FONT SIZE=10>CONTROL NEAR MISS</th>
+	<th width = "20%"><img src="./imagenes/logos_iso.png" align = "right" width="400" height="60"/> </th>
+ </tr>
+</table>
+</div>
+<div id="resultados_reporte">
+<p>
+<div id = "indice">CONTROL DE NEAR MISS </br>Desde: {$fecha_ini} Hasta: {$fecha_fin} </div>
+</p>
+{if $datos}
+<div id="resultados">
+<table class="enhancedtable" cellspacing="0" border="1" align="center" width="100%">
+<thead>
+	<tr> 
+		<th>NRO</th>
+		<th>FECHA DE DETECCION</th>
+		<th>AREA</th>
+		<th>HALLAZGO</th>
+		<th>ACCIONNES</th>
+		<th>CORRECCIONES</th>
+		<th>RESPONSABLE</th>
+		{section name=m loop=$secc}
+			<th>{$secc[m].nombre}</th>
+		{/section}
+		<th>FECHA DE CIERRE</th>
+		<th>STATUS</th>
+		
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos}
+	<tr>
+		<td>{$datos[p].id}</td>
+		<td>{$datos[p].fecha}</td>
+		<td>{$datos[p].area}</td>
+		<td>{$datos[p].hallazgos}</td>
+		<td>{$datos[p].acciones}</td>
+		<td>{$datos[p].correcciones}</td>
+		<td>{$datos[p].personal_id}</td>
+		{section name=h loop=$datos[p].secciones_marc}
+			<td>{$datos[p].secciones_marc[h].seccion_id}</td>
+		{/section}
+		<td>{$datos[p].fecha_obs}</td>
+		<td>{$datos[p].status}</td>
+		
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	<h3>NO SE ENCONTRÓ NINGUN DATO QUE CORRESPONDA, VERIFIQUE...</h3>
+{/if}
+{if $datos}
+<p>
+<div id="boton">
+<a href="xls_nearmissxfecha.php" target="_xls"><img onmouseover='overlib("<strong>Generar .xls</strong>",WIDTH, 70)' src="./imagenes/excel.png" width="50" height="50" onmouseout='return nd();'/></a>
+<a href='./grafico_nearmissxfecha.php' class='claseiframe'><img onmouseover='overlib("<strong>Generar Grafico</strong>",WIDTH, 70)' src="./imagenes/grafico.png" width="50" height="50" onmouseout='return nd();'/></a></div>
+<p>
+</div>{/if}
+<div id="boton" align="center"><a href="rp_frm_nearmissxfecha.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

@@ -1,0 +1,291 @@
+/* Theme by Jean-Marc Trémeaux, with bits from:
+ * - Wordpress (http://wordpress.org/)
+ * - Opquast (http://www.opquast.com/)
+ */
+
+/* Main block elements */
+
+body {
+	margin: 0;
+	padding: 0; 
+	font-size: 62.5%; /* Resets 1em to 10px */
+	font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	background: url(background.png) #d5d6d7 fixed center top;
+	color: black;
+	}
+
+#page {
+	margin: 0 auto;
+	padding: 0;
+	width: 760px;
+	text-align: left;
+	background-color: white;
+	color: black;
+	}
+
+#header {
+	padding: 0;
+	margin: 0 auto;
+	width: 100%;
+	background-color: white;
+	}
+
+#logo {
+	margin: 0 auto;
+	padding: 0;
+	background : transparent url(logo-150.png) no-repeat 0 0.2em;
+	height: 107px;
+	width: 70%;
+	}
+
+#menubar {
+	padding: 0;
+	margin: 0;
+	background : transparent url(menubg2.png) repeat;
+	font-size : 11pt;
+	font-weight: bold;
+	height: 24px;
+	width: 100%;
+	}
+
+#menubar ul {
+	padding: 0;
+	margin: 0;
+	display: inline;
+	}
+
+#menubar li {
+	display: inline;
+	float: left;
+	height: 24px;
+	}
+
+#menubar a {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+	color: white;
+	border-right: 2px dotted #8395A3;
+}	
+
+#content {
+	padding: 0 0 20px 0;
+	margin: 0 0 0 100px;
+	width: 550px;
+	font-size: 1.2em
+	}
+
+#banner{
+	padding: 16px 16px 0 16px;
+	}
+
+.selected, #menubar a:hover {
+	background : transparent url(menubg1.png) repeat;
+	text-decoration: none;
+}
+
+#footer {
+	padding: 0;
+	margin: 0 auto;
+	clear: both;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	background-color: #eee;
+	}
+
+#footer p {
+	margin: 0;
+	padding: 20px 0;
+	text-align: center;
+	}
+
+/* Headers */
+
+h1, h2, h3 {
+	font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font-weight: bold;
+	}
+
+h1 {
+	padding-top: 20px;
+	margin: 0;
+	font-size: 4em;
+	text-align: center;
+	}
+
+h2 {
+	margin: 30px 0 0;
+	font-size: 1.6em;
+	}
+
+h3 {
+	padding: 0;
+	margin: 30px 0 0;
+	font-size: 1.3em;
+	}
+
+h1, h1 a, h1 a:hover, h1 a:visited, .description {
+	text-decoration: none;
+	color: black;
+	}
+
+h2, h2 a, h2 a:visited, h3, h3 a, h3 a:visited {
+	color: #333;
+	}
+
+h2, h2 a, h2 a:hover, h2 a:visited, h3, h3 a, h3 a:hover, h3 a:visited, cite {
+	text-decoration: none;
+	}
+
+#content h1 {
+	margin: 15px 5px 5px 5px;
+	padding: 5px;
+	color: #333;
+	font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+/* Images */
+
+img {
+	border: 1px solid gray;
+}
+
+img.centered {
+	display: block;
+	margin: 20px auto 20px auto;
+}
+
+img.alignright {
+	padding: 4px;
+	margin: 0 0 2px 7px;
+	display: inline;
+	}
+
+img.alignleft {
+	padding: 4px;
+	margin: 0 7px 2px 0;
+	display: inline;
+	}
+
+
+/* Various Tags & Classes */
+
+.alignright {
+	float: right;
+	}
+	
+.alignleft {
+	float: left
+	}
+
+.description {
+	text-align: center;
+	}
+
+.alt {
+	background-color: #f8f8f8;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	}
+
+small {
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 0.9em;
+	line-height: 1.5em;
+	}
+
+th {
+	text-align: center;
+	}
+
+.description {
+	font-size: 1.2em;
+	text-align: center;
+	}
+
+.logotext {
+	color: #A00000;
+	}
+
+small, blockquote, strike {
+	color: #777;
+	}
+	
+.code {
+	border-top: 1px dashed gray;
+	border-bottom: 1px dashed gray;
+	font: 1.1em 'Courier New', Courier, Fixed;
+	background: #f8f7ef;
+	}
+pre {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+acronym, abbr, span.caps {
+	font-size: 0.9em;
+	letter-spacing: .07em;
+	cursor: help;
+	}
+
+acronym, abbr {
+	border-bottom: 1px dashed #999;
+	}
+
+a {
+	color: #04a;
+	text-decoration: none;
+	}
+
+a:hover {
+	color: black;
+	text-decoration: underline;
+	}
+	
+.current {
+	color: white;
+	font-weight: bold;
+	background-color: #06c;
+	}
+
+.external {
+	background: url(external.png) center right no-repeat;
+	padding-right: 13px;
+	}
+
+.alt {
+	margin: 0;
+	padding: 10px;
+	}
+
+blockquote {
+	margin: 15px 30px 0 10px;
+	padding-left: 20px;
+	border-left: 5px solid #ddd;
+	}
+
+blockquote cite {
+	margin: 5px 0 0;
+	display: block;
+	}
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+.center {
+	text-align: center;
+	}
+
+hr {
+	display: none;
+	}
+
+.date {
+	padding-left: 10px;
+	color: #888;
+	font-size: 0.8em;
+}

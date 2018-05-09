@@ -1,0 +1,65 @@
+<?xml version='1.0'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Select box in the top bar menu</title>
+    <link rel="stylesheet" href="../src/skin-aqua.css" />
+    <script type="text/javascript">
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+  </head>
+  <body onload="DynarchMenu.setup('menu', { electric: 250 })">
+    <ul id="menu"
+        xmlns:DynarchMenu="http://www.dynarch.com/dtd/hmenu">
+      <li>
+        Normal menu
+        <ul>
+          <li>SubItem 1.1</li>
+          <li>SubItem 1.2</li>
+          <li>SubItem 1.3</li>
+        </ul>
+      </li>
+      <li>
+        Blah blah
+        <ul>
+          <li>
+            SubItem 2.1
+            <ul>
+              <li>SubItem 2.1.1</li>
+              <li>SubItem 2.1.2</li>
+              <li>SubItem 2.1.3</li>
+            </ul>
+          </li>
+          <li>SubItem 2.2</li>
+          <li>SubItem 2.3</li>
+        </ul>
+      </li>
+      <li></li>
+      <li DynarchMenu:nohover="on">
+        <a>
+          <label for="query" accesskey="s"><u>S</u>earch:</label>
+          <input id="query" name="query"
+                 style="padding: 1px 2px; border: 1px solid #888; border-width: 1px 0 1px 1px; background-color: #fff;"
+                 type="text" /><input type="submit" value="go" style="padding: 0 2px; border: 1px solid #888;" />
+          <select name="group" style="border: 1px solid #000">
+            <option>All categories</option>
+            <option>JavaScript</option>
+          </select>
+        </a>
+      </li>
+    </ul>
+    <p>
+      This example demonstrates how you can include input fields in
+      the top menu bar.  Please note that this is an experimental
+      feature and it seems to work fine (simply flawless) only on
+      Firefox/Mozilla/Gecko; other browsers show major or minor
+      flaws that may or may not make the whole page unusable.
+    </p>
+    <p>
+      So if you use it, do it at your own risk.  Officially, we don't
+      provide support for this feature.
+    </p>
+  </body>
+</html>
+<!--
+-->

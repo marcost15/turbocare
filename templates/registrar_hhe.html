@@ -1,0 +1,18 @@
+﻿{include file="cabecera.html" title="Registrar Horas Hombre"}
+{if $smarty.session.mensaje}
+</p>
+<div id="mensaje">{$smarty.session.mensaje}</div>
+{/if}
+{$f1}
+{include file="pie.html"}
+{literal}
+<script>
+    var f1 = new LiveValidation('taller'); f1.add( Validate.Presence ); f1.add( Validate.Numericality );
+	var f2 = new LiveValidation('campo'); f2.add( Validate.Presence );f2.add( Validate.Numericality );
+	var f3 = new LiveValidation('contratista'); f3.add( Validate.Presence ); f3.add( Validate.Numericality );
+	var f4 = new LiveValidation('ifb'); f4.add( Validate.Presence ); f4.add( Validate.Numericality );
+    var f5 = new LiveValidation('ifn'); f5.add( Validate.Presence ); f5.add( Validate.Numericality );
+	var f6 = new LiveValidation('is'); f6.add( Validate.Presence ); f6.add( Validate.Numericality );
+	var f7 = new LiveValidation('im'); f7.add( Validate.Presence ); f7.add( Validate.Numericality );
+</script>
+{/literal}

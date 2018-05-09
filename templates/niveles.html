@@ -1,0 +1,36 @@
+﻿{include file="cabecera.html" title="Niveles de Acceso"}
+<table width="90%">
+<tr>
+	<td>{$f1}
+	<div id="mensaje">{$smarty.session.mensaje}</div>
+</td>
+</tr>
+</table>
+<p></p>
+<div id = "indice" align = "center" ><b>Total de Registros:{$m} -	{section name=z loop=$indice} <a href="?li={$indice[z].li}">[{$indice[z].li}-{$indice[z].ls}]</a> {/section}
+		<a href="?li=todo">[Todos]</b></a>
+</div>
+<div id="resultados">
+<table class="enhancedtable" border="0" cellspacing="3" cellpadding="3" width="100%">
+<thead>
+<tr>
+	<th colspan="2">NIVEL DE ACCESO</th>
+</tr>
+</thead>
+<tbody>
+{section name=i loop=$niveles}
+<tr>
+	<td>{$niveles[i].nombre}</td>
+	<td width="10%"><a href="?id={$niveles[i].id}"><img onmouseover='overlib("<strong>Modificar</strong>",WIDTH, 70)' src="./imagenes/boton1.png" onmouseout='return nd();'/></a></a></td>
+</tr>
+{/section}
+</tbody>
+</table>
+</div>
+</p>
+{include file="pie.html"}
+{literal}
+<script>
+	var f1 = new LiveValidation('nombre'); f1.add( Validate.Presence );
+</script>
+{/literal}

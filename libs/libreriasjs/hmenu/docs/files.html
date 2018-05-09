@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dhtml menu javascript menu</title>
+    <link rel="stylesheet" href="../code.css" />
+  </head>
+
+  <body onload="window.parent.sectionLoaded(document.body)">
+<div style="font-size: 1px; line-height: 1px"><br /></div>
+      <h1>Distribution files</h1>
+
+      <p>
+        The ZIP file that you downloaded (<tt>hmenu-2.9.zip</tt>)
+        contains the following file structure:
+      </p>
+
+      <ul class="list-files">
+        <li><tt>hmenu-2.9</tt> -- base directory</li>
+        <ul>
+          <li><tt>icons</tt> -- directory containing sample menu icons</li>
+          <li>
+            <tt>src</tt> -- directory containing the main menu files
+            <ul>
+              <li>
+                <tt>img</tt> -- directory containing images accessed
+                by the stylesheet file.
+                <ul>
+                  <li><tt>blank.gif</tt> -- needed to workaround bugs in IE.</li>
+                  <li><tt>rarrow.gif</tt> -- the small arrow displayed
+                  in the menu items that contain submenus.</li>
+                  <li><tt>shadow.png</tt> -- used to display smooth
+                  shadows.</li>
+                  <li>other folders may be here containing skin images.</li>
+                </ul>
+              </li>
+              <li><tt>hmenu.js</tt> -- the main program file,
+              “compressed” (with indentation and spaces removed).
+              </li>
+              <li><tt>PieNG.js</tt> -- PieNG is a <a target="_blank"
+              title="PieNG (PNG with variable opacity in IE)"
+              href="http://dynarch.com/mishoo/articles.epl?art_id=430">free
+              script</a> that convinces IE to display PNG-s with
+              variable opacity.  You have to load it at the end of the
+              page if you want to be able to display PNG files
+              correctly in IE.  Included in the menu distribution for
+              convenience.</li>
+              <li><tt>*.css</tt> -- <a href="skins.html" onclick="showSection('skins'); return false;">stylesheet (CSS) files</a></li>
+            </ul>
+          </li>
+        </ul>
+      </ul>
+
+      <p>
+        You should copy the <em>content</em> of the “src” subdirectory
+        directly in your document root under the path
+        “<tt>/hmenu/</tt>”.  That is, the following URL should be
+        valid and lead to the main program file:
+      </p>
+
+      <pre>http://www.your-domain.com<span style="color: red">/hmenu/</span>hmenu.js</pre>
+
+      <p>
+        The red part from the URL will be the menu URL absolute to
+        your pages and should be declared before loading the script
+        file.  The <a href="load.html" onclick="showSection('load'); return false;">next
+        section</a> describes how you do this and load the files.
+      </p>
+
+<hr />
+<address style="text-align: center">
+© <a href="http://www.dynarch.com/">Dynarch.com</a> 2003 and beyond.<br />
+Visit the <a href="http://www.dynarch.com/products/dhtml-menu/">dhtml menu page</a> on our website.<br />
+All trademarks are properties of their respective owners.
+</address>
+<p></p>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+{include file="cabecera.html" title=" Ficha Morbilidad"}
+<h3>FICHA DE MORBILIDAD</h3>
+
+<table class = "retiro" align = "center" border="1">
+
+	<tr>
+		<th>Fecha</th>
+		<td>{$ficha.fecha}</td>
+    <tr>
+		<th>Personal</th>
+		<td>{$ficha.personal_id}</td>
+	<tr>
+		<th>Secciones</th>
+		<td>{$ficha.secciones_morb_id}</td>
+	</tr>
+	<tr>
+		<th>Patologia</th>
+		<td>{$ficha.patologia}</td>
+	</tr>
+	<tr>
+		<th>Amezulia</th>
+		<td>{$ficha.amezulia}</td>
+	</tr>
+	<tr>
+		<th>Consulta Externa</th>
+		<td>{$ficha.consulta_ext}</td>
+	</tr>
+	<tr>
+		<th>Reposo AC/EC</th>
+		<td>{$ficha.reposos_ac_ec}</td>
+	</tr>
+	<tr>
+		<th>Reposo AT/EO</th>
+		<td>{$ficha.reposo_at_eo}</td>
+	</tr>
+	<tr>
+		<th>Dias Perdidos</th>
+		<td>{$ficha.dias_perdido}</td>
+	</tr>
+	<tr>
+		<th>Observaciones</th>
+		<td>{$ficha.observaciones}</td>
+	</tr>
+	<tr>
+		<th>Personal que Registra</th>
+		<td>{$ficha.personal_reg_id}</td>
+	</tr>
+</table>
+<p></p>
+<hr/>	
+<div id="boton" align="center"><a href="consmod_morbilidad.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

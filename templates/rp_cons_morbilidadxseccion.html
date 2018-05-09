@@ -1,0 +1,81 @@
+{include file="cabecera2.html" title="Control de Morbilidad"}
+<div id = "titulo2">
+<table  class="enhancedtable" border="1" align="center" width="100%">
+ <tr>
+	<th width = "20%"><img src="./imagenes/tc_pequeño.jpg" align = "left" width="400" height="60"/></th>
+	<th width = "60%"><FONT SIZE=10>Relacion de Morbilidad Turbo Care</th>
+	<th width = "20%"><img src="./imagenes/logos_iso.png" align = "right" width="400" height="60"/> </th>
+ </tr>
+</table>
+</div>
+<div id="resultados_reporte">
+<p>
+<div id = "indice">Relacion de Morbilidad Turbo Care </br>Seccion: {$secciones_morb_id} </div>
+</p>
+{if $datos}
+<div id="resultados">
+<table class="enhancedtable" cellspacing="0" cellpadding = "3" border="1" align="center" width="100%">
+<thead>
+	<tr> 
+		<th>NRO</th>
+		<th>FECHA</th>
+		<th>APELLIDO Y NOMBRE</th>
+		<th>GERENCIA</th>
+		<th>PATOLOGIA</th>
+		<th>AMEZULIA</th>
+		<th>CONSULTA EXTERNA</th>
+		<th>REPOSO AC/EC</th>
+		<th>REPOSO AT/EO</th>
+		<th>DIAS PERDIDOS/REPOSO MEDICO</th>
+		<th>OBSERVACIONES/COMENTARIOS</th>
+		<th>PERSONAL REGISTRA</th>
+		
+	</tr>
+</thead>
+<tbody>
+	{section name=p loop=$datos}
+	<tr>
+		<td>{$datos[p].id}</td>
+		<td>{$datos[p].fecha}</td>
+		<td>{$datos[p].personal_id}</td>
+		<td>{$datos[p].gerencia_id}</td>
+		<td>{$datos[p].patologia}</td>
+		{if $datos[p].amezulia eq 'SI'}
+		<td>X</td>
+		{else}
+		<td>&nbsp;</td>
+		{/if}
+		{if $datos[p].consulta_ext eq 'SI'}
+		<td>X</td>
+		{else}
+		<td>&nbsp;</td>
+		{/if}
+		{if $datos[p].reposos_ac_ec eq 'SI'}
+		<td>X</td>
+		{else}
+		<td>&nbsp;</td>
+		{/if}
+		{if $datos[p].reposo_at_eo eq 'SI'}
+		<td>X</td>
+		{else}
+		<td>&nbsp;</td>
+		{/if}
+		<td>{$datos[p].dias_perdido}</td>
+		<td>{$datos[p].observaciones}</td>
+		<td>{$datos[p].personal_reg_id}</td>		
+	</tr>{/section}
+</tbody>
+</table>
+</div>
+{else}
+	<h3>NO SE ENCONTRÓ NINGUN DATO QUE CORRESPONDA, VERIFIQUE...</h3>
+{/if}
+{if $datos}
+<p>
+<div id="boton">
+<a href="xls_morbilidadxseccion.php" target="_xls"><img onmouseover='overlib("<strong>Generar .xls</strong>",WIDTH, 70)' src="./imagenes/excel.png" width="50" height="50" onmouseout='return nd();'/></a>
+<a href='./grafico_morbilidadxseccion.php' class='claseiframe'><img onmouseover='overlib("<strong>Generar Grafico</strong>",WIDTH, 70)' src="./imagenes/grafico.png" width="50" height="50" onmouseout='return nd();'/></a></div>
+<p>
+</div>{/if}
+<div id="boton" align="center"><a href="rp_frm_morbilidadxseccion.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

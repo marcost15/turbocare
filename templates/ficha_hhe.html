@@ -1,0 +1,42 @@
+{include file="cabecera.html" title=" Ficha Horas Hombre"}
+<h3>FICHA DE HORAS HOMBRE</h3>
+
+<table class = "retiro" align = "center" border="1">
+
+	<tr>
+		<th>Fecha</th>
+		<td>{$ficha.fecha}</td>
+	</tr>
+	<tr>
+		<th>Taller</th>
+		<td>{$ficha.taller}</td>
+	</tr>
+	<tr>
+		<th>Campo</th>
+		<td>{$ficha.campo}</td>
+	</tr>
+	<tr>
+		<th>Contratista</th>
+		<td>{$ficha.contratista}</td>
+	</tr>
+	<tr>
+		<th>IFB</th>
+		<td>{$ficha.ifb}</td>
+	</tr>
+	<tr>
+		<th>IFN</th>
+		<td>{$ficha.ifn}</td>
+	</tr>
+	<tr>
+		<th>IS</th>
+		<td>{$ficha.ist}</td>
+	</tr>
+	<tr>
+		<th>IM</th>
+		<td>{$ficha.im}</td>
+	</tr>
+</table>
+<p></p>
+<hr/>	
+<div id="boton" align="center"><a href="consmod_hhe.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

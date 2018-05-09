@@ -1,0 +1,98 @@
+{include file="cabecera.html" title=" Ficha Informe"}
+<h3>FICHA DE INFORME</h3>
+
+<table class = "retiro" align = "center" border="1">
+
+	<tr>
+		<th>Fecha</th>
+		<td>{$ficha.fecha}</td>
+	</tr>
+	<tr>
+		<th>Personal</th>
+		<td>{$ficha.personal_id}</td>
+	</tr>
+	<tr>
+		<th>Tipo de Gestion</th>
+		<td>{$ficha.tipo_gestion_id}</td>
+	</tr>
+	<tr>
+		<th>Equipos</th>
+		<td>{$ficha.equipo_id}</td>
+	</tr>
+	<tr>
+		<th>Area</th>
+		<td>{$ficha.area}</td>
+	</tr>
+	<tr>
+		<th>Hallazgos</th>
+		<td>{$ficha.hallazgos}</td>
+	</tr>
+	<tr>
+		<th>Correcciones</th>
+		<td>{$ficha.correcciones}</td>
+	</tr>
+	<tr>
+		<th>Acciones Preventivas</th>
+		<td>{$ficha.acciones}</td>
+	</tr>
+	{if $ficha.evaluador_id}
+	<tr>
+		<th>Evaluador</th>
+		<td>{$ficha.evaluador_id}</td>
+	</tr>
+	{/if}
+	{if $ficha.fecha_eva neq 00-00-0000}
+	<tr>
+		<th>Fecha de Evalucion</th>
+		<td>{$ficha.fecha_eva}</td>
+	</tr>
+	{/if}
+	{if $ficha.personal_rev_id}
+	<tr>
+		<th>Revisado Por</th>
+		<td>{$ficha.personal_rev_id}</td>
+	</tr>
+	{/if}
+	{if $ficha.fecha_revi neq 00-00-0000}
+		<tr>
+		<th>Fecha de Revision</th>
+		<td>{$ficha.fecha_revi}</td>
+	</tr>
+	{/if}
+	{if $ficha.observaciones}
+		<tr>
+		<th>Observaciones</th>
+		<td>{$ficha.observaciones}</td>
+	</tr>
+	{/if}
+	{if $ficha.personal_obs_id}
+		<tr>
+		<th>Persona/Cierre de Acciones</th>
+		<td>{$ficha.personal_obs_id}</td>
+	</tr>
+	{/if}
+	{if $ficha.fecha_obs neq 00-00-0000}
+		<tr>
+		<th>Fecha de Observaciones</th>
+		<td>{$ficha.fecha_obs}</td>
+		</tr>
+	{/if}
+	<tr>
+		<th>Status</th>
+		<td>{$ficha.status}</td>
+	</tr>
+</table>
+<p></p>
+{if $secciones}
+<h3>SECCIONES INSPECCIONADAS</h3>
+<table class = "retiro" align = "center" border="1">
+	{section name=p loop=$secciones}
+	<tr>
+		<td>{$secciones[p].seccion_id}</td>
+	</tr>
+	{/section}
+</table>
+{/if}
+<hr/>	
+<div id="boton" align="center"><a href="consmod_informes.php"><img onmouseover='overlib("<strong>Volver</strong>",WIDTH, 70)' src="./imagenes/flecha_izquierda.gif" onmouseout='return nd();'/></a></div>
+{include file="pie.html"}

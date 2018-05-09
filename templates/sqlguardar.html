@@ -1,0 +1,15 @@
+{include file="cabecera.html"}
+<h3>Respaldos realizados</h3>
+<p>Si desea guardar un archivo de la base de datos, haga click derecho
+sobre el enlace y , en el menú emergente, haga click en "Guardar Como".</p>
+<p>Si desea realizar un respaldo haga click en </p>
+<p><a href="sqlrespaldo.php">Respaldo de la BD</a></p>
+<div class="archivossql">
+<ol>
+    {section name=i loop=$a}<li><a 
+        href="./respaldobd/{$a[i].basename}">
+        {$a[i].d}/{$a[i].mes}/{$a[i].a}, {$a[i].h}:{$a[i].m}:{$a[i].s}
+        </a>&nbsp;::&nbsp;<a href="sqlelim.php?a={$a[i].basename}">[X]</a></li>{/section}
+</ol>
+</div>
+{include file="pie.html"} 

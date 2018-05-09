@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DynarchMenu: vertical menus</title>
+    <style type="text/css"> @import url("../src/skin-xp.css"); body { background-color: #ccc; }</style>
+    <script type="text/javascript">
+      // WARNING: the following should be a path relative to site, like "/hmenu/"
+      // here it is set relative to the current page only, which is not recommended
+      // for production usage; it's useful in this case though to make the demo work
+      // correctly on local systems.
+      _dynarch_menu_url = "../src/";
+    </script>
+    <script type="text/javascript" src="../src/hmenu.js"></script>
+    <style type="text/css">
+      td.leftside div.dynarch-popup-menu { border-color: #000; background-color: #e5e5f5; }
+      td.leftside div.dynarch-popup-menu table tr td { white-space: nowrap; font: bold italic 12px georgia,serif; }
+    </style>
+  </head>
+  <body onload="DynarchMenu.setup('menu1', { vertical: true });  DynarchMenu.setup('menu2');">
+    <table>
+      <tr>
+        <td valign="top" class="leftside">
+          <ul id="menu1">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>
+              Item _3
+              <ul>
+                <li>Submenu 1 Item 1</li>
+                <li>
+                  Submenu 1 Item 2
+                  <ul>
+                    <li>Submenu 2 Item 1</li>
+                    <li>Submenu 2 Item 2</li>
+                    <li>Submenu 2 Item 3</li>
+                    <li>Submenu 2 Item 4</li>
+                  </ul>
+                </li>
+                <li>Submenu 1 Item 3</li>
+                <li></li>
+                <li>Submenu 1 Item 4</li>
+              </ul>
+            </li>
+            <li></li>
+            <li>Item 4</li>
+          </ul>
+        </td>
+        <td valign="top" style="padding-left: 1em">
+          <p>
+            The menu on the left is created in vertical state by
+            default.  As you can see in this page source, it is
+            defined in the exact same way as a horizontal menu, the
+            only difference being at creation time: you need to pass
+            "vertical: true" in the configuration parameter.
+          </p>
+          <p>
+            As it is more intuitive this way, a vertical menu will
+            also imply “electric” behavior (unless you explicitely say
+            “electric: false” at configuration).
+          </p>
+          <p>
+            Note, in the source of this page, how easy can we style
+            the base vertical menu.  We just need to assign a certain
+            class name to the containing element (the element is here
+            a &lt;td&gt; and the class name is “leftside”), and based
+            on that we can write CSS rules (see in the &lt;head&gt; of
+            the document) that apply only to what is inside, that is,
+            our vertical menu.
+          </p>
+          <p>
+            More interesting things to consider:
+          </p>
+          <ul>
+            <li>
+              The menu width and height are determined automatically,
+              based on the content width&mdash;so you need not to mess
+              with absolue values that would render your pages almost
+              useless if the end-user's machine doesn't have the exact
+              same fonts, etc.
+            </li>
+            <li>
+              For a proper layout, you should&mdash;in the case of a
+              vertical menu&mdash;embed the toplevel &lt;UL&gt;
+              element in either a table column of a DIV with a
+              floating style.  We used the table approach here,
+              because it seems to be supported better by Internet
+              Explorer.
+            </li>
+          </ul>
+
+          <p>
+            Just to demonstrate that it's the <em>exact</em> same HTML
+            code (except for the ID which has to be unique throughout
+            the document), following we include the same menu in it's
+            horizontal form.  See the page source to see how it's
+            done.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <ul id="menu2">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>
+              Item _3
+              <ul>
+                <li>Submenu 1 Item 1</li>
+                <li>
+                  Submenu 1 Item 2
+                  <ul>
+                    <li>Submenu 2 Item 1</li>
+                    <li>Submenu 2 Item 2</li>
+                    <li>Submenu 2 Item 3</li>
+                    <li>Submenu 2 Item 4</li>
+                  </ul>
+                </li>
+                <li>Submenu 1 Item 3</li>
+                <li></li>
+                <li>Submenu 1 Item 4</li>
+              </ul>
+            </li>
+            <li></li>
+            <li>Item 4</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+<!--
+-->

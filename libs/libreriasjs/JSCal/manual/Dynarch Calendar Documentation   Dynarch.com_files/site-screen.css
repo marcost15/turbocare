@@ -1,0 +1,277 @@
+/* screen */
+
+@import url("shadows/shadows.css");
+
+html, body { margin: 0; padding: 0; }
+body {
+  overflow: hidden;
+  background: #765;
+  color: #435;
+}
+
+h1 {
+  border-bottom: 1px solid #bbb; color: #c00;
+  margin-left: -0.6em; padding-left: 0.6em;
+}
+
+#Ktop-container {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  overflow: auto;
+}
+
+#Ktop-bar {
+  position: relative;
+  background: url("img/sun.jpg") no-repeat 50% 100%;
+}
+
+#Ktop-links {
+  margin-right: 10px;
+  position: absolute;
+  right: 0;
+  padding: 0;
+  bottom: 0;
+}
+
+#Ktop-links a {
+  float: left;
+  padding: 3px 10px;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  color: #444;
+  border-width: 1px 1px 0 1px;
+  border-color: #861;
+  border-style: solid;
+  margin-right: -1px;
+  background-color: #eedd77;
+}
+#Ktop-links a.active {
+  border-color: #000;
+  border-top-width: 2px;
+  padding-top: 4px;
+  position: relative; top: 1px; margin-top: -2px;
+  -moz-border-top-colors: #000 #777;
+  color: #000;
+  color: #000;
+  z-index: 10;
+  background-color: #fed;
+}
+#Ktop-links a:hover { color: #000; }
+
+.top-logo {
+  display: block;
+  width: 253px;
+  height: 64px;
+  background: url("img/logo.png") no-repeat 0 50%;
+  text-decoration: none;
+  opacity: 0.6;
+}
+.top-logo:hover { text-decoration: none; opacity: 1; }
+.top-logo span { visibility: hidden; }
+
+#Klogin-info {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 90%;
+}
+
+#Kpage {
+  margin: 0 170px 1em 120px;
+  background: #ffee99;
+  position: relative;
+}
+
+#KMKF-add {
+  background-color: #cba;
+  border: 1px solid #000;
+  -moz-border-radius: 5px;
+  padding: 5px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 120px; height: 434px;
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  margin-top: -464px;
+  margin-left: -165px;
+  opacity: 0.6;
+}
+
+a:hover #KMKF-add { background-color: #fed; opacity: 1; }
+
+.KMKF-add-1 { background-image: url("mkf-img/01.jpg"); }
+.KMKF-add-2 { background-image: url("mkf-img/02.jpg"); }
+.KMKF-add-3 { background-image: url("mkf-img/03.jpg"); }
+
+#Kbody {
+  padding-left: 15px;
+  background: #fed;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+#Kbreadcrumb { float: left; margin-left: 1em; font: 90% arial,helvetica,sans-serif; margin-top: 1em; }
+
+#Kleft-col {
+  margin-right: 200px;
+  border-right: 1px solid #d3d3d3;
+  padding-bottom: 2em;
+}
+
+#Kright-col {
+  float: right;
+  font-size: 85%;
+  width: 200px;
+  border-left: 1px solid #d3d3d3;
+  margin-bottom: 45px;
+}
+
+#Kright-col .padding { padding: 1em; }
+#Kright-col ul p { margin: 0; }
+#Kright-col ul li { margin-left: 1em; list-style-type: none; list-style-image: url("img/listarr2.png"); }
+
+#Kright-col h3 { color: #c00; margin: 0 0 0 -0.5em !important; padding: 0 0 0 0.5em; border-bottom: 1px solid #c99; border-left: 0; }
+
+#Kbottom-bar .dl-powered {
+  position: absolute;
+  right: 35px;
+  margin-right: 1em;
+  bottom: 5.2em;
+  opacity: 0.3;
+}
+
+#Kbottom-bar .dl-powered:hover { opacity: 1; }
+
+#Kcomment-form textarea { width: 90%; }
+
+a, a:visited, a:link { text-decoration: none; color: #42c; }
+a:hover { text-decoration: underline; color: #c24; }
+
+
+.GalImgPreview {
+  padding: 2px;
+  background-color: #fff;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #bbb;
+}
+
+.GalImgPreview:hover {
+  padding: 1px;
+  border: 2px solid #b9d;
+  -moz-border-left-colors: #000 #b9d;
+  -moz-border-top-colors: #000 #b9d;
+  -moz-border-right-colors: #000 #b9d;
+  -moz-border-bottom-colors: #000 #b9d;
+  background-color: #ff3;
+}
+
+.GalImgOverlay {
+  display: none;
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: #122;
+  z-index: 10000;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.GalImgDisplay {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  z-index: 10010;
+  padding: 5px;
+  border: 2px solid #000;
+  -moz-border-left-colors: #000 #777;
+  -moz-border-top-colors: #000 #777;
+  -moz-border-right-colors: #000 #777;
+  -moz-border-bottom-colors: #000 #777;
+  margin-top: -7px; margin-left: -7px;
+}
+
+.GalImgDisplay img.final {
+  position: absolute;
+  top: 5px; left: 5px;
+}
+
+/* generics */
+
+img { border: none; }
+
+.shadow { position: absolute; font-size: 1px; line-height: 1px; }
+
+form table td.label { text-align: right; white-space: nowrap; padding-right: 3px; }
+form table td.tlabel { vertical-align: top; padding-top: 2px; }
+
+input.emptytext { color: #888; }
+input.focused { }
+
+/* pre.src { background-color: #223; color: #fec; padding: 0.5em; } */
+
+pre.src {
+  background-color: #fff;
+  overflow-x: auto;
+}
+
+.error { color: red; }
+
+.important { color: #c52; }
+
+.blink-link {
+  position: absolute;
+  background-color: #ff0;
+  opacity: 0.5; filter: alpha(opacity=50);
+  border: 1px dashed #000;
+  padding: 2px 4px;
+  margin: -3px 0 0 -5px;
+  display: block;
+}
+
+.purchase-form {
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #000;
+}
+
+.purchase-info {
+  border-top: 1px solid #000;
+  padding: 5px 5px 0 5px;
+  margin-top: 5px;
+  width: 30em;
+}
+
+.credit-cards {
+  height: 37px;
+  background: url("img/credit-cards.jpeg") no-repeat 50% 50%;
+}
+
+/* different colors for top links */
+/*
+#Kpage.Where-Blog #Kbody,
+#Kpage.Where-Blog a.Where-Blog                   { background-color: #efe !important; }
+.Where-Blog                                      { background-color: #cfc !important; }
+
+#Kpage.Where-License #Kbody,
+#Kpage.Where-License a.Where-License             { background-color: #fee !important; }
+.Where-License                                   { background-color: #fdd !important; }
+
+#Kpage.Where-Documentation #Kbody,
+#Kpage.Where-Documentation a.Where-Documentation { background-color: #ffe !important; }
+.Where-Documentation                             { background-color: #ffc !important; }
+
+#Kpage.Where-Download #Kbody,
+#Kpage.Where-Download a.Where-Download           { background-color: #eff !important; }
+.Where-Download                                  { background-color: #cff !important; }
+
+#Kpage.Where-About #Kbody,
+#Kpage.Where-About a.Where-About                 { background-color: #edf !important; }
+.Where-About                                     { background-color: #ecf !important; }
+
+#Kpage.Where-Contact #Kbody,
+#Kpage.Where-Contact a.Where-Contact             { background-color: #ddf !important; }
+.Where-Contact                                   { background-color: #ccf !important; }
+*/
